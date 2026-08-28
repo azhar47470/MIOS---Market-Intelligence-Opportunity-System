@@ -32,7 +32,6 @@ class AnalystPromptConfig(ConfigModel):
 class AIResearchConfig(ConfigModel):
     enabled: bool = True
     escalation: AIEscalationConfig = Field(default_factory=AIEscalationConfig)
-    escalation: AIEscalationConfig = Field(default_factory=AIEscalationConfig)
     specialist_prompts: dict[AgentRole, AnalystPromptConfig]
     committee_system_prompt: str = Field(min_length=1, max_length=6000)
     fallback_confidence_cap: int = Field(default=35, ge=0, le=100)

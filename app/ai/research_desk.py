@@ -35,11 +35,14 @@ class AIResearchDesk:
 
     Every specialist report is built directly from the deterministic engines (Technical,
     Fundamental, Institutional, News, Geopolitical, Regime) — no per-specialist LLM call is
-    made. The only LLM calls are the committee member votes: a macro strategist and a
-    tactical trader (both Gemini-pinned, distinct temperatures) plus a contrarian risk
-    analyst (Groq-pinned) vote alongside a rule-based deterministic anchor. The weighted
-    consensus is mapped back onto the InvestmentCommitteeReport contract the DecisionEngine
-    consumes, so the downstream pipeline is unchanged.
+    made. The only LLM calls are the committee member votes: a macro strategist, a
+    tactical trader, and a contrarian risk analyst (distinct temperatures, all
+    preferring Groq) vote alongside a rule-based deterministic anchor. Members
+    deliberate over the shared provider chain with cycle-level locking — Groq-first
+    when no escalation fires, OpenCode/Laguna-first when the desk escalates for deep
+    reasoning, with Ollama and Gemini as fallbacks. The weighted consensus is mapped
+    back onto the InvestmentCommitteeReport contract the DecisionEngine consumes, so
+    the downstream pipeline is unchanged.
     """
 
     def __init__(

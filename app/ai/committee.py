@@ -6,11 +6,16 @@ tactical trader, and a contrarian risk analyst — vote alongside a rule-based
 deterministic anchor, and the advisory output is a confidence-weighted consensus.
 
 Member weights: deterministic 0.25, macro strategist 0.30, tactical trader 0.25,
-contrarian risk 0.20. Every AI member is pinned to one provider and one temperature
-so its voice stays distinct: strategist -> gemini (0.4), tactical -> gemini (0.5),
-contrarian -> groq (0.6). If that member's pinned provider/model chain is exhausted,
-it abstains (WAIT) rather than re-voting the deterministic desk evidence already
-represented by the anchor, so quorum stays intact without double-counting the desk.
+contrarian risk 0.20. The three AI members keep distinct voices via distinct
+temperatures (strategist 0.4, tactical 0.5, contrarian 0.6) and all prefer Groq as
+their primary provider. Deliberation runs with cycle-level provider locking: the
+committee tries one provider per cycle — Groq-first under normal conditions,
+OpenCode/Laguna-first when the research desk escalates for deep reasoning, with
+Ollama and Gemini as fallbacks — and if a member's call fails, the entire cycle
+switches to the next provider in the chain. If every provider is exhausted, the
+affected member abstains (WAIT) rather than re-voting the deterministic desk evidence
+already represented by the anchor, so quorum stays intact without double-counting the
+desk.
 """
 
 from abc import ABC, abstractmethod
@@ -135,7 +140,7 @@ class DeterministicMember(CommitteeMember):
 
 
 class _LLMVotingMember(CommitteeMember):
-    """An adversarial AI member pinned to one provider, one temperature, one role."""
+    """An adversarial AI member with one preferred provider, one temperature, one role."""
 
     def __init__(
         self,
