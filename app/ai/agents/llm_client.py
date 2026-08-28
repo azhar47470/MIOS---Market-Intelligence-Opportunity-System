@@ -2,6 +2,7 @@ import dataclasses
 import json
 import logging
 import os
+import tempfile
 import time
 from collections.abc import Callable
 from dataclasses import dataclass, field
@@ -34,6 +35,71 @@ _RETRYABLE_STATUS = frozenset(
 _ProviderCall = Callable[
     [str, str, str, float], tuple["LLMJsonCompletion | None", str | None, str]
 ]
+
+# Groq rate-limit serialization lock. Cross-process lock around Groq calls, since Groq's
+# free tier hard-rate-limits concurrent requests. A hard-killed process can leave the
+# lock file behind, so acquisition is bounded and clearly stale locks are reclaimed:
+#  * 45 s max wait keeps a live demo responsive while covering ordinary queue waits.
+#  * 120 s staleness exceeds the worst-case legitimate hold (~3 retries x (30 s HTTP
+#    timeout + 5 s capped 429 backoff) ~= 105 s), so a lock that could plausibly belong
+#    to an active call is never reclaimed.
+_GROQ_LOCK_FILE = os.path.join(tempfile.gettempdir(), "mios_groq.lock")
+_GROQ_LOCK_MAX_WAIT_SECONDS = 45.0
+_GROQ_LOCK_STALE_AFTER_SECONDS = 120.0
+_GROQ_LOCK_POLL_SECONDS = 0.5
+
+
+def _acquire_groq_lock(
+    lock_file: str | None = None,
+    *,
+    max_wait_seconds: float | None = None,
+    stale_after_seconds: float | None = None,
+    poll_seconds: float | None = None,
+) -> int | None:
+    """Acquire the Groq serialization lock with bounded waiting.
+
+    Returns the queue wait time in milliseconds once the lock is held, or ``None`` if the
+    lock could not be acquired within ``max_wait_seconds`` and no stale lock could be
+    safely reclaimed. Stale detection is conservative: a lock file is only reclaimed after
+    the bounded wait has elapsed AND its modification time is older than
+    ``stale_after_seconds``. On Windows, ``os.remove`` also fails while another process
+    keeps the file open, which provides a second guard against reclaiming an active lock.
+    """
+    lock_file = _GROQ_LOCK_FILE if lock_file is None else lock_file
+    max_wait_seconds = _GROQ_LOCK_MAX_WAIT_SECONDS if max_wait_seconds is None else max_wait_seconds
+    stale_after_seconds = (
+        _GROQ_LOCK_STALE_AFTER_SECONDS if stale_after_seconds is None else stale_after_seconds
+    )
+    poll_seconds = _GROQ_LOCK_POLL_SECONDS if poll_seconds is None else poll_seconds
+    queue_start = time.perf_counter()
+    while True:
+        try:
+            fd = os.open(lock_file, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+            os.close(fd)
+            return int((time.perf_counter() - queue_start) * 1000)
+        except FileExistsError:
+            pass
+        if (time.perf_counter() - queue_start) >= max_wait_seconds:
+            age = None
+            try:
+                age = time.time() - os.path.getmtime(lock_file)
+            except OSError:
+                pass
+            if age is not None and age >= stale_after_seconds:
+                try:
+                    os.remove(lock_file)
+                except OSError:
+                    pass
+                logger.warning(
+                    "Reclaimed stale Groq lock (age %.0fs >= %.0fs) at %s",
+                    age,
+                    stale_after_seconds,
+                    lock_file,
+                )
+                continue
+            return None
+        time.sleep(poll_seconds)
+
 
 
 class AIProviderError(RuntimeError):
@@ -320,16 +386,15 @@ class LLMJsonClient:
             ],
         }
         
-        lock_file = os.path.join(tempfile.gettempdir(), "mios_groq.lock")
-        queue_start = time.perf_counter()
-        while True:
-            try:
-                fd = os.open(lock_file, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
-                os.close(fd)
-                break
-            except FileExistsError:
-                time.sleep(0.5)
-        queue_wait_ms = int((time.perf_counter() - queue_start) * 1000)
+        lock_queue_wait_ms = _acquire_groq_lock(_GROQ_LOCK_FILE)
+        if lock_queue_wait_ms is None:
+            return (
+                None,
+                f"Groq serialization lock at {_GROQ_LOCK_FILE} could not be acquired within "
+                f"{_GROQ_LOCK_MAX_WAIT_SECONDS:g}s and does not look stale.",
+                "lock_timeout",
+            )
+        queue_wait_ms = lock_queue_wait_ms
         
         retries = 0
         started_at = time.perf_counter()
@@ -363,7 +428,7 @@ class LLMJsonClient:
                 return None, response.body, str(response.status_code)
         finally:
             try:
-                os.remove(lock_file)
+                os.remove(_GROQ_LOCK_FILE)
             except OSError:
                 pass
         try:
