@@ -1,0 +1,56 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "evidence_record_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Evidence Record Ids",
+      "type": "array"
+    },
+    "from_entity": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "From Entity",
+      "type": "string"
+    },
+    "relation": {
+      "maxLength": 120,
+      "minLength": 1,
+      "title": "Relation",
+      "type": "string"
+    },
+    "relationship_id": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Relationship Id",
+      "type": "string"
+    },
+    "strength": {
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Strength",
+      "type": "integer"
+    },
+    "to_entity": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "To Entity",
+      "type": "string"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "title": "Updated At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "relationship_id",
+    "from_entity",
+    "relation",
+    "to_entity",
+    "strength"
+  ],
+  "title": "RelationshipRecord",
+  "type": "object"
+}

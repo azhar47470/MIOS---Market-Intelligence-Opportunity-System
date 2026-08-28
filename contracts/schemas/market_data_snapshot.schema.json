@@ -1,0 +1,590 @@
+{
+  "$defs": {
+    "CotPositioningSnapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "managed_money_long": {
+          "minimum": 0,
+          "title": "Managed Money Long",
+          "type": "integer"
+        },
+        "managed_money_net": {
+          "title": "Managed Money Net",
+          "type": "integer"
+        },
+        "managed_money_short": {
+          "minimum": 0,
+          "title": "Managed Money Short",
+          "type": "integer"
+        },
+        "market_name": {
+          "maxLength": 240,
+          "minLength": 1,
+          "title": "Market Name",
+          "type": "string"
+        },
+        "provider": {
+          "$ref": "#/$defs/DataProviderId",
+          "default": "cftc_cot"
+        },
+        "report_date": {
+          "format": "date-time",
+          "title": "Report Date",
+          "type": "string"
+        }
+      },
+      "required": [
+        "report_date",
+        "market_name",
+        "managed_money_long",
+        "managed_money_short",
+        "managed_money_net"
+      ],
+      "title": "CotPositioningSnapshot",
+      "type": "object"
+    },
+    "DataProviderId": {
+      "enum": [
+        "twelve_data",
+        "fred",
+        "newsapi",
+        "groq",
+        "discord",
+        "finnhub",
+        "gemini",
+        "cftc_cot",
+        "spdr_gld",
+        "gdelt"
+      ],
+      "title": "DataProviderId",
+      "type": "string"
+    },
+    "EconomicCalendarEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "actual": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Actual"
+        },
+        "country": {
+          "maxLength": 80,
+          "minLength": 1,
+          "title": "Country",
+          "type": "string"
+        },
+        "event": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Event",
+          "type": "string"
+        },
+        "event_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Event Id",
+          "type": "string"
+        },
+        "event_time": {
+          "format": "date-time",
+          "title": "Event Time",
+          "type": "string"
+        },
+        "forecast": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Forecast"
+        },
+        "impact": {
+          "maxLength": 40,
+          "minLength": 1,
+          "title": "Impact",
+          "type": "string"
+        },
+        "previous": {
+          "anyOf": [
+            {
+              "maxLength": 80,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Previous"
+        },
+        "provider": {
+          "$ref": "#/$defs/DataProviderId"
+        }
+      },
+      "required": [
+        "event_id",
+        "country",
+        "event",
+        "impact",
+        "event_time",
+        "provider"
+      ],
+      "title": "EconomicCalendarEvent",
+      "type": "object"
+    },
+    "EtfFlowSnapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "daily_ounce_change": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Daily Ounce Change"
+        },
+        "date": {
+          "format": "date-time",
+          "title": "Date",
+          "type": "string"
+        },
+        "fund": {
+          "maxLength": 40,
+          "minLength": 1,
+          "title": "Fund",
+          "type": "string"
+        },
+        "provider": {
+          "$ref": "#/$defs/DataProviderId",
+          "default": "spdr_gld"
+        },
+        "total_ounces": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Total Ounces"
+        }
+      },
+      "required": [
+        "date",
+        "fund",
+        "total_ounces"
+      ],
+      "title": "EtfFlowSnapshot",
+      "type": "object"
+    },
+    "MacroSeriesObservation": {
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "format": "date-time",
+          "title": "Date",
+          "type": "string"
+        },
+        "provider": {
+          "$ref": "#/$defs/DataProviderId"
+        },
+        "series_id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "title": "Series Id",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "required": [
+        "series_id",
+        "date",
+        "provider"
+      ],
+      "title": "MacroSeriesObservation",
+      "type": "object"
+    },
+    "MarketQuote": {
+      "additionalProperties": false,
+      "properties": {
+        "ask": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ask"
+        },
+        "bid": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Bid"
+        },
+        "price": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Price"
+        },
+        "provider": {
+          "$ref": "#/$defs/DataProviderId"
+        },
+        "provider_symbol": {
+          "maxLength": 80,
+          "minLength": 1,
+          "title": "Provider Symbol",
+          "type": "string"
+        },
+        "symbol": {
+          "$ref": "#/$defs/MarketSymbol"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "title": "Timestamp",
+          "type": "string"
+        }
+      },
+      "required": [
+        "symbol",
+        "provider_symbol",
+        "price",
+        "timestamp",
+        "provider"
+      ],
+      "title": "MarketQuote",
+      "type": "object"
+    },
+    "MarketSymbol": {
+      "enum": [
+        "XAU/USD",
+        "DXY",
+        "US10Y"
+      ],
+      "title": "MarketSymbol",
+      "type": "string"
+    },
+    "NewsArticle": {
+      "additionalProperties": false,
+      "properties": {
+        "article_id": {
+          "maxLength": 240,
+          "minLength": 1,
+          "title": "Article Id",
+          "type": "string"
+        },
+        "provider": {
+          "$ref": "#/$defs/DataProviderId"
+        },
+        "published_at": {
+          "format": "date-time",
+          "title": "Published At",
+          "type": "string"
+        },
+        "source_name": {
+          "maxLength": 160,
+          "minLength": 1,
+          "title": "Source Name",
+          "type": "string"
+        },
+        "summary": {
+          "anyOf": [
+            {
+              "maxLength": 1000,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Summary"
+        },
+        "title": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "url": {
+          "maxLength": 1000,
+          "minLength": 1,
+          "title": "Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "article_id",
+        "title",
+        "url",
+        "source_name",
+        "published_at",
+        "provider"
+      ],
+      "title": "NewsArticle",
+      "type": "object"
+    },
+    "OhlcBar": {
+      "additionalProperties": false,
+      "properties": {
+        "close": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Close"
+        },
+        "high": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "High"
+        },
+        "low": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Low"
+        },
+        "open": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Open"
+        },
+        "provider": {
+          "$ref": "#/$defs/DataProviderId"
+        },
+        "provider_symbol": {
+          "maxLength": 80,
+          "minLength": 1,
+          "title": "Provider Symbol",
+          "type": "string"
+        },
+        "symbol": {
+          "$ref": "#/$defs/MarketSymbol"
+        },
+        "timeframe": {
+          "$ref": "#/$defs/Timeframe"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "title": "Timestamp",
+          "type": "string"
+        },
+        "volume": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Volume"
+        }
+      },
+      "required": [
+        "symbol",
+        "provider_symbol",
+        "timeframe",
+        "timestamp",
+        "open",
+        "high",
+        "low",
+        "close",
+        "provider"
+      ],
+      "title": "OhlcBar",
+      "type": "object"
+    },
+    "Timeframe": {
+      "enum": [
+        "1min",
+        "5min",
+        "15min",
+        "1h",
+        "4h",
+        "1day"
+      ],
+      "title": "Timeframe",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "bars": {
+      "items": {
+        "$ref": "#/$defs/OhlcBar"
+      },
+      "title": "Bars",
+      "type": "array"
+    },
+    "collected_at": {
+      "format": "date-time",
+      "title": "Collected At",
+      "type": "string"
+    },
+    "cot_positioning": {
+      "items": {
+        "$ref": "#/$defs/CotPositioningSnapshot"
+      },
+      "title": "Cot Positioning",
+      "type": "array"
+    },
+    "dxy_observations": {
+      "items": {
+        "$ref": "#/$defs/MacroSeriesObservation"
+      },
+      "title": "Dxy Observations",
+      "type": "array"
+    },
+    "economic_events": {
+      "items": {
+        "$ref": "#/$defs/EconomicCalendarEvent"
+      },
+      "title": "Economic Events",
+      "type": "array"
+    },
+    "geopolitical_articles": {
+      "items": {
+        "$ref": "#/$defs/NewsArticle"
+      },
+      "title": "Geopolitical Articles",
+      "type": "array"
+    },
+    "gld_flow": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/EtfFlowSnapshot"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "news_articles": {
+      "items": {
+        "$ref": "#/$defs/NewsArticle"
+      },
+      "title": "News Articles",
+      "type": "array"
+    },
+    "quote": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/MarketQuote"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "collected_at"
+  ],
+  "title": "MarketDataSnapshot",
+  "type": "object"
+}

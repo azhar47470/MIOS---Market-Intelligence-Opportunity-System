@@ -1,0 +1,37 @@
+{
+  "scenario_id": "scen_bear_2",
+  "scenario_type": "bearish",
+  "expected_direction": "BEARISH",
+  "expected_regime": "NORMAL",
+  "market_context": "Macro bearish",
+  "engine_outputs": {},
+  "evidence": [
+    {
+      "id": "EV-1",
+      "text": "Rate hikes expected"
+    },
+    {
+      "id": "EV-2",
+      "text": "Physical demand weak"
+    }
+  ],
+  "narratives": [],
+  "bullish_evidence": [],
+  "bearish_evidence": [
+    "EV-1",
+    "EV-2"
+  ],
+  "critical_evidence": [
+    "EV-2"
+  ],
+  "expected_reasoning_points": [
+    "Matches direction"
+  ],
+  "unacceptable_reasoning": [
+    "Ignores evidence"
+  ],
+  "confidence_range": [
+    0.6,
+    1.0
+  ]
+}

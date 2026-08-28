@@ -1,0 +1,359 @@
+{
+  "regimes": {
+    "HIGH_VOLATILITY": {
+      "LOW": {
+        "sample_count": 13,
+        "24h": {
+          "pullback_0_5_pct_hit_rate": 0.7692,
+          "pullback_1_0_pct_hit_rate": 0.4615,
+          "pullback_2_0_pct_hit_rate": 0.1538,
+          "mean_adverse_excursion": 0.0106,
+          "median_adverse_excursion": 0.0097,
+          "max_adverse_excursion": 0.0282
+        },
+        "48h": {
+          "pullback_0_5_pct_hit_rate": 0.9231,
+          "pullback_1_0_pct_hit_rate": 0.6923,
+          "pullback_2_0_pct_hit_rate": 0.4615,
+          "mean_adverse_excursion": 0.0202,
+          "median_adverse_excursion": 0.0192,
+          "max_adverse_excursion": 0.0624
+        },
+        "72h": {
+          "pullback_0_5_pct_hit_rate": 1.0,
+          "pullback_1_0_pct_hit_rate": 1.0,
+          "pullback_2_0_pct_hit_rate": 0.6923,
+          "mean_adverse_excursion": 0.0266,
+          "median_adverse_excursion": 0.0231,
+          "max_adverse_excursion": 0.0624
+        },
+        "5d": {
+          "pullback_0_5_pct_hit_rate": 1.0,
+          "pullback_1_0_pct_hit_rate": 1.0,
+          "pullback_2_0_pct_hit_rate": 0.7692,
+          "mean_adverse_excursion": 0.0299,
+          "median_adverse_excursion": 0.0231,
+          "max_adverse_excursion": 0.0624
+        }
+      },
+      "MEDIUM": {
+        "sample_count": 760,
+        "24h": {
+          "pullback_0_5_pct_hit_rate": 0.7776,
+          "pullback_1_0_pct_hit_rate": 0.5408,
+          "pullback_2_0_pct_hit_rate": 0.2079,
+          "mean_adverse_excursion": 0.0146,
+          "median_adverse_excursion": 0.0108,
+          "max_adverse_excursion": 0.1436
+        },
+        "48h": {
+          "pullback_0_5_pct_hit_rate": 0.8434,
+          "pullback_1_0_pct_hit_rate": 0.6697,
+          "pullback_2_0_pct_hit_rate": 0.3316,
+          "mean_adverse_excursion": 0.02,
+          "median_adverse_excursion": 0.0144,
+          "max_adverse_excursion": 0.2087
+        },
+        "72h": {
+          "pullback_0_5_pct_hit_rate": 0.8776,
+          "pullback_1_0_pct_hit_rate": 0.7421,
+          "pullback_2_0_pct_hit_rate": 0.4303,
+          "mean_adverse_excursion": 0.0243,
+          "median_adverse_excursion": 0.0175,
+          "max_adverse_excursion": 0.2087
+        },
+        "5d": {
+          "pullback_0_5_pct_hit_rate": 0.9105,
+          "pullback_1_0_pct_hit_rate": 0.8053,
+          "pullback_2_0_pct_hit_rate": 0.5421,
+          "mean_adverse_excursion": 0.0307,
+          "median_adverse_excursion": 0.022,
+          "max_adverse_excursion": 0.2087
+        }
+      },
+      "HIGH": {
+        "sample_count": 98,
+        "24h": {
+          "pullback_0_5_pct_hit_rate": 0.7245,
+          "pullback_1_0_pct_hit_rate": 0.5612,
+          "pullback_2_0_pct_hit_rate": 0.2551,
+          "mean_adverse_excursion": 0.0176,
+          "median_adverse_excursion": 0.0114,
+          "max_adverse_excursion": 0.1514
+        },
+        "48h": {
+          "pullback_0_5_pct_hit_rate": 0.7755,
+          "pullback_1_0_pct_hit_rate": 0.6531,
+          "pullback_2_0_pct_hit_rate": 0.4184,
+          "mean_adverse_excursion": 0.0242,
+          "median_adverse_excursion": 0.015,
+          "max_adverse_excursion": 0.1978
+        },
+        "72h": {
+          "pullback_0_5_pct_hit_rate": 0.8163,
+          "pullback_1_0_pct_hit_rate": 0.6939,
+          "pullback_2_0_pct_hit_rate": 0.4388,
+          "mean_adverse_excursion": 0.028,
+          "median_adverse_excursion": 0.0165,
+          "max_adverse_excursion": 0.1978
+        },
+        "5d": {
+          "pullback_0_5_pct_hit_rate": 0.8571,
+          "pullback_1_0_pct_hit_rate": 0.7857,
+          "pullback_2_0_pct_hit_rate": 0.5714,
+          "mean_adverse_excursion": 0.0363,
+          "median_adverse_excursion": 0.025,
+          "max_adverse_excursion": 0.1978
+        }
+      }
+    },
+    "BULL": {
+      "LOW": {
+        "sample_count": 41,
+        "24h": {
+          "pullback_0_5_pct_hit_rate": 0.3659,
+          "pullback_1_0_pct_hit_rate": 0.0976,
+          "pullback_2_0_pct_hit_rate": 0.0244,
+          "mean_adverse_excursion": 0.0049,
+          "median_adverse_excursion": 0.0033,
+          "max_adverse_excursion": 0.0286
+        },
+        "48h": {
+          "pullback_0_5_pct_hit_rate": 0.4146,
+          "pullback_1_0_pct_hit_rate": 0.1463,
+          "pullback_2_0_pct_hit_rate": 0.0488,
+          "mean_adverse_excursion": 0.0058,
+          "median_adverse_excursion": 0.004,
+          "max_adverse_excursion": 0.0286
+        },
+        "72h": {
+          "pullback_0_5_pct_hit_rate": 0.4878,
+          "pullback_1_0_pct_hit_rate": 0.2195,
+          "pullback_2_0_pct_hit_rate": 0.0488,
+          "mean_adverse_excursion": 0.0071,
+          "median_adverse_excursion": 0.0044,
+          "max_adverse_excursion": 0.0339
+        },
+        "5d": {
+          "pullback_0_5_pct_hit_rate": 0.561,
+          "pullback_1_0_pct_hit_rate": 0.2927,
+          "pullback_2_0_pct_hit_rate": 0.1463,
+          "mean_adverse_excursion": 0.0094,
+          "median_adverse_excursion": 0.0057,
+          "max_adverse_excursion": 0.0455
+        }
+      },
+      "MEDIUM": {
+        "sample_count": 270,
+        "24h": {
+          "pullback_0_5_pct_hit_rate": 0.5,
+          "pullback_1_0_pct_hit_rate": 0.2593,
+          "pullback_2_0_pct_hit_rate": 0.0407,
+          "mean_adverse_excursion": 0.0071,
+          "median_adverse_excursion": 0.005,
+          "max_adverse_excursion": 0.0428
+        },
+        "48h": {
+          "pullback_0_5_pct_hit_rate": 0.6,
+          "pullback_1_0_pct_hit_rate": 0.4074,
+          "pullback_2_0_pct_hit_rate": 0.1074,
+          "mean_adverse_excursion": 0.0097,
+          "median_adverse_excursion": 0.0081,
+          "max_adverse_excursion": 0.07
+        },
+        "72h": {
+          "pullback_0_5_pct_hit_rate": 0.6222,
+          "pullback_1_0_pct_hit_rate": 0.463,
+          "pullback_2_0_pct_hit_rate": 0.1407,
+          "mean_adverse_excursion": 0.0113,
+          "median_adverse_excursion": 0.0088,
+          "max_adverse_excursion": 0.0748
+        },
+        "5d": {
+          "pullback_0_5_pct_hit_rate": 0.6556,
+          "pullback_1_0_pct_hit_rate": 0.4889,
+          "pullback_2_0_pct_hit_rate": 0.1778,
+          "mean_adverse_excursion": 0.0135,
+          "median_adverse_excursion": 0.0096,
+          "max_adverse_excursion": 0.0748
+        }
+      },
+      "HIGH": {
+        "sample_count": 17,
+        "24h": {
+          "pullback_0_5_pct_hit_rate": 0.4706,
+          "pullback_1_0_pct_hit_rate": 0.2353,
+          "pullback_2_0_pct_hit_rate": 0.0588,
+          "mean_adverse_excursion": 0.0076,
+          "median_adverse_excursion": 0.0043,
+          "max_adverse_excursion": 0.0324
+        },
+        "48h": {
+          "pullback_0_5_pct_hit_rate": 0.5882,
+          "pullback_1_0_pct_hit_rate": 0.3529,
+          "pullback_2_0_pct_hit_rate": 0.0588,
+          "mean_adverse_excursion": 0.0103,
+          "median_adverse_excursion": 0.0063,
+          "max_adverse_excursion": 0.06
+        },
+        "72h": {
+          "pullback_0_5_pct_hit_rate": 0.7059,
+          "pullback_1_0_pct_hit_rate": 0.4118,
+          "pullback_2_0_pct_hit_rate": 0.1176,
+          "mean_adverse_excursion": 0.0117,
+          "median_adverse_excursion": 0.0077,
+          "max_adverse_excursion": 0.0648
+        },
+        "5d": {
+          "pullback_0_5_pct_hit_rate": 0.7059,
+          "pullback_1_0_pct_hit_rate": 0.4118,
+          "pullback_2_0_pct_hit_rate": 0.1176,
+          "mean_adverse_excursion": 0.0139,
+          "median_adverse_excursion": 0.0077,
+          "max_adverse_excursion": 0.0648
+        }
+      },
+      "EXTREME": {
+        "sample_count": 1,
+        "24h": {
+          "pullback_0_5_pct_hit_rate": 0.0,
+          "pullback_1_0_pct_hit_rate": 0.0,
+          "pullback_2_0_pct_hit_rate": 0.0,
+          "mean_adverse_excursion": 0.0004,
+          "median_adverse_excursion": 0.0004,
+          "max_adverse_excursion": 0.0004
+        },
+        "48h": {
+          "pullback_0_5_pct_hit_rate": 0.0,
+          "pullback_1_0_pct_hit_rate": 0.0,
+          "pullback_2_0_pct_hit_rate": 0.0,
+          "mean_adverse_excursion": 0.0004,
+          "median_adverse_excursion": 0.0004,
+          "max_adverse_excursion": 0.0004
+        },
+        "72h": {
+          "pullback_0_5_pct_hit_rate": 0.0,
+          "pullback_1_0_pct_hit_rate": 0.0,
+          "pullback_2_0_pct_hit_rate": 0.0,
+          "mean_adverse_excursion": 0.0004,
+          "median_adverse_excursion": 0.0004,
+          "max_adverse_excursion": 0.0004
+        },
+        "5d": {
+          "pullback_0_5_pct_hit_rate": 0.0,
+          "pullback_1_0_pct_hit_rate": 0.0,
+          "pullback_2_0_pct_hit_rate": 0.0,
+          "mean_adverse_excursion": 0.0004,
+          "median_adverse_excursion": 0.0004,
+          "max_adverse_excursion": 0.0004
+        }
+      }
+    },
+    "RISK_OFF": {
+      "LOW": {
+        "sample_count": 151,
+        "24h": {
+          "pullback_0_5_pct_hit_rate": 0.6887,
+          "pullback_1_0_pct_hit_rate": 0.4437,
+          "pullback_2_0_pct_hit_rate": 0.1921,
+          "mean_adverse_excursion": 0.012,
+          "median_adverse_excursion": 0.009,
+          "max_adverse_excursion": 0.0586
+        },
+        "48h": {
+          "pullback_0_5_pct_hit_rate": 0.7682,
+          "pullback_1_0_pct_hit_rate": 0.5828,
+          "pullback_2_0_pct_hit_rate": 0.3642,
+          "mean_adverse_excursion": 0.0164,
+          "median_adverse_excursion": 0.0128,
+          "max_adverse_excursion": 0.0586
+        },
+        "72h": {
+          "pullback_0_5_pct_hit_rate": 0.8212,
+          "pullback_1_0_pct_hit_rate": 0.6689,
+          "pullback_2_0_pct_hit_rate": 0.4636,
+          "mean_adverse_excursion": 0.0218,
+          "median_adverse_excursion": 0.0182,
+          "max_adverse_excursion": 0.0711
+        },
+        "5d": {
+          "pullback_0_5_pct_hit_rate": 0.8609,
+          "pullback_1_0_pct_hit_rate": 0.7483,
+          "pullback_2_0_pct_hit_rate": 0.5364,
+          "mean_adverse_excursion": 0.0272,
+          "median_adverse_excursion": 0.0205,
+          "max_adverse_excursion": 0.102
+        }
+      },
+      "MEDIUM": {
+        "sample_count": 90,
+        "24h": {
+          "pullback_0_5_pct_hit_rate": 0.7111,
+          "pullback_1_0_pct_hit_rate": 0.5444,
+          "pullback_2_0_pct_hit_rate": 0.2556,
+          "mean_adverse_excursion": 0.0133,
+          "median_adverse_excursion": 0.0108,
+          "max_adverse_excursion": 0.0407
+        },
+        "48h": {
+          "pullback_0_5_pct_hit_rate": 0.8111,
+          "pullback_1_0_pct_hit_rate": 0.7111,
+          "pullback_2_0_pct_hit_rate": 0.4333,
+          "mean_adverse_excursion": 0.0204,
+          "median_adverse_excursion": 0.0176,
+          "max_adverse_excursion": 0.0719
+        },
+        "72h": {
+          "pullback_0_5_pct_hit_rate": 0.8444,
+          "pullback_1_0_pct_hit_rate": 0.7667,
+          "pullback_2_0_pct_hit_rate": 0.5111,
+          "mean_adverse_excursion": 0.0229,
+          "median_adverse_excursion": 0.0206,
+          "max_adverse_excursion": 0.0719
+        },
+        "5d": {
+          "pullback_0_5_pct_hit_rate": 0.8778,
+          "pullback_1_0_pct_hit_rate": 0.8,
+          "pullback_2_0_pct_hit_rate": 0.5667,
+          "mean_adverse_excursion": 0.0302,
+          "median_adverse_excursion": 0.0236,
+          "max_adverse_excursion": 0.1071
+        }
+      }
+    }
+  },
+  "component_analysis": {
+    "RSI Exhaustion": {
+      "count": 222,
+      "frequency": 0.1541
+    },
+    "Resistance/FVG": {
+      "count": 1288,
+      "frequency": 0.8938
+    },
+    "Momentum Weakness": {
+      "count": 1225,
+      "frequency": 0.8501
+    },
+    "EMA Overextension": {
+      "count": 1169,
+      "frequency": 0.8112
+    },
+    "Weak Trend Quality": {
+      "count": 1014,
+      "frequency": 0.7037
+    },
+    "Regime Instability": {
+      "count": 871,
+      "frequency": 0.6044
+    },
+    "Liquidity Sweep": {
+      "count": 212,
+      "frequency": 0.1471
+    },
+    "Elevated Volatility": {
+      "count": 95,
+      "frequency": 0.0659
+    }
+  }
+}

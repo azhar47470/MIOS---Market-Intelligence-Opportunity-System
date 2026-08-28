@@ -1,0 +1,37 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "dxy_change_percent": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Dxy Change Percent"
+    },
+    "high_impact_us_event_count": {
+      "minimum": 0,
+      "title": "High Impact Us Event Count",
+      "type": "integer"
+    },
+    "observation_count": {
+      "minimum": 0,
+      "title": "Observation Count",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "observation_count",
+    "high_impact_us_event_count"
+  ],
+  "title": "MacroFeatureSet",
+  "type": "object"
+}

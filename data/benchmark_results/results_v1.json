@@ -1,0 +1,3148 @@
+[
+  {
+    "provider": "opencode",
+    "model": "nemotron-3.5-lightning-free",
+    "success": true,
+    "text": "{\n  \"vote_id\": \"MIOS-VOTE-001\",\n  \"market_regime\": \"NORMAL\",\n  \"decision\": \"APPROVE\",\n  \"evidence_referenced\": [\"EV-TECH-1\", \"EV-MACRO-1\"],\n  \"voter\": \"MIOS Committee Member\"\n}",
+    "parsed_json": {
+      "vote_id": "MIOS-VOTE-001",
+      "market_regime": "NORMAL",
+      "decision": "APPROVE",
+      "evidence_referenced": [
+        "EV-TECH-1",
+        "EV-MACRO-1"
+      ],
+      "voter": "MIOS Committee Member"
+    },
+    "input_tokens": 108,
+    "output_tokens": 1400,
+    "latency_ms": 17547,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 17551,
+    "scenario_id": "scenario_strong_bull_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 0,
+      "tokens": 0,
+      "total": 25,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "nemotron-3-ultra-free",
+    "success": true,
+    "text": "{\n  \"member_id\": \"MIOS-COMMITTEE-001\",\n  \"vote\": \"APPROVE\",\n  \"confidence\": 0.82,\n  \"reasoning\": \"Based on the provided evidence EV-TECH-1 and EV-MACRO-1, the technical indicators suggest bullish momentum while macroeconomic conditions remain supportive. The NORMAL market regime indicates stable conditions suitable for the proposed action.\",\n  \"evidence_referenced\": [\"EV-TECH-1\", \"EV-MACRO-1\"],\n  \"market_regime\": \"NORMAL\",\n  \"timestamp\": \"2024-01-15T14:30:00Z\"\n}",
+    "parsed_json": {
+      "member_id": "MIOS-COMMITTEE-001",
+      "vote": "APPROVE",
+      "confidence": 0.82,
+      "reasoning": "Based on the provided evidence EV-TECH-1 and EV-MACRO-1, the technical indicators suggest bullish momentum while macroeconomic conditions remain supportive. The NORMAL market regime indicates stable conditions suitable for the proposed action.",
+      "evidence_referenced": [
+        "EV-TECH-1",
+        "EV-MACRO-1"
+      ],
+      "market_regime": "NORMAL",
+      "timestamp": "2024-01-15T14:30:00Z"
+    },
+    "input_tokens": 108,
+    "output_tokens": 410,
+    "latency_ms": 5595,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 5595,
+    "scenario_id": "scenario_strong_bull_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 5,
+      "latency": 1,
+      "tokens": 5,
+      "total": 36,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "hy3-free",
+    "success": true,
+    "text": "{\"member':'MIOS','vote':'NO_ACTION','market_regime':'NORMAL','evidence':['EV-TECH-1','EV-MACRO-1'],'rationale':'Regime normal, evidence inconclusive for intervention.'}</think:6124c78e>{\": \"MIOS\", \"vote\": \"NO_ACTION\", \"market_regime\": \"NORMAL\", \"evidence\": [\"EV-TECH-1\", \"EV-MACRO-1\"], \"rationale\": \"Regime normal, evidence inconclusive for intervention.\"}",
+    "parsed_json": {
+      "member':'MIOS','vote':'NO_ACTION','market_regime':'NORMAL','evidence':['EV-TECH-1','EV-MACRO-1'],'rationale':'Regime normal, evidence inconclusive for intervention.'}</think:6124c78e>{": "MIOS",
+      "vote": "NO_ACTION",
+      "market_regime": "NORMAL",
+      "evidence": [
+        "EV-TECH-1",
+        "EV-MACRO-1"
+      ],
+      "rationale": "Regime normal, evidence inconclusive for intervention."
+    },
+    "input_tokens": 100,
+    "output_tokens": 745,
+    "latency_ms": 8257,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 8257,
+    "scenario_id": "scenario_strong_bull_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 20,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 1,
+      "tokens": 3,
+      "total": 49,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "laguna-s-2.1-free",
+    "success": true,
+    "text": "{\n  \"committee_member_id\": \"MIOS-CM-001\",\n  \"vote\": \"APPROVE\",\n  \"confidence_level\": \"HIGH\",\n  \"rationale\": \"Based on the provided evidence list and normal market regime, the proposal aligns with established criteria. The evidence from EV-TECH-1 and EV-MACRO-1 supports the decision to approve.\",\n  \"evidence_considered\": [\"EV-TECH-1\", \"EV-MACRO-1\"],\n  \"market_regime\": \"NORMAL\",\n  \"timestamp\": \"2023-10-27T12:00:00Z\"\n}",
+    "parsed_json": {
+      "committee_member_id": "MIOS-CM-001",
+      "vote": "APPROVE",
+      "confidence_level": "HIGH",
+      "rationale": "Based on the provided evidence list and normal market regime, the proposal aligns with established criteria. The evidence from EV-TECH-1 and EV-MACRO-1 supports the decision to approve.",
+      "evidence_considered": [
+        "EV-TECH-1",
+        "EV-MACRO-1"
+      ],
+      "market_regime": "NORMAL",
+      "timestamp": "2023-10-27T12:00:00Z"
+    },
+    "input_tokens": 99,
+    "output_tokens": 146,
+    "latency_ms": 4557,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 4557,
+    "scenario_id": "scenario_strong_bull_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 3,
+      "tokens": 5,
+      "total": 33,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "text": "{\"vote\":\"APPROVE\",\"reason\":\"Based on technical and macro evidence, the market is stable under NORMAL regime.\",\"evidence_ids\":[\"EV-TECH-1\",\"EV-MACRO-1\"]}",
+    "parsed_json": {
+      "vote": "APPROVE",
+      "reason": "Based on technical and macro evidence, the market is stable under NORMAL regime.",
+      "evidence_ids": [
+        "EV-TECH-1",
+        "EV-MACRO-1"
+      ]
+    },
+    "input_tokens": 186,
+    "output_tokens": 243,
+    "latency_ms": 1024,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 1024,
+    "scenario_id": "scenario_strong_bull_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 5,
+      "tokens": 5,
+      "total": 35,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "ollama-cloud",
+    "model": "gpt-oss:120b",
+    "success": true,
+    "text": "{\n  \"member_id\": \"MIOS-001\",\n  \"vote\": \"APPROVE\",\n  \"market_regime\": \"NORMAL\",\n  \"evidence_ids\": [\"EV-TECH-1\", \"EV-MACRO-1\"],\n  \"justification\": \"Under a NORMAL market regime, the provided technical and macroeconomic evidence supports a favorable outlook. No contradictory signals are present, justifying an approval.\"\n}",
+    "parsed_json": {
+      "member_id": "MIOS-001",
+      "vote": "APPROVE",
+      "market_regime": "NORMAL",
+      "evidence_ids": [
+        "EV-TECH-1",
+        "EV-MACRO-1"
+      ],
+      "justification": "Under a NORMAL market regime, the provided technical and macroeconomic evidence supports a favorable outlook. No contradictory signals are present, justifying an approval."
+    },
+    "input_tokens": 159,
+    "output_tokens": 274,
+    "latency_ms": 1956,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 1956,
+    "scenario_id": "scenario_strong_bull_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 5,
+      "tokens": 5,
+      "total": 35,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "gemini",
+    "model": "gemini-3.7-flash",
+    "success": false,
+    "text": null,
+    "parsed_json": null,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "latency_ms": 1794,
+    "error_code": "SERVER_ERROR",
+    "error_message": "{\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\n    \"status\": \"UNAVAILABLE\"\n  }\n}\n",
+    "first_attempt_status": "SERVER_ERROR",
+    "final_status": "SERVER_ERROR",
+    "retry_count": 1,
+    "total_elapsed_ms": 4787,
+    "scenario_id": "scenario_strong_bull_1",
+    "round": 1,
+    "scores": {
+      "json": 0,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 0,
+      "confidence": 0,
+      "latency": 0,
+      "tokens": 0,
+      "total": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "nemotron-3.5-lightning-free",
+    "success": true,
+    "text": "{\n  \"vote_id\": \"MIOS-VOTE-2024-001\",\n  \"member\": \"Independent Committee Member\",\n  \"decision\": \"APPROVE\",\n  \"rationale\": \"Reviewed evidence EV-TECH-1 and EV-MACRO-1. Market regime NORMAL supports proceeding.\",\n  \"market_regime\": \"NORMAL\",\n  \"evidence_referenced\": [\"EV-TECH-1\", \"EV-MACRO-1\"]\n}",
+    "parsed_json": {
+      "vote_id": "MIOS-VOTE-2024-001",
+      "member": "Independent Committee Member",
+      "decision": "APPROVE",
+      "rationale": "Reviewed evidence EV-TECH-1 and EV-MACRO-1. Market regime NORMAL supports proceeding.",
+      "market_regime": "NORMAL",
+      "evidence_referenced": [
+        "EV-TECH-1",
+        "EV-MACRO-1"
+      ]
+    },
+    "input_tokens": 108,
+    "output_tokens": 987,
+    "latency_ms": 30569,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 30569,
+    "scenario_id": "scenario_strong_bull_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 0,
+      "tokens": 3,
+      "total": 28,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "nemotron-3-ultra-free",
+    "success": true,
+    "text": "{\"member_id\": \"MIOS-COMMITTEE-1\",\n  \"vote\": \"HOLD\",\n  \"confidence\": 0.78,\n  \"reasoning\": \"Given the NORMAL market regime and the provided evidence (EV-TECH-1, EV-MACRO-1), the committee sees no immediate catalyst for a directional shift. Technical indicators suggest consolidation while macro fundamentals remain stable. A HOLD position is warranted until clearer signals emerge.\",\n  \"evidence_referenced\": [\"EV-TECH-1\", \"EV-MACRO-1\"]\n}",
+    "parsed_json": {
+      "member_id": "MIOS-COMMITTEE-1",
+      "vote": "HOLD",
+      "confidence": 0.78,
+      "reasoning": "Given the NORMAL market regime and the provided evidence (EV-TECH-1, EV-MACRO-1), the committee sees no immediate catalyst for a directional shift. Technical indicators suggest consolidation while macro fundamentals remain stable. A HOLD position is warranted until clearer signals emerge.",
+      "evidence_referenced": [
+        "EV-TECH-1",
+        "EV-MACRO-1"
+      ]
+    },
+    "input_tokens": 108,
+    "output_tokens": 371,
+    "latency_ms": 28843,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 28843,
+    "scenario_id": "scenario_strong_bull_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 5,
+      "latency": 0,
+      "tokens": 5,
+      "total": 35,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "hy3-free",
+    "success": true,
+    "text": "{\"\": \"MIOS-CM\", \"vote\": \"NO_INTERVENTION\", \"market_regime\": \"NORMAL\", \"evidence_ids\": [\"EV-TECH-1\", \"EV-MACRO-1\"], \"explanation\": \"Market regime is normal; evidence does not indicate need for committee action.\"}",
+    "parsed_json": {
+      "": "MIOS-CM",
+      "vote": "NO_INTERVENTION",
+      "market_regime": "NORMAL",
+      "evidence_ids": [
+        "EV-TECH-1",
+        "EV-MACRO-1"
+      ],
+      "explanation": "Market regime is normal; evidence does not indicate need for committee action."
+    },
+    "input_tokens": 100,
+    "output_tokens": 1051,
+    "latency_ms": 8137,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 8137,
+    "scenario_id": "scenario_strong_bull_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 1,
+      "tokens": 0,
+      "total": 26,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "laguna-s-2.1-free",
+    "success": true,
+    "text": "{\n  \"committee_member_id\": \"MIOS-CM-001\",\n  \"vote_timestamp\": \"2024-01-15T10:30:00Z\",\n  \"market_regime_assessment\": \"NORMAL\",\n  \"evidence_evaluation\": [\n    {\n      \"evidence_id\": \"EV-TECH-1\",\n      \"relevance_score\": 0.85,\n      \"impact_assessment\": \"HIGH\",\n      \"supporting_rationale\": \"Evidence strongly supports technical feasibility and market readiness\"\n    },\n    {\n      \"evidence_id\": \"EV-MACRO-1\",\n      \"relevance_score\": 0.72,\n      \"impact_assessment\": \"MEDIUM\",\n      \"supporting_rationale\": \"Macro evidence provides important context but with moderate influence on decision\"\n    }\n  ],\n  \"recommendation\": \"APPROVE\",\n  \"confidence_level\": \"HIGH\",\n  \"additional_notes\": \"Both evidence items provide sufficient support for approval under normal market conditions. Technical evidence is particularly compelling.\"\n}",
+    "parsed_json": {
+      "committee_member_id": "MIOS-CM-001",
+      "vote_timestamp": "2024-01-15T10:30:00Z",
+      "market_regime_assessment": "NORMAL",
+      "evidence_evaluation": [
+        {
+          "evidence_id": "EV-TECH-1",
+          "relevance_score": 0.85,
+          "impact_assessment": "HIGH",
+          "supporting_rationale": "Evidence strongly supports technical feasibility and market readiness"
+        },
+        {
+          "evidence_id": "EV-MACRO-1",
+          "relevance_score": 0.72,
+          "impact_assessment": "MEDIUM",
+          "supporting_rationale": "Macro evidence provides important context but with moderate influence on decision"
+        }
+      ],
+      "recommendation": "APPROVE",
+      "confidence_level": "HIGH",
+      "additional_notes": "Both evidence items provide sufficient support for approval under normal market conditions. Technical evidence is particularly compelling."
+    },
+    "input_tokens": 99,
+    "output_tokens": 246,
+    "latency_ms": 8650,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 8650,
+    "scenario_id": "scenario_strong_bull_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 1,
+      "tokens": 5,
+      "total": 31,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "text": "{\"vote\":\"APPROVE\",\"reason\":\"The market regime is NORMAL and the provided technical and macro evidence support a positive outlook.\",\"evidence_ids\":[\"EV-TECH-1\",\"EV-MACRO-1\"]}",
+    "parsed_json": {
+      "vote": "APPROVE",
+      "reason": "The market regime is NORMAL and the provided technical and macro evidence support a positive outlook.",
+      "evidence_ids": [
+        "EV-TECH-1",
+        "EV-MACRO-1"
+      ]
+    },
+    "input_tokens": 186,
+    "output_tokens": 155,
+    "latency_ms": 1766,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 1766,
+    "scenario_id": "scenario_strong_bull_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 5,
+      "tokens": 5,
+      "total": 35,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "ollama-cloud",
+    "model": "gpt-oss:120b",
+    "success": true,
+    "text": "{\n  \"committee_member\": \"MIOS\",\n  \"market_regime\": \"NORMAL\",\n  \"vote\": \"APPROVE\",\n  \"evidence_considered\": [\n    \"EV-TECH-1\",\n    \"EV-MACRO-1\"\n  ],\n  \"reason\": \"Given the NORMAL market regime and the supporting technical and macro evidence (EV-TECH-1, EV-MACRO-1), the proposal aligns with current market conditions and merits approval.\"\n}",
+    "parsed_json": {
+      "committee_member": "MIOS",
+      "market_regime": "NORMAL",
+      "vote": "APPROVE",
+      "evidence_considered": [
+        "EV-TECH-1",
+        "EV-MACRO-1"
+      ],
+      "reason": "Given the NORMAL market regime and the supporting technical and macro evidence (EV-TECH-1, EV-MACRO-1), the proposal aligns with current market conditions and merits approval."
+    },
+    "input_tokens": 159,
+    "output_tokens": 318,
+    "latency_ms": 2252,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 2252,
+    "scenario_id": "scenario_strong_bull_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 3,
+      "tokens": 5,
+      "total": 33,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "gemini",
+    "model": "gemini-3.7-flash",
+    "success": false,
+    "text": null,
+    "parsed_json": null,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "latency_ms": 3350,
+    "error_code": "SERVER_ERROR",
+    "error_message": "{\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\n    \"status\": \"UNAVAILABLE\"\n  }\n}\n",
+    "first_attempt_status": "SERVER_ERROR",
+    "final_status": "SERVER_ERROR",
+    "retry_count": 1,
+    "total_elapsed_ms": 14585,
+    "scenario_id": "scenario_strong_bull_2",
+    "round": 1,
+    "scores": {
+      "json": 0,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 0,
+      "confidence": 0,
+      "latency": 0,
+      "tokens": 0,
+      "total": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "nemotron-3.5-lightning-free",
+    "success": true,
+    "text": "{\"vote\":\"APPROVE\",\"rationale\":\"Market regime NORMAL with evidence EV-TECH-1 and EV-MACRO-1 indicates favorable conditions for approval.\",\"market_regime\":\"NORMAL\",\"evidence_ids\":[\"EV-TECH-1\",\"EV-MACRO-1\"],\"voter\":\"MIOS-Committee-Member\"}",
+    "parsed_json": {
+      "vote": "APPROVE",
+      "rationale": "Market regime NORMAL with evidence EV-TECH-1 and EV-MACRO-1 indicates favorable conditions for approval.",
+      "market_regime": "NORMAL",
+      "evidence_ids": [
+        "EV-TECH-1",
+        "EV-MACRO-1"
+      ],
+      "voter": "MIOS-Committee-Member"
+    },
+    "input_tokens": 108,
+    "output_tokens": 1412,
+    "latency_ms": 9894,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 9894,
+    "scenario_id": "scenario_strong_bull_3",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 1,
+      "tokens": 0,
+      "total": 26,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "nemotron-3-ultra-free",
+    "success": true,
+    "text": "{\n  \"member_id\": \"MIOS-CM-001\",\n  \"vote\": \"APPROVE\",\n  \"confidence\": 0.85,\n  \"reasoning\": \"Based on technical and macro evidence, market conditions support approval.\",\n  \"evidence_ids\": [\"EV-TECH-1\", \"EV-MACRO-1\"],\n  \"timestamp\": \"2025-04-09T12:34:56Z\"\n}",
+    "parsed_json": {
+      "member_id": "MIOS-CM-001",
+      "vote": "APPROVE",
+      "confidence": 0.85,
+      "reasoning": "Based on technical and macro evidence, market conditions support approval.",
+      "evidence_ids": [
+        "EV-TECH-1",
+        "EV-MACRO-1"
+      ],
+      "timestamp": "2025-04-09T12:34:56Z"
+    },
+    "input_tokens": 108,
+    "output_tokens": 376,
+    "latency_ms": 3104,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 3104,
+    "scenario_id": "scenario_strong_bull_3",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 5,
+      "latency": 3,
+      "tokens": 5,
+      "total": 38,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "hy3-free",
+    "success": true,
+    "text": "{\"committee\": \"MIOS\", \"recommendation\": \"HOLD\", \"confidence\": 0.5, \"cited_evidence\": [\"EV-TECH-1\", \"EV-MACRO-1\"], \"market_regime\": \"NORMAL\"}",
+    "parsed_json": {
+      "committee": "MIOS",
+      "recommendation": "HOLD",
+      "confidence": 0.5,
+      "cited_evidence": [
+        "EV-TECH-1",
+        "EV-MACRO-1"
+      ],
+      "market_regime": "NORMAL"
+    },
+    "input_tokens": 100,
+    "output_tokens": 1076,
+    "latency_ms": 9911,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 9911,
+    "scenario_id": "scenario_strong_bull_3",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 5,
+      "latency": 1,
+      "tokens": 0,
+      "total": 31,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "laguna-s-2.1-free",
+    "success": true,
+    "text": "{\n  \"committee_vote\": {\n    \"market_regime\": \"NORMAL\",\n    \"evidence_list\": [\n      {\n        \"id\": \"EV-TECH-1\",\n        \"text\": \"Evidence text for EV-TECH-1\"\n      },\n      {\n        \"id\": \"EV-MACRO-1\",\n        \"text\": \"Evidence text for EV-MACRO-1\"\n      }\n    ],\n    \"vote\": \"APPROVE\",\n    \"rationale\": \"Based on the provided evidence and current NORMAL market regime, the proposal aligns with expected criteria and risk parameters.\",\n    \"timestamp\": \"2025-04-05T12:00:00Z\"\n  }\n}",
+    "parsed_json": {
+      "committee_vote": {
+        "market_regime": "NORMAL",
+        "evidence_list": [
+          {
+            "id": "EV-TECH-1",
+            "text": "Evidence text for EV-TECH-1"
+          },
+          {
+            "id": "EV-MACRO-1",
+            "text": "Evidence text for EV-MACRO-1"
+          }
+        ],
+        "vote": "APPROVE",
+        "rationale": "Based on the provided evidence and current NORMAL market regime, the proposal aligns with expected criteria and risk parameters.",
+        "timestamp": "2025-04-05T12:00:00Z"
+      }
+    },
+    "input_tokens": 99,
+    "output_tokens": 169,
+    "latency_ms": 5391,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 5391,
+    "scenario_id": "scenario_strong_bull_3",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 1,
+      "tokens": 5,
+      "total": 31,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "text": "{\"vote\":\"APPROVE\",\"reason\":\"The evidence supports a normal market regime with both technical and macro factors aligning positively.\",\"evidence_ids\":[\"EV-TECH-1\",\"EV-MACRO-1\"]}",
+    "parsed_json": {
+      "vote": "APPROVE",
+      "reason": "The evidence supports a normal market regime with both technical and macro factors aligning positively.",
+      "evidence_ids": [
+        "EV-TECH-1",
+        "EV-MACRO-1"
+      ]
+    },
+    "input_tokens": 186,
+    "output_tokens": 191,
+    "latency_ms": 769,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 769,
+    "scenario_id": "scenario_strong_bull_3",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 5,
+      "tokens": 5,
+      "total": 35,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "ollama-cloud",
+    "model": "gpt-oss:120b",
+    "success": true,
+    "text": "{\n  \"market_regime\": \"NORMAL\",\n  \"vote\": \"APPROVE\",\n  \"evidence_ids\": [\n    \"EV-TECH-1\",\n    \"EV-MACRO-1\"\n  ],\n  \"comments\": \"Given the normal market regime and the supporting technical and macro evidence, I recommend approval.\"\n}",
+    "parsed_json": {
+      "market_regime": "NORMAL",
+      "vote": "APPROVE",
+      "evidence_ids": [
+        "EV-TECH-1",
+        "EV-MACRO-1"
+      ],
+      "comments": "Given the normal market regime and the supporting technical and macro evidence, I recommend approval."
+    },
+    "input_tokens": 159,
+    "output_tokens": 271,
+    "latency_ms": 1925,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 1926,
+    "scenario_id": "scenario_strong_bull_3",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 5,
+      "tokens": 5,
+      "total": 35,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "gemini",
+    "model": "gemini-3.7-flash",
+    "success": true,
+    "text": "{\n  \"voter_id\": \"COMM_MEMBER_TECH_MACRO\",\n  \"market_regime\": \"NORMAL\",\n  \"vote\": \"BUY\",\n  \"allocation_delta\": 0.05,\n  \"confidence\": 0.85,\n  \"rationale\": \"Under normal market conditions, technical and macroeconomic indicators support a moderate expansion of risk exposure without significant downside tail-risk signals.\",\n  \"referenced_evidence\": [\n    \"EV-TECH-1\",\n    \"EV-MACRO-1\"\n  ],\n  \"risk_assessment\": {\n    \"tail_risk_detected\": false,\n    \"volatility_expected\": \"MODERATE\",\n    \"mitigation\": \"Maintain standard stop-loss and monitor macro shifts.\"\n  }\n}",
+    "parsed_json": {
+      "voter_id": "COMM_MEMBER_TECH_MACRO",
+      "market_regime": "NORMAL",
+      "vote": "BUY",
+      "allocation_delta": 0.05,
+      "confidence": 0.85,
+      "rationale": "Under normal market conditions, technical and macroeconomic indicators support a moderate expansion of risk exposure without significant downside tail-risk signals.",
+      "referenced_evidence": [
+        "EV-TECH-1",
+        "EV-MACRO-1"
+      ],
+      "risk_assessment": {
+        "tail_risk_detected": false,
+        "volatility_expected": "MODERATE",
+        "mitigation": "Maintain standard stop-loss and monitor macro shifts."
+      }
+    },
+    "input_tokens": 87,
+    "output_tokens": 177,
+    "latency_ms": 3536,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SERVER_ERROR",
+    "final_status": "SUCCESS",
+    "retry_count": 1,
+    "total_elapsed_ms": 12664,
+    "scenario_id": "scenario_strong_bull_3",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 5,
+      "latency": 3,
+      "tokens": 5,
+      "total": 38,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "nemotron-3.5-lightning-free",
+    "success": true,
+    "text": "{\n  \"decision\": \"approve\",\n  \"rationale\": \"Evidence EV-TECH-2 and EV-MACRO-2 are consistent with a NORMAL market regime, supporting the proposed action.\",\n  \"referenced_evidence\": [\"EV-TECH-2\", \"EV-MACRO-2\"],\n  \"market_regime\": \"NORMAL\"\n}",
+    "parsed_json": {
+      "decision": "approve",
+      "rationale": "Evidence EV-TECH-2 and EV-MACRO-2 are consistent with a NORMAL market regime, supporting the proposed action.",
+      "referenced_evidence": [
+        "EV-TECH-2",
+        "EV-MACRO-2"
+      ],
+      "market_regime": "NORMAL"
+    },
+    "input_tokens": 108,
+    "output_tokens": 1186,
+    "latency_ms": 18284,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 18284,
+    "scenario_id": "scenario_strong_bear_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 0,
+      "tokens": 0,
+      "total": 25,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "nemotron-3-ultra-free",
+    "success": true,
+    "text": "{\n  \"member_id\": \"MIOS-COMMITTEE-001\",\n  \"vote\": \"APPROVE\",\n  \"confidence\": 0.85,\n  \"reasoning\": \"Based on the provided evidence EV-TECH-2 and EV-MACRO-2, the technical and macroeconomic indicators align with a NORMAL market regime, supporting approval.\",\n  \"evidence_referenced\": [\"EV-TECH-2\", \"EV-MACRO-2\"],\n  \"market_regime_assessment\": \"NORMAL\"\n}",
+    "parsed_json": {
+      "member_id": "MIOS-COMMITTEE-001",
+      "vote": "APPROVE",
+      "confidence": 0.85,
+      "reasoning": "Based on the provided evidence EV-TECH-2 and EV-MACRO-2, the technical and macroeconomic indicators align with a NORMAL market regime, supporting approval.",
+      "evidence_referenced": [
+        "EV-TECH-2",
+        "EV-MACRO-2"
+      ],
+      "market_regime_assessment": "NORMAL"
+    },
+    "input_tokens": 108,
+    "output_tokens": 401,
+    "latency_ms": 25168,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 25169,
+    "scenario_id": "scenario_strong_bear_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 5,
+      "latency": 0,
+      "tokens": 5,
+      "total": 35,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "hy3-free",
+    "success": true,
+    "text": "{\"member\": \"MIOS-committee-member\", \"market_regime\": \"NORMAL\", \"evidence_ids\": [\"EV-TECH-2\", \"EV-MACRO-2\"], \"vote\": \"APPROVE\", \"confidence\": 0.8, \"rationale\": \"Given normal market conditions and supporting evidence, I vote to approve the current proposal.\"}",
+    "parsed_json": {
+      "member": "MIOS-committee-member",
+      "market_regime": "NORMAL",
+      "evidence_ids": [
+        "EV-TECH-2",
+        "EV-MACRO-2"
+      ],
+      "vote": "APPROVE",
+      "confidence": 0.8,
+      "rationale": "Given normal market conditions and supporting evidence, I vote to approve the current proposal."
+    },
+    "input_tokens": 100,
+    "output_tokens": 1290,
+    "latency_ms": 10130,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 10131,
+    "scenario_id": "scenario_strong_bear_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 5,
+      "latency": 0,
+      "tokens": 0,
+      "total": 30,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "laguna-s-2.1-free",
+    "success": true,
+    "text": "{\n  \"committee_member_id\": \"MIOS-CM-001\",\n  \"vote\": \"APPROVE\",\n  \"confidence_level\": \"HIGH\",\n  \"rationale\": \"Based on the provided evidence (EV-TECH-2 and EV-MACRO-2) and the current NORMAL market regime, the technical indicators and macroeconomic factors align favorably. The evidence supports a positive outlook, warranting approval with high confidence.\",\n  \"evidence_considered\": [\"EV-TECH-2\", \"EV-MACRO-2\"],\n  \"market_regime\": \"NORMAL\",\n  \"timestamp\": \"2025-01-15T10:30:00Z\"\n}",
+    "parsed_json": {
+      "committee_member_id": "MIOS-CM-001",
+      "vote": "APPROVE",
+      "confidence_level": "HIGH",
+      "rationale": "Based on the provided evidence (EV-TECH-2 and EV-MACRO-2) and the current NORMAL market regime, the technical indicators and macroeconomic factors align favorably. The evidence supports a positive outlook, warranting approval with high confidence.",
+      "evidence_considered": [
+        "EV-TECH-2",
+        "EV-MACRO-2"
+      ],
+      "market_regime": "NORMAL",
+      "timestamp": "2025-01-15T10:30:00Z"
+    },
+    "input_tokens": 99,
+    "output_tokens": 158,
+    "latency_ms": 7548,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 7548,
+    "scenario_id": "scenario_strong_bear_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 1,
+      "tokens": 5,
+      "total": 31,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "text": "{\"vote\":\"APPROVE\",\"reason\":\"Market regime is NORMAL and evidence supports continuation\",\"evidence_ids\":[\"EV-TECH-2\",\"EV-MACRO-2\"]}",
+    "parsed_json": {
+      "vote": "APPROVE",
+      "reason": "Market regime is NORMAL and evidence supports continuation",
+      "evidence_ids": [
+        "EV-TECH-2",
+        "EV-MACRO-2"
+      ]
+    },
+    "input_tokens": 186,
+    "output_tokens": 243,
+    "latency_ms": 894,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 894,
+    "scenario_id": "scenario_strong_bear_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 5,
+      "tokens": 5,
+      "total": 35,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "ollama-cloud",
+    "model": "gpt-oss:120b",
+    "success": true,
+    "text": "{\n  \"vote\": \"APPROVE\",\n  \"market_regime\": \"NORMAL\",\n  \"evidence_used\": [\"EV-TECH-2\", \"EV-MACRO-2\"],\n  \"comments\": \"Based on the provided technical and macro evidence, the proposal aligns with the current normal market conditions and merits approval.\"\n}",
+    "parsed_json": {
+      "vote": "APPROVE",
+      "market_regime": "NORMAL",
+      "evidence_used": [
+        "EV-TECH-2",
+        "EV-MACRO-2"
+      ],
+      "comments": "Based on the provided technical and macro evidence, the proposal aligns with the current normal market conditions and merits approval."
+    },
+    "input_tokens": 159,
+    "output_tokens": 195,
+    "latency_ms": 1584,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 1584,
+    "scenario_id": "scenario_strong_bear_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 5,
+      "tokens": 5,
+      "total": 35,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "gemini",
+    "model": "gemini-3.7-flash",
+    "success": false,
+    "text": null,
+    "parsed_json": null,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "latency_ms": 9845,
+    "error_code": "SERVER_ERROR",
+    "error_message": "{\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\n    \"status\": \"UNAVAILABLE\"\n  }\n}\n",
+    "first_attempt_status": "SERVER_ERROR",
+    "final_status": "SERVER_ERROR",
+    "retry_count": 1,
+    "total_elapsed_ms": 16260,
+    "scenario_id": "scenario_strong_bear_1",
+    "round": 1,
+    "scores": {
+      "json": 0,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 0,
+      "confidence": 0,
+      "latency": 0,
+      "tokens": 0,
+      "total": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "nemotron-3.5-lightning-free",
+    "success": true,
+    "text": "{\"vote\": \"APPROVE\", \"market_regime\": \"NORMAL\", \"evidence_considered\": [\"EV-TECH-2\", \"EV-MACRO-2\"], \"voter_id\": \"MIOS-IND-01\", \"timestamp\": \"2024-01-01T12:00:00Z\"}",
+    "parsed_json": {
+      "vote": "APPROVE",
+      "market_regime": "NORMAL",
+      "evidence_considered": [
+        "EV-TECH-2",
+        "EV-MACRO-2"
+      ],
+      "voter_id": "MIOS-IND-01",
+      "timestamp": "2024-01-01T12:00:00Z"
+    },
+    "input_tokens": 108,
+    "output_tokens": 1512,
+    "latency_ms": 57315,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 57315,
+    "scenario_id": "scenario_strong_bear_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 0,
+      "tokens": 0,
+      "total": 25,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "nemotron-3-ultra-free",
+    "success": true,
+    "text": "{\n  \"vote\": \"APPROVE\",\n  \"reasoning\": \"The provided evidence (EV-TECH-2, EV-MACRO-2) aligns with the current NORMAL market regime, indicating stable conditions without significant anomalies. Both technical and macroeconomic factors support maintaining the current stance.\",\n  \"evidence_ids\": [\"EV-TECH-2\", \"EV-MACRO-2\"],\n  \"market_regime\": \"NORMAL\",\n  \"confidence\": 0.85\n}",
+    "parsed_json": {
+      "vote": "APPROVE",
+      "reasoning": "The provided evidence (EV-TECH-2, EV-MACRO-2) aligns with the current NORMAL market regime, indicating stable conditions without significant anomalies. Both technical and macroeconomic factors support maintaining the current stance.",
+      "evidence_ids": [
+        "EV-TECH-2",
+        "EV-MACRO-2"
+      ],
+      "market_regime": "NORMAL",
+      "confidence": 0.85
+    },
+    "input_tokens": 108,
+    "output_tokens": 349,
+    "latency_ms": 3127,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 3127,
+    "scenario_id": "scenario_strong_bear_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 5,
+      "latency": 3,
+      "tokens": 5,
+      "total": 38,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "hy3-free",
+    "success": true,
+    "text": "{\"member_id\": \"MIOS-001\", \"market_regime\": \"NORMAL\", \"evidence_ids\": [\"EV-TECH-2\", \"EV-MACRO-2\"], \"vote\": \"NO_ACTION\", \"confidence\": 0.7, \"note\": \"Normal regime with standard evidence; no committee intervention required.\"}",
+    "parsed_json": {
+      "member_id": "MIOS-001",
+      "market_regime": "NORMAL",
+      "evidence_ids": [
+        "EV-TECH-2",
+        "EV-MACRO-2"
+      ],
+      "vote": "NO_ACTION",
+      "confidence": 0.7,
+      "note": "Normal regime with standard evidence; no committee intervention required."
+    },
+    "input_tokens": 100,
+    "output_tokens": 989,
+    "latency_ms": 10972,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 10972,
+    "scenario_id": "scenario_strong_bear_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 5,
+      "latency": 0,
+      "tokens": 3,
+      "total": 33,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "laguna-s-2.1-free",
+    "success": true,
+    "text": "{\n  \"committee_member_id\": \"MIOS-CM-001\",\n  \"vote_timestamp\": \"2024-01-15T10:30:00Z\",\n  \"market_regime\": \"NORMAL\",\n  \"evidence_considered\": [\n    {\n      \"id\": \"EV-TECH-2\",\n      \"text\": \"Evidence text for EV-TECH-2\"\n    },\n    {\n      \"id\": \"EV-MACRO-2\",\n      \"text\": \"Evidence text for EV-MACRO-2\"\n    }\n  ],\n  \"vote\": \"APPROVE\",\n  \"rationale\": \"Based on the provided evidence and normal market conditions, I approve this proposal as it aligns with our strategic objectives and risk parameters.\",\n  \"confidence_level\": \"HIGH\"\n}",
+    "parsed_json": {
+      "committee_member_id": "MIOS-CM-001",
+      "vote_timestamp": "2024-01-15T10:30:00Z",
+      "market_regime": "NORMAL",
+      "evidence_considered": [
+        {
+          "id": "EV-TECH-2",
+          "text": "Evidence text for EV-TECH-2"
+        },
+        {
+          "id": "EV-MACRO-2",
+          "text": "Evidence text for EV-MACRO-2"
+        }
+      ],
+      "vote": "APPROVE",
+      "rationale": "Based on the provided evidence and normal market conditions, I approve this proposal as it aligns with our strategic objectives and risk parameters.",
+      "confidence_level": "HIGH"
+    },
+    "input_tokens": 99,
+    "output_tokens": 190,
+    "latency_ms": 5651,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 5651,
+    "scenario_id": "scenario_strong_bear_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 1,
+      "tokens": 5,
+      "total": 31,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "text": "{\"committee\":\"MIOS\",\"vote\":\"APPROVE\",\"market_regime\":\"NORMAL\",\"evidence_ids\":[\"EV-TECH-2\",\"EV-MACRO-2\"],\"justification\":\"Based on the normal market regime and the provided technical and macroeconomic evidence, the proposal meets the criteria for approval.\"}",
+    "parsed_json": {
+      "committee": "MIOS",
+      "vote": "APPROVE",
+      "market_regime": "NORMAL",
+      "evidence_ids": [
+        "EV-TECH-2",
+        "EV-MACRO-2"
+      ],
+      "justification": "Based on the normal market regime and the provided technical and macroeconomic evidence, the proposal meets the criteria for approval."
+    },
+    "input_tokens": 186,
+    "output_tokens": 246,
+    "latency_ms": 1003,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 1004,
+    "scenario_id": "scenario_strong_bear_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 5,
+      "tokens": 5,
+      "total": 35,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "ollama-cloud",
+    "model": "gpt-oss:120b",
+    "success": true,
+    "text": "{\n  \"vote\": \"APPROVE\",\n  \"market_regime\": \"NORMAL\",\n  \"evidence_ids\": [\n    \"EV-TECH-2\",\n    \"EV-MACRO-2\"\n  ],\n  \"justification\": \"The market is in a NORMAL regime and the provided technical and macroeconomic evidence support a favorable outlook.\"\n}",
+    "parsed_json": {
+      "vote": "APPROVE",
+      "market_regime": "NORMAL",
+      "evidence_ids": [
+        "EV-TECH-2",
+        "EV-MACRO-2"
+      ],
+      "justification": "The market is in a NORMAL regime and the provided technical and macroeconomic evidence support a favorable outlook."
+    },
+    "input_tokens": 159,
+    "output_tokens": 240,
+    "latency_ms": 1781,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 1781,
+    "scenario_id": "scenario_strong_bear_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 5,
+      "tokens": 5,
+      "total": 35,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "gemini",
+    "model": "gemini-3.7-flash",
+    "success": false,
+    "text": null,
+    "parsed_json": null,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "latency_ms": 1115,
+    "error_code": "RATE_LIMITED",
+    "error_message": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.7-flash\\nPlease retry in 10.682265202s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\n        \"links\": [\n          {\n            \"description\": \"Learn more about Gemini API quotas\",\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.QuotaFailure\",\n        \"violations\": [\n          {\n            \"quotaMetric\": \"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\n            \"quotaId\": \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\n            \"quotaDimensions\": {\n              \"location\": \"global\",\n              \"model\": \"gemini-3.7-flash\"\n            },\n            \"quotaValue\": \"20\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.RetryInfo\",\n        \"retryDelay\": \"10s\"\n      }\n    ]\n  }\n}\n",
+    "first_attempt_status": "RATE_LIMITED",
+    "final_status": "RATE_LIMITED",
+    "retry_count": 0,
+    "total_elapsed_ms": 1115,
+    "scenario_id": "scenario_strong_bear_2",
+    "round": 1,
+    "scores": {
+      "json": 0,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 0,
+      "confidence": 0,
+      "latency": 0,
+      "tokens": 0,
+      "total": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "nemotron-3.5-lightning-free",
+    "success": true,
+    "text": "{\"vote_id\":\"MIOS-2024-09-001\",\"member_id\":\"MIOS-007\",\"decision\":\"HOLD\",\"market_regime\":\"NORMAL\",\"referenced_evidence\":[\"EV-TECH-2\",\"EV-MACRO-2\"],\"confidence\":0.55}",
+    "parsed_json": {
+      "vote_id": "MIOS-2024-09-001",
+      "member_id": "MIOS-007",
+      "decision": "HOLD",
+      "market_regime": "NORMAL",
+      "referenced_evidence": [
+        "EV-TECH-2",
+        "EV-MACRO-2"
+      ],
+      "confidence": 0.55
+    },
+    "input_tokens": 108,
+    "output_tokens": 1396,
+    "latency_ms": 40252,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 40252,
+    "scenario_id": "scenario_strong_bear_3",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 5,
+      "latency": 0,
+      "tokens": 0,
+      "total": 30,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "nemotron-3-ultra-free",
+    "success": true,
+    "text": "{ \"member_id\": \"MIOS-CM-001\", \"vote\": \"APPROVE\", \"confidence\": 0.85, \"reasoning\": \"Based on the provided evidence EV-TECH-2 and EV-MACRO-2, the market regime is NORMAL, supporting approval.\", \"evidence_referenced\": [\"EV-TECH-2\", \"EV-MACRO-2\"], \"market_regime_assessment\": \"NORMAL\" }",
+    "parsed_json": {
+      "member_id": "MIOS-CM-001",
+      "vote": "APPROVE",
+      "confidence": 0.85,
+      "reasoning": "Based on the provided evidence EV-TECH-2 and EV-MACRO-2, the market regime is NORMAL, supporting approval.",
+      "evidence_referenced": [
+        "EV-TECH-2",
+        "EV-MACRO-2"
+      ],
+      "market_regime_assessment": "NORMAL"
+    },
+    "input_tokens": 108,
+    "output_tokens": 406,
+    "latency_ms": 17701,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 17701,
+    "scenario_id": "scenario_strong_bear_3",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 5,
+      "latency": 0,
+      "tokens": 5,
+      "total": 35,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "hy3-free",
+    "success": true,
+    "text": "{\"member_id\": \"MIOS-001\", \"market_regime\": \"NORMAL\", \"vote\": \"NEUTRAL\", \"confidence\": 0.5, \"evidence_ids\": [\"EV-TECH-2\", \"EV-MACRO-2\"], \"comment\": \"Normal regime and non-specific evidence lead to neutral vote.\"}",
+    "parsed_json": {
+      "member_id": "MIOS-001",
+      "market_regime": "NORMAL",
+      "vote": "NEUTRAL",
+      "confidence": 0.5,
+      "evidence_ids": [
+        "EV-TECH-2",
+        "EV-MACRO-2"
+      ],
+      "comment": "Normal regime and non-specific evidence lead to neutral vote."
+    },
+    "input_tokens": 100,
+    "output_tokens": 1268,
+    "latency_ms": 12310,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 12310,
+    "scenario_id": "scenario_strong_bear_3",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 5,
+      "latency": 0,
+      "tokens": 0,
+      "total": 30,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "laguna-s-2.1-free",
+    "success": true,
+    "text": "{\n  \"vote\": \"APPROVE\",\n  \"rationale\": \"Based on the provided evidence (EV-TECH-2 and EV-MACRO-2) and the current NORMAL market regime, the available information supports a positive assessment. The technical and macroeconomic indicators align with favorable conditions for approval.\",\n  \"confidence\": \"MEDIUM\",\n  \"evidence_cited\": [\"EV-TECH-2\", \"EV-MACRO-2\"]\n}",
+    "parsed_json": {
+      "vote": "APPROVE",
+      "rationale": "Based on the provided evidence (EV-TECH-2 and EV-MACRO-2) and the current NORMAL market regime, the available information supports a positive assessment. The technical and macroeconomic indicators align with favorable conditions for approval.",
+      "confidence": "MEDIUM",
+      "evidence_cited": [
+        "EV-TECH-2",
+        "EV-MACRO-2"
+      ]
+    },
+    "input_tokens": 99,
+    "output_tokens": 100,
+    "latency_ms": 3049,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 3049,
+    "scenario_id": "scenario_strong_bear_3",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 3,
+      "tokens": 5,
+      "total": 33,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "text": "{\"vote\":\"APPROVE\",\"reason\":\"Based on technical and macro evidence, the market is stable under NORMAL regime.\",\"evidence_ids\":[\"EV-TECH-2\",\"EV-MACRO-2\"]}",
+    "parsed_json": {
+      "vote": "APPROVE",
+      "reason": "Based on technical and macro evidence, the market is stable under NORMAL regime.",
+      "evidence_ids": [
+        "EV-TECH-2",
+        "EV-MACRO-2"
+      ]
+    },
+    "input_tokens": 186,
+    "output_tokens": 251,
+    "latency_ms": 891,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 891,
+    "scenario_id": "scenario_strong_bear_3",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 5,
+      "tokens": 5,
+      "total": 35,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "ollama-cloud",
+    "model": "gpt-oss:120b",
+    "success": true,
+    "text": "{\n  \"vote\": \"APPROVE\",\n  \"market_regime\": \"NORMAL\",\n  \"evidence_ids\": [\n    \"EV-TECH-2\",\n    \"EV-MACRO-2\"\n  ],\n  \"comments\": \"Given the normal market regime and the supporting technical and macro evidence provided, I recommend approval.\"\n}",
+    "parsed_json": {
+      "vote": "APPROVE",
+      "market_regime": "NORMAL",
+      "evidence_ids": [
+        "EV-TECH-2",
+        "EV-MACRO-2"
+      ],
+      "comments": "Given the normal market regime and the supporting technical and macro evidence provided, I recommend approval."
+    },
+    "input_tokens": 159,
+    "output_tokens": 232,
+    "latency_ms": 1264,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 1264,
+    "scenario_id": "scenario_strong_bear_3",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 5,
+      "tokens": 5,
+      "total": 35,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "gemini",
+    "model": "gemini-3.7-flash",
+    "success": false,
+    "text": null,
+    "parsed_json": null,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "latency_ms": 2332,
+    "error_code": "SERVER_ERROR",
+    "error_message": "{\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\n    \"status\": \"UNAVAILABLE\"\n  }\n}\n",
+    "first_attempt_status": "SERVER_ERROR",
+    "final_status": "SERVER_ERROR",
+    "retry_count": 1,
+    "total_elapsed_ms": 5038,
+    "scenario_id": "scenario_strong_bear_3",
+    "round": 1,
+    "scores": {
+      "json": 0,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 0,
+      "confidence": 0,
+      "latency": 0,
+      "tokens": 0,
+      "total": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "nemotron-3.5-lightning-free",
+    "success": true,
+    "text": "{\n  \"vote_id\": \"MIOS-2024-001\",\n  \"decision\": \"NEUTRAL\",\n  \"market_regime\": \"NORMAL\",\n  \"rationale\": \"Normal market regime combined with mixed macro and neutral tech evidence supports maintaining a neutral position.\",\n  \"evidence_references\": [\"EV-MACRO-MIXED\", \"EV-TECH-NEUTRAL\"]\n}",
+    "parsed_json": {
+      "vote_id": "MIOS-2024-001",
+      "decision": "NEUTRAL",
+      "market_regime": "NORMAL",
+      "rationale": "Normal market regime combined with mixed macro and neutral tech evidence supports maintaining a neutral position.",
+      "evidence_references": [
+        "EV-MACRO-MIXED",
+        "EV-TECH-NEUTRAL"
+      ]
+    },
+    "input_tokens": 114,
+    "output_tokens": 1073,
+    "latency_ms": 17934,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 17935,
+    "scenario_id": "scenario_ambiguous_wait_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 0,
+      "tokens": 0,
+      "total": 25,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "nemotron-3-ultra-free",
+    "success": true,
+    "text": "{ \"member_id\": \"COMMITTEE_MEMBER_1\", \"vote\": \"HOLD\", \"confidence\": 0.7, \"reasoning\": \"Macro evidence mixed and technical evidence neutral suggest no clear directional edge in current normal market regime.\", \"evidence_references\": [\"EV-MACRO-MIXED\", \"EV-TECH-NEUTRAL\"] }",
+    "parsed_json": {
+      "member_id": "COMMITTEE_MEMBER_1",
+      "vote": "HOLD",
+      "confidence": 0.7,
+      "reasoning": "Macro evidence mixed and technical evidence neutral suggest no clear directional edge in current normal market regime.",
+      "evidence_references": [
+        "EV-MACRO-MIXED",
+        "EV-TECH-NEUTRAL"
+      ]
+    },
+    "input_tokens": 114,
+    "output_tokens": 427,
+    "latency_ms": 7407,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 7407,
+    "scenario_id": "scenario_ambiguous_wait_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 5,
+      "latency": 1,
+      "tokens": 5,
+      "total": 36,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "hy3-free",
+    "success": true,
+    "text": "{\"committee_member\": \"MIOS\", \"market_regime\": \"NORMAL\", \"vote\": \"HOLD\", \"confidence\": 0.5, \"evidence_considered\": [\"EV-MACRO-MIXED\", \"EV-TECH-NEUTRAL\"], \"rationale\": \"Mixed macro evidence and neutral technicals under normal regime suggest no directional conviction.\"}",
+    "parsed_json": {
+      "committee_member": "MIOS",
+      "market_regime": "NORMAL",
+      "vote": "HOLD",
+      "confidence": 0.5,
+      "evidence_considered": [
+        "EV-MACRO-MIXED",
+        "EV-TECH-NEUTRAL"
+      ],
+      "rationale": "Mixed macro evidence and neutral technicals under normal regime suggest no directional conviction."
+    },
+    "input_tokens": 106,
+    "output_tokens": 547,
+    "latency_ms": 7961,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 7961,
+    "scenario_id": "scenario_ambiguous_wait_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 5,
+      "latency": 1,
+      "tokens": 3,
+      "total": 34,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "laguna-s-2.1-free",
+    "success": true,
+    "text": "{\n  \"committee_member_id\": \"MIOS-CM-001\",\n  \"vote_timestamp\": \"2025-04-08T10:30:00Z\",\n  \"market_regime_assessment\": \"NORMAL\",\n  \"evidence_evaluation\": [\n    {\n      \"evidence_id\": \"EV-MACRO-MIXED\",\n      \"assessment\": \"The macroeconomic evidence presents a mixed signal environment. While some indicators suggest stability, others point to potential volatility. This warrants a cautious approach in positioning.\",\n      \"impact_rating\": \"MEDIUM\"\n    },\n    {\n      \"evidence_id\": \"EV-TECH-NEUTRAL\",\n      \"assessment\": \"The technical analysis indicates a neutral stance with no strong bullish or bearish momentum. Market conditions appear balanced without clear directional bias.\",\n      \"impact_rating\": \"LOW\"\n    }\n  ],\n  \"vote\": \"HOLD\",\n  \"confidence_level\": \"MODERATE\",\n  \"rationale\": \"Given the mixed macroeconomic signals and neutral technical indicators within a NORMAL market regime, a HOLD position is recommended to maintain current exposure while monitoring for clearer directional cues.\",\n  \"risk_considerations\": [\n    \"Potential for increased volatility if macroeconomic conditions deteriorate\",\n    \"Limited upside momentum based on current technical readings\",\n    \"Need for ongoing surveillance of both macro and technical factors\"\n  ]\n}",
+    "parsed_json": {
+      "committee_member_id": "MIOS-CM-001",
+      "vote_timestamp": "2025-04-08T10:30:00Z",
+      "market_regime_assessment": "NORMAL",
+      "evidence_evaluation": [
+        {
+          "evidence_id": "EV-MACRO-MIXED",
+          "assessment": "The macroeconomic evidence presents a mixed signal environment. While some indicators suggest stability, others point to potential volatility. This warrants a cautious approach in positioning.",
+          "impact_rating": "MEDIUM"
+        },
+        {
+          "evidence_id": "EV-TECH-NEUTRAL",
+          "assessment": "The technical analysis indicates a neutral stance with no strong bullish or bearish momentum. Market conditions appear balanced without clear directional bias.",
+          "impact_rating": "LOW"
+        }
+      ],
+      "vote": "HOLD",
+      "confidence_level": "MODERATE",
+      "rationale": "Given the mixed macroeconomic signals and neutral technical indicators within a NORMAL market regime, a HOLD position is recommended to maintain current exposure while monitoring for clearer directional cues.",
+      "risk_considerations": [
+        "Potential for increased volatility if macroeconomic conditions deteriorate",
+        "Limited upside momentum based on current technical readings",
+        "Need for ongoing surveillance of both macro and technical factors"
+      ]
+    },
+    "input_tokens": 103,
+    "output_tokens": 314,
+    "latency_ms": 8362,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 8362,
+    "scenario_id": "scenario_ambiguous_wait_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 1,
+      "tokens": 5,
+      "total": 31,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "text": "{\"member_id\":\"MIOS-001\",\"market_regime\":\"NORMAL\",\"vote\":\"APPROVE\",\"evidence_ids\":[\"EV-MACRO-MIXED\",\"EV-TECH-NEUTRAL\"],\"comments\":\"Based on mixed macro evidence and neutral tech evidence, I support proceeding.\"}",
+    "parsed_json": {
+      "member_id": "MIOS-001",
+      "market_regime": "NORMAL",
+      "vote": "APPROVE",
+      "evidence_ids": [
+        "EV-MACRO-MIXED",
+        "EV-TECH-NEUTRAL"
+      ],
+      "comments": "Based on mixed macro evidence and neutral tech evidence, I support proceeding."
+    },
+    "input_tokens": 192,
+    "output_tokens": 277,
+    "latency_ms": 1043,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 1043,
+    "scenario_id": "scenario_ambiguous_wait_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 5,
+      "tokens": 5,
+      "total": 35,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "ollama-cloud",
+    "model": "gpt-oss:120b",
+    "success": true,
+    "text": "{\n  \"committee_member\": \"MIOS_Committee_Member_1\",\n  \"vote\": \"APPROVE\",\n  \"confidence_score\": 0.87,\n  \"evidence_ids\": [\n    \"EV-MACRO-MIXED\",\n    \"EV-TECH-NEUTRAL\"\n  ],\n  \"comments\": \"Given the NORMAL market regime and the mixed macro evidence combined with neutral technical evidence, the overall outlook supports an approval decision.\"\n}",
+    "parsed_json": {
+      "committee_member": "MIOS_Committee_Member_1",
+      "vote": "APPROVE",
+      "confidence_score": 0.87,
+      "evidence_ids": [
+        "EV-MACRO-MIXED",
+        "EV-TECH-NEUTRAL"
+      ],
+      "comments": "Given the NORMAL market regime and the mixed macro evidence combined with neutral technical evidence, the overall outlook supports an approval decision."
+    },
+    "input_tokens": 165,
+    "output_tokens": 247,
+    "latency_ms": 1402,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 1402,
+    "scenario_id": "scenario_ambiguous_wait_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 5,
+      "tokens": 5,
+      "total": 35,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "gemini",
+    "model": "gemini-3.7-flash",
+    "success": false,
+    "text": null,
+    "parsed_json": null,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "latency_ms": 561,
+    "error_code": "RATE_LIMITED",
+    "error_message": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.7-flash\\nPlease retry in 5.378365749s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\n        \"links\": [\n          {\n            \"description\": \"Learn more about Gemini API quotas\",\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.QuotaFailure\",\n        \"violations\": [\n          {\n            \"quotaMetric\": \"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\n            \"quotaId\": \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\n            \"quotaDimensions\": {\n              \"location\": \"global\",\n              \"model\": \"gemini-3.7-flash\"\n            },\n            \"quotaValue\": \"20\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.RetryInfo\",\n        \"retryDelay\": \"5s\"\n      }\n    ]\n  }\n}\n",
+    "first_attempt_status": "RATE_LIMITED",
+    "final_status": "RATE_LIMITED",
+    "retry_count": 0,
+    "total_elapsed_ms": 561,
+    "scenario_id": "scenario_ambiguous_wait_1",
+    "round": 1,
+    "scores": {
+      "json": 0,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 0,
+      "confidence": 0,
+      "latency": 0,
+      "tokens": 0,
+      "total": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "nemotron-3.5-lightning-free",
+    "success": true,
+    "text": "{\n  \"vote\": \"APPROVE\",\n  \"voter\": \"MIOS Committee Member\",\n  \"market_regime\": \"NORMAL\",\n  \"evidence_referenced\": [\"EV-MACRO-MIXED\", \"EV-TECH-NEUTRAL\"],\n  \"decision_rationale\": \"Normal market regime with mixed macro and neutral tech evidence supports maintaining the current strategic approach.\",\n  \"vote_timestamp\": \"2024-01-15T10:30:00Z\"\n}",
+    "parsed_json": {
+      "vote": "APPROVE",
+      "voter": "MIOS Committee Member",
+      "market_regime": "NORMAL",
+      "evidence_referenced": [
+        "EV-MACRO-MIXED",
+        "EV-TECH-NEUTRAL"
+      ],
+      "decision_rationale": "Normal market regime with mixed macro and neutral tech evidence supports maintaining the current strategic approach.",
+      "vote_timestamp": "2024-01-15T10:30:00Z"
+    },
+    "input_tokens": 114,
+    "output_tokens": 1239,
+    "latency_ms": 6207,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 6207,
+    "scenario_id": "scenario_ambiguous_wait_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 1,
+      "tokens": 0,
+      "total": 26,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "nemotron-3-ultra-free",
+    "success": true,
+    "text": "{\n  \"member_id\": \"MIOS-COMMITTEE-001\",\n  \"vote\": \"HOLD\",\n  \"confidence\": 0.65,\n  \"reasoning\": \"Given NORMAL market regime and mixed macro/neutral technical evidence, maintaining current positions is prudent.\",\n  \"evidence_considered\": [\"EV-MACRO-MIXED\", \"EV-TECH-NEUTRAL\"],\n  \"timestamp\": \"2025-04-09T14:30:00Z\"\n}",
+    "parsed_json": {
+      "member_id": "MIOS-COMMITTEE-001",
+      "vote": "HOLD",
+      "confidence": 0.65,
+      "reasoning": "Given NORMAL market regime and mixed macro/neutral technical evidence, maintaining current positions is prudent.",
+      "evidence_considered": [
+        "EV-MACRO-MIXED",
+        "EV-TECH-NEUTRAL"
+      ],
+      "timestamp": "2025-04-09T14:30:00Z"
+    },
+    "input_tokens": 114,
+    "output_tokens": 413,
+    "latency_ms": 5185,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 5185,
+    "scenario_id": "scenario_ambiguous_wait_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 5,
+      "latency": 1,
+      "tokens": 5,
+      "total": 36,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "hy3-free",
+    "success": true,
+    "text": "{\"member\": \"MIOS\", \"market_regime\": \"NORMAL\", \"vote\": \"NEUTRAL\", \"confidence\": 0.6, \"evidence_used\": [\"EV-MACRO-MIXED\", \"EV-TECH-NEUTRAL\"], \"rationale\": \"Given normal market regime, mixed macro evidence and neutral technical evidence provide no clear directional signal, favoring a neutral vote.\"}",
+    "parsed_json": {
+      "member": "MIOS",
+      "market_regime": "NORMAL",
+      "vote": "NEUTRAL",
+      "confidence": 0.6,
+      "evidence_used": [
+        "EV-MACRO-MIXED",
+        "EV-TECH-NEUTRAL"
+      ],
+      "rationale": "Given normal market regime, mixed macro evidence and neutral technical evidence provide no clear directional signal, favoring a neutral vote."
+    },
+    "input_tokens": 106,
+    "output_tokens": 908,
+    "latency_ms": 11188,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 11188,
+    "scenario_id": "scenario_ambiguous_wait_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 5,
+      "latency": 0,
+      "tokens": 3,
+      "total": 33,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "laguna-s-2.1-free",
+    "success": true,
+    "text": "{\n  \"vote\": \"APPROVE\",\n  \"rationale\": \"Market regime is NORMAL with mixed macro evidence and neutral technical evidence. The combination supports a balanced approach with moderate risk tolerance.\",\n  \"confidence\": 0.75,\n  \"risk_assessment\": \"MODERATE\"\n}",
+    "parsed_json": {
+      "vote": "APPROVE",
+      "rationale": "Market regime is NORMAL with mixed macro evidence and neutral technical evidence. The combination supports a balanced approach with moderate risk tolerance.",
+      "confidence": 0.75,
+      "risk_assessment": "MODERATE"
+    },
+    "input_tokens": 103,
+    "output_tokens": 68,
+    "latency_ms": 3488,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 3489,
+    "scenario_id": "scenario_ambiguous_wait_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 5,
+      "latency": 3,
+      "tokens": 5,
+      "total": 38,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "text": "{\"market_regime\":\"NORMAL\",\"evidence_list\":[{\"id\":\"EV-MACRO-MIXED\",\"text\":\"Evidence text for EV-MACRO-MIXED\"},{\"id\":\"EV-TECH-NEUTRAL\",\"text\":\"Evidence text for EV-TECH-NEUTRAL\"}],\"vote\":\"APPROVE\"}",
+    "parsed_json": {
+      "market_regime": "NORMAL",
+      "evidence_list": [
+        {
+          "id": "EV-MACRO-MIXED",
+          "text": "Evidence text for EV-MACRO-MIXED"
+        },
+        {
+          "id": "EV-TECH-NEUTRAL",
+          "text": "Evidence text for EV-TECH-NEUTRAL"
+        }
+      ],
+      "vote": "APPROVE"
+    },
+    "input_tokens": 192,
+    "output_tokens": 305,
+    "latency_ms": 1274,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 1275,
+    "scenario_id": "scenario_ambiguous_wait_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 5,
+      "tokens": 5,
+      "total": 35,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "ollama-cloud",
+    "model": "gpt-oss:120b",
+    "success": true,
+    "text": "{\n  \"market_regime\": \"NORMAL\",\n  \"vote\": \"HOLD\",\n  \"evidence_considered\": [\n    \"EV-MACRO-MIXED\",\n    \"EV-TECH-NEUTRAL\"\n  ],\n  \"justification\": \"The market is in a normal regime, with mixed macroeconomic signals and neutral technology outlook. Given the balanced nature of the evidence, the committee recommends a hold stance.\"\n}",
+    "parsed_json": {
+      "market_regime": "NORMAL",
+      "vote": "HOLD",
+      "evidence_considered": [
+        "EV-MACRO-MIXED",
+        "EV-TECH-NEUTRAL"
+      ],
+      "justification": "The market is in a normal regime, with mixed macroeconomic signals and neutral technology outlook. Given the balanced nature of the evidence, the committee recommends a hold stance."
+    },
+    "input_tokens": 165,
+    "output_tokens": 418,
+    "latency_ms": 2069,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 2070,
+    "scenario_id": "scenario_ambiguous_wait_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 3,
+      "tokens": 5,
+      "total": 33,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "gemini",
+    "model": "gemini-3.7-flash",
+    "success": false,
+    "text": null,
+    "parsed_json": null,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "latency_ms": 1101,
+    "error_code": "RATE_LIMITED",
+    "error_message": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.7-flash\\nPlease retry in 19.17592614s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\n        \"links\": [\n          {\n            \"description\": \"Learn more about Gemini API quotas\",\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.QuotaFailure\",\n        \"violations\": [\n          {\n            \"quotaMetric\": \"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\n            \"quotaId\": \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\n            \"quotaDimensions\": {\n              \"location\": \"global\",\n              \"model\": \"gemini-3.7-flash\"\n            },\n            \"quotaValue\": \"20\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.RetryInfo\",\n        \"retryDelay\": \"19s\"\n      }\n    ]\n  }\n}\n",
+    "first_attempt_status": "RATE_LIMITED",
+    "final_status": "RATE_LIMITED",
+    "retry_count": 0,
+    "total_elapsed_ms": 1101,
+    "scenario_id": "scenario_ambiguous_wait_2",
+    "round": 1,
+    "scores": {
+      "json": 0,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 0,
+      "confidence": 0,
+      "latency": 0,
+      "tokens": 0,
+      "total": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "nemotron-3.5-lightning-free",
+    "success": true,
+    "text": "{\n  \"vote_id\": \"MIOS-2024-08-27-001\",\n  \"voter\": \"MIOS-Independent-Member\",\n  \"market_regime\": \"NORMAL\",\n  \"decision\": \"NEUTRAL\",\n  \"rationale\": \"Evidence EV-MACRO-BULL and EV-TECH-BEAR present opposing signals; under NORMAL market regime, the committee concludes a neutral position with balanced risk.\",\n  \"evidence_ids\": [\"EV-MACRO-BULL\", \"EV-TECH-BEAR\"],\n  \"confidence\": 0.75\n}",
+    "parsed_json": {
+      "vote_id": "MIOS-2024-08-27-001",
+      "voter": "MIOS-Independent-Member",
+      "market_regime": "NORMAL",
+      "decision": "NEUTRAL",
+      "rationale": "Evidence EV-MACRO-BULL and EV-TECH-BEAR present opposing signals; under NORMAL market regime, the committee concludes a neutral position with balanced risk.",
+      "evidence_ids": [
+        "EV-MACRO-BULL",
+        "EV-TECH-BEAR"
+      ],
+      "confidence": 0.75
+    },
+    "input_tokens": 108,
+    "output_tokens": 1291,
+    "latency_ms": 21072,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 21072,
+    "scenario_id": "scenario_contradiction_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 0,
+      "confidence": 5,
+      "latency": 0,
+      "tokens": 0,
+      "total": 15,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "nemotron-3-ultra-free",
+    "success": true,
+    "text": "{\"member_id\": \"MIOS-CM-001\", \"vote\": \"NEUTRAL\", \"confidence\": 0.65, \"reasoning\": \"Conflicting signals: macro evidence suggests bullish bias (EV-MACRO-BULL), but technical evidence indicates bearish pressure (EV-TECH-BEAR). In a NORMAL regime, these offsetting factors warrant a neutral stance with moderate conviction.\", \"evidence_references\": [\"EV-MACRO-BULL\", \"EV-TECH-BEAR\"]}",
+    "parsed_json": {
+      "member_id": "MIOS-CM-001",
+      "vote": "NEUTRAL",
+      "confidence": 0.65,
+      "reasoning": "Conflicting signals: macro evidence suggests bullish bias (EV-MACRO-BULL), but technical evidence indicates bearish pressure (EV-TECH-BEAR). In a NORMAL regime, these offsetting factors warrant a neutral stance with moderate conviction.",
+      "evidence_references": [
+        "EV-MACRO-BULL",
+        "EV-TECH-BEAR"
+      ]
+    },
+    "input_tokens": 108,
+    "output_tokens": 330,
+    "latency_ms": 5474,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 5474,
+    "scenario_id": "scenario_contradiction_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 0,
+      "confidence": 5,
+      "latency": 1,
+      "tokens": 5,
+      "total": 21,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "hy3-free",
+    "success": true,
+    "text": "{\"member_id\": \"MIOS-CM-01\", \"vote\": \"HOLD\", \"confidence\": 0.5, \"rationale\": \"Balanced evidence: EV-MACRO-BULL vs EV-TECH-BEAR in NORMAL regime.\", \"evidence_ids\": [\"EV-MACRO-BULL\", \"EV-TECH-BEAR\"]}",
+    "parsed_json": {
+      "member_id": "MIOS-CM-01",
+      "vote": "HOLD",
+      "confidence": 0.5,
+      "rationale": "Balanced evidence: EV-MACRO-BULL vs EV-TECH-BEAR in NORMAL regime.",
+      "evidence_ids": [
+        "EV-MACRO-BULL",
+        "EV-TECH-BEAR"
+      ]
+    },
+    "input_tokens": 100,
+    "output_tokens": 933,
+    "latency_ms": 8708,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 8709,
+    "scenario_id": "scenario_contradiction_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 0,
+      "confidence": 5,
+      "latency": 1,
+      "tokens": 3,
+      "total": 19,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "laguna-s-2.1-free",
+    "success": true,
+    "text": "{\n  \"vote\": \"APPROVE\",\n  \"rationale\": \"Market regime is NORMAL with mixed but balanced evidence. EV-MACRO-BULL supports approval while EV-TECH-BEAR presents minor concerns. Overall risk profile remains acceptable under current conditions.\",\n  \"confidence\": 0.75,\n  \"evidence_considered\": [\"EV-MACRO-BULL\", \"EV-TECH-BEAR\"]\n}",
+    "parsed_json": {
+      "vote": "APPROVE",
+      "rationale": "Market regime is NORMAL with mixed but balanced evidence. EV-MACRO-BULL supports approval while EV-TECH-BEAR presents minor concerns. Overall risk profile remains acceptable under current conditions.",
+      "confidence": 0.75,
+      "evidence_considered": [
+        "EV-MACRO-BULL",
+        "EV-TECH-BEAR"
+      ]
+    },
+    "input_tokens": 99,
+    "output_tokens": 92,
+    "latency_ms": 3701,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 3702,
+    "scenario_id": "scenario_contradiction_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 0,
+      "confidence": 5,
+      "latency": 3,
+      "tokens": 5,
+      "total": 23,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "text": "{\"vote\":\"YES\",\"reason\":\"The NORMAL market regime combined with bullish macro evidence (EV-MACRO-BULL) outweighs the bearish technical evidence (EV-TECH-BEAR), leading to a positive outlook.\",\"evidence_ids\":[\"EV-MACRO-BULL\",\"EV-TECH-BEAR\"]}",
+    "parsed_json": {
+      "vote": "YES",
+      "reason": "The NORMAL market regime combined with bullish macro evidence (EV-MACRO-BULL) outweighs the bearish technical evidence (EV-TECH-BEAR), leading to a positive outlook.",
+      "evidence_ids": [
+        "EV-MACRO-BULL",
+        "EV-TECH-BEAR"
+      ]
+    },
+    "input_tokens": 186,
+    "output_tokens": 240,
+    "latency_ms": 1105,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 1106,
+    "scenario_id": "scenario_contradiction_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 0,
+      "confidence": 0,
+      "latency": 5,
+      "tokens": 5,
+      "total": 20,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "ollama-cloud",
+    "model": "gpt-oss:120b",
+    "success": true,
+    "text": "{\n  \"vote\": \"NEUTRAL\",\n  \"justification\": \"The market regime is NORMAL and the evidence list contains both a bullish macro signal (EV-MACRO-BULL) and a bearish tech signal (EV-TECH-BEAR). The mixed signals lead to a neutral stance.\",\n  \"evidence_used\": [\n    \"EV-MACRO-BULL\",\n    \"EV-TECH-BEAR\"\n  ]\n}",
+    "parsed_json": {
+      "vote": "NEUTRAL",
+      "justification": "The market regime is NORMAL and the evidence list contains both a bullish macro signal (EV-MACRO-BULL) and a bearish tech signal (EV-TECH-BEAR). The mixed signals lead to a neutral stance.",
+      "evidence_used": [
+        "EV-MACRO-BULL",
+        "EV-TECH-BEAR"
+      ]
+    },
+    "input_tokens": 159,
+    "output_tokens": 302,
+    "latency_ms": 2336,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 2336,
+    "scenario_id": "scenario_contradiction_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 0,
+      "confidence": 0,
+      "latency": 3,
+      "tokens": 5,
+      "total": 18,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "gemini",
+    "model": "gemini-3.7-flash",
+    "success": false,
+    "text": null,
+    "parsed_json": null,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "latency_ms": 1131,
+    "error_code": "RATE_LIMITED",
+    "error_message": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.7-flash\\nPlease retry in 31.745373389s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\n        \"links\": [\n          {\n            \"description\": \"Learn more about Gemini API quotas\",\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.QuotaFailure\",\n        \"violations\": [\n          {\n            \"quotaMetric\": \"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\n            \"quotaId\": \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\n            \"quotaDimensions\": {\n              \"location\": \"global\",\n              \"model\": \"gemini-3.7-flash\"\n            },\n            \"quotaValue\": \"20\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.RetryInfo\",\n        \"retryDelay\": \"31s\"\n      }\n    ]\n  }\n}\n",
+    "first_attempt_status": "RATE_LIMITED",
+    "final_status": "RATE_LIMITED",
+    "retry_count": 0,
+    "total_elapsed_ms": 1131,
+    "scenario_id": "scenario_contradiction_1",
+    "round": 1,
+    "scores": {
+      "json": 0,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 0,
+      "confidence": 0,
+      "latency": 0,
+      "tokens": 0,
+      "total": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "nemotron-3.5-lightning-free",
+    "success": true,
+    "text": "{\n  \"vote\": \"HOLD\",\n  \"rationale\": \"Balanced evidence with macro bullish and tech bearish signals under normal market regime suggests maintaining current position.\",\n  \"market_regime\": \"NORMAL\",\n  \"evidence_reviewed\": [\"EV-MACRO-BULL\", \"EV-TECH-BEAR\"]\n}",
+    "parsed_json": {
+      "vote": "HOLD",
+      "rationale": "Balanced evidence with macro bullish and tech bearish signals under normal market regime suggests maintaining current position.",
+      "market_regime": "NORMAL",
+      "evidence_reviewed": [
+        "EV-MACRO-BULL",
+        "EV-TECH-BEAR"
+      ]
+    },
+    "input_tokens": 108,
+    "output_tokens": 1410,
+    "latency_ms": 29592,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 29593,
+    "scenario_id": "scenario_contradiction_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 0,
+      "confidence": 0,
+      "latency": 0,
+      "tokens": 0,
+      "total": 10,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "nemotron-3-ultra-free",
+    "success": true,
+    "text": "{\n  \"member_id\": \"COMMITTEE_MEMBER_1\",\n  \"vote\": \"NEUTRAL\",\n  \"confidence\": 0.6,\n  \"reasoning\": \"Macro evidence suggests bullish outlook, but technical evidence indicates bearish signals. In a normal market regime, mixed signals warrant a neutral stance.\",\n  \"evidence_references\": [\"EV-MACRO-BULL\", \"EV-TECH-BEAR\"]\n}",
+    "parsed_json": {
+      "member_id": "COMMITTEE_MEMBER_1",
+      "vote": "NEUTRAL",
+      "confidence": 0.6,
+      "reasoning": "Macro evidence suggests bullish outlook, but technical evidence indicates bearish signals. In a normal market regime, mixed signals warrant a neutral stance.",
+      "evidence_references": [
+        "EV-MACRO-BULL",
+        "EV-TECH-BEAR"
+      ]
+    },
+    "input_tokens": 108,
+    "output_tokens": 430,
+    "latency_ms": 7735,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 7735,
+    "scenario_id": "scenario_contradiction_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 0,
+      "confidence": 5,
+      "latency": 1,
+      "tokens": 5,
+      "total": 21,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "hy3-free",
+    "success": true,
+    "text": "{\"committee\": \"MIOS\", \"member_role\": \"committee_member\", \"market_regime\": \"NORMAL\", \"vote\": \"NEUTRAL\", \"confidence\": 0.5, \"rationale\": \"Evidence EV-MACRO-BULL is bullish, EV-TECH-BEAR is bearish; in NORMAL regime, conflicting signals suggest neutral stance.\", \"evidence_references\": [\"EV-MACRO-BULL\", \"EV-TECH-BEAR\"]}",
+    "parsed_json": {
+      "committee": "MIOS",
+      "member_role": "committee_member",
+      "market_regime": "NORMAL",
+      "vote": "NEUTRAL",
+      "confidence": 0.5,
+      "rationale": "Evidence EV-MACRO-BULL is bullish, EV-TECH-BEAR is bearish; in NORMAL regime, conflicting signals suggest neutral stance.",
+      "evidence_references": [
+        "EV-MACRO-BULL",
+        "EV-TECH-BEAR"
+      ]
+    },
+    "input_tokens": 100,
+    "output_tokens": 915,
+    "latency_ms": 8985,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 8985,
+    "scenario_id": "scenario_contradiction_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 0,
+      "confidence": 5,
+      "latency": 1,
+      "tokens": 3,
+      "total": 19,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "laguna-s-2.1-free",
+    "success": true,
+    "text": "{\n  \"committee_member_id\": \"CM-001\",\n  \"vote\": \"APPROVE\",\n  \"rationale\": \"Based on the provided market regime (NORMAL) and evidence analysis, the current conditions support approval. The macro evidence (EV-MACRO-BULL) indicates positive underlying conditions, while the technical evidence (EV-TECH-BEAR) suggests a temporary bearish correction within the normal regime. This combination of strong fundamentals with short-term technical weakness aligns with a NORMAL market regime where such divergences are expected and manageable.\",\n  \"confidence_level\": \"HIGH\",\n  \"timestamp\": \"2024-01-15T10:30:00Z\",\n  \"evidence_considerations\": [\n    {\n      \"evidence_id\": \"EV-MACRO-BULL\",\n      \"impact\": \"POSITIVE\",\n      \"weight\": 0.7\n    },\n    {\n      \"evidence_id\": \"EV-TECH-BEAR\",\n      \"impact\": \"NEGATIVE\",\n      \"weight\": 0.3\n    }\n  ]\n}",
+    "parsed_json": {
+      "committee_member_id": "CM-001",
+      "vote": "APPROVE",
+      "rationale": "Based on the provided market regime (NORMAL) and evidence analysis, the current conditions support approval. The macro evidence (EV-MACRO-BULL) indicates positive underlying conditions, while the technical evidence (EV-TECH-BEAR) suggests a temporary bearish correction within the normal regime. This combination of strong fundamentals with short-term technical weakness aligns with a NORMAL market regime where such divergences are expected and manageable.",
+      "confidence_level": "HIGH",
+      "timestamp": "2024-01-15T10:30:00Z",
+      "evidence_considerations": [
+        {
+          "evidence_id": "EV-MACRO-BULL",
+          "impact": "POSITIVE",
+          "weight": 0.7
+        },
+        {
+          "evidence_id": "EV-TECH-BEAR",
+          "impact": "NEGATIVE",
+          "weight": 0.3
+        }
+      ]
+    },
+    "input_tokens": 99,
+    "output_tokens": 243,
+    "latency_ms": 9361,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 9361,
+    "scenario_id": "scenario_contradiction_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 0,
+      "confidence": 0,
+      "latency": 1,
+      "tokens": 5,
+      "total": 16,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "text": "{\"committee\":\"MIOS\",\"vote\":\"HOLD\",\"market_regime\":\"NORMAL\",\"evidence_ids\":[\"EV-MACRO-BULL\",\"EV-TECH-BEAR\"],\"justification\":\"Mixed macro bullish and tech bearish signals suggest a neutral stance.\"}",
+    "parsed_json": {
+      "committee": "MIOS",
+      "vote": "HOLD",
+      "market_regime": "NORMAL",
+      "evidence_ids": [
+        "EV-MACRO-BULL",
+        "EV-TECH-BEAR"
+      ],
+      "justification": "Mixed macro bullish and tech bearish signals suggest a neutral stance."
+    },
+    "input_tokens": 186,
+    "output_tokens": 306,
+    "latency_ms": 1086,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 1086,
+    "scenario_id": "scenario_contradiction_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 0,
+      "confidence": 0,
+      "latency": 5,
+      "tokens": 5,
+      "total": 20,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "ollama-cloud",
+    "model": "gpt-oss:120b",
+    "success": true,
+    "text": "{\n  \"vote\": \"ACCEPT\",\n  \"market_regime\": \"NORMAL\",\n  \"evidence_ids\": [\n    \"EV-MACRO-BULL\",\n    \"EV-TECH-BEAR\"\n  ],\n  \"justification\": \"Both macro and tech evidence are considered and together they support maintaining a NORMAL market regime.\"\n}",
+    "parsed_json": {
+      "vote": "ACCEPT",
+      "market_regime": "NORMAL",
+      "evidence_ids": [
+        "EV-MACRO-BULL",
+        "EV-TECH-BEAR"
+      ],
+      "justification": "Both macro and tech evidence are considered and together they support maintaining a NORMAL market regime."
+    },
+    "input_tokens": 159,
+    "output_tokens": 334,
+    "latency_ms": 2285,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 2285,
+    "scenario_id": "scenario_contradiction_2",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 0,
+      "confidence": 0,
+      "latency": 3,
+      "tokens": 5,
+      "total": 18,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "gemini",
+    "model": "gemini-3.7-flash",
+    "success": false,
+    "text": null,
+    "parsed_json": null,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "latency_ms": 1119,
+    "error_code": "RATE_LIMITED",
+    "error_message": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.7-flash\\nPlease retry in 27.94730405s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\n        \"links\": [\n          {\n            \"description\": \"Learn more about Gemini API quotas\",\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.QuotaFailure\",\n        \"violations\": [\n          {\n            \"quotaMetric\": \"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\n            \"quotaId\": \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\n            \"quotaDimensions\": {\n              \"model\": \"gemini-3.7-flash\",\n              \"location\": \"global\"\n            },\n            \"quotaValue\": \"20\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.RetryInfo\",\n        \"retryDelay\": \"27s\"\n      }\n    ]\n  }\n}\n",
+    "first_attempt_status": "RATE_LIMITED",
+    "final_status": "RATE_LIMITED",
+    "retry_count": 0,
+    "total_elapsed_ms": 1119,
+    "scenario_id": "scenario_contradiction_2",
+    "round": 1,
+    "scores": {
+      "json": 0,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 0,
+      "confidence": 0,
+      "latency": 0,
+      "tokens": 0,
+      "total": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "nemotron-3.5-lightning-free",
+    "success": true,
+    "text": "{\n  \"vote_id\": \"MIOS-2024-NORMAL-001\",\n  \"decision\": \"NEUTRAL\",\n  \"market_regime\": \"NORMAL\",\n  \"considered_evidence\": [\"EV-GEO-SHOCK\"],\n  \"justification\": \"Normal market conditions with geo-shock evidence suggest no policy action required at this time.\",\n  \"voter_role\": \"MIOS committee member\"\n}",
+    "parsed_json": {
+      "vote_id": "MIOS-2024-NORMAL-001",
+      "decision": "NEUTRAL",
+      "market_regime": "NORMAL",
+      "considered_evidence": [
+        "EV-GEO-SHOCK"
+      ],
+      "justification": "Normal market conditions with geo-shock evidence suggest no policy action required at this time.",
+      "voter_role": "MIOS committee member"
+    },
+    "input_tokens": 82,
+    "output_tokens": 1031,
+    "latency_ms": 20651,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 20651,
+    "scenario_id": "scenario_geopolitical_shock_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 0,
+      "tokens": 0,
+      "total": 25,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "nemotron-3-ultra-free",
+    "success": true,
+    "text": "{\n  \"committee_member_id\": \"MIOS-CM-001\",\n  \"vote\": \"HOLD\",\n  \"reasoning\": \"Geopolitical shock evidence present but market regime remains NORMAL; recommend monitoring.\",\n  \"confidence\": 0.65,\n  \"evidence_reviewed\": [\"EV-GEO-SHOCK\"],\n  \"market_regime\": \"NORMAL\",\n  \"timestamp\": \"2025-04-09T12:00:00Z\"\n}",
+    "parsed_json": {
+      "committee_member_id": "MIOS-CM-001",
+      "vote": "HOLD",
+      "reasoning": "Geopolitical shock evidence present but market regime remains NORMAL; recommend monitoring.",
+      "confidence": 0.65,
+      "evidence_reviewed": [
+        "EV-GEO-SHOCK"
+      ],
+      "market_regime": "NORMAL",
+      "timestamp": "2025-04-09T12:00:00Z"
+    },
+    "input_tokens": 82,
+    "output_tokens": 539,
+    "latency_ms": 11226,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 11226,
+    "scenario_id": "scenario_geopolitical_shock_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 5,
+      "latency": 0,
+      "tokens": 3,
+      "total": 33,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "hy3-free",
+    "success": true,
+    "text": "{\"committee\": \"MIOS\", \"vote\": \"NO_INTERVENTION\", \"evidence\": [\"EV-GEO-SHOCK\"], \"market_regime\": \"NORMAL\", \"justification\": \"Normal market regime with isolated geopolitical shock evidence does not meet threshold for committee action.\"}",
+    "parsed_json": {
+      "committee": "MIOS",
+      "vote": "NO_INTERVENTION",
+      "evidence": [
+        "EV-GEO-SHOCK"
+      ],
+      "market_regime": "NORMAL",
+      "justification": "Normal market regime with isolated geopolitical shock evidence does not meet threshold for committee action."
+    },
+    "input_tokens": 75,
+    "output_tokens": 1041,
+    "latency_ms": 11624,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 11624,
+    "scenario_id": "scenario_geopolitical_shock_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 20,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 0,
+      "tokens": 0,
+      "total": 45,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "laguna-s-2.1-free",
+    "success": true,
+    "text": "{\n  \"committee_member_id\": \"MIOS-CM-001\",\n  \"vote_timestamp\": \"2024-01-15T10:30:00Z\",\n  \"market_regime\": \"NORMAL\",\n  \"evidence_considered\": [\n    {\n      \"id\": \"EV-GEO-SHOCK\",\n      \"text\": \"Evidence text for EV-GEO-SHOCK\"\n    }\n  ],\n  \"vote\": \"APPROVE\",\n  \"rationale\": \"Based on the provided evidence and current normal market conditions, I approve this measure as it aligns with established protocols and poses no undue risk to market stability.\",\n  \"confidence_level\": \"HIGH\"\n}",
+    "parsed_json": {
+      "committee_member_id": "MIOS-CM-001",
+      "vote_timestamp": "2024-01-15T10:30:00Z",
+      "market_regime": "NORMAL",
+      "evidence_considered": [
+        {
+          "id": "EV-GEO-SHOCK",
+          "text": "Evidence text for EV-GEO-SHOCK"
+        }
+      ],
+      "vote": "APPROVE",
+      "rationale": "Based on the provided evidence and current normal market conditions, I approve this measure as it aligns with established protocols and poses no undue risk to market stability.",
+      "confidence_level": "HIGH"
+    },
+    "input_tokens": 76,
+    "output_tokens": 163,
+    "latency_ms": 6748,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 6748,
+    "scenario_id": "scenario_geopolitical_shock_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 1,
+      "tokens": 5,
+      "total": 31,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "text": "{\"vote\":\"APPROVE\",\"evidence_ids\":[\"EV-GEO-SHOCK\"],\"comments\":\"Given the NORMAL market regime and the provided evidence, the proposal aligns with current conditions and merits approval.\"}",
+    "parsed_json": {
+      "vote": "APPROVE",
+      "evidence_ids": [
+        "EV-GEO-SHOCK"
+      ],
+      "comments": "Given the NORMAL market regime and the provided evidence, the proposal aligns with current conditions and merits approval."
+    },
+    "input_tokens": 163,
+    "output_tokens": 174,
+    "latency_ms": 802,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 802,
+    "scenario_id": "scenario_geopolitical_shock_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 5,
+      "tokens": 5,
+      "total": 35,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "ollama-cloud",
+    "model": "gpt-oss:120b",
+    "success": true,
+    "text": "{\n  \"committee\": \"MIOS\",\n  \"market_regime\": \"NORMAL\",\n  \"vote\": \"VALID\",\n  \"evidence_considered\": [\"EV-GEO-SHOCK\"],\n  \"reason\": \"The provided evidence (EV-GEO-SHOCK) is consistent with a normal market regime and does not suggest any abnormal conditions requiring a different assessment.\"\n}",
+    "parsed_json": {
+      "committee": "MIOS",
+      "market_regime": "NORMAL",
+      "vote": "VALID",
+      "evidence_considered": [
+        "EV-GEO-SHOCK"
+      ],
+      "reason": "The provided evidence (EV-GEO-SHOCK) is consistent with a normal market regime and does not suggest any abnormal conditions requiring a different assessment."
+    },
+    "input_tokens": 136,
+    "output_tokens": 354,
+    "latency_ms": 1967,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 1967,
+    "scenario_id": "scenario_geopolitical_shock_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 5,
+      "tokens": 5,
+      "total": 35,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "gemini",
+    "model": "gemini-3.7-flash",
+    "success": false,
+    "text": null,
+    "parsed_json": null,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "latency_ms": 1125,
+    "error_code": "RATE_LIMITED",
+    "error_message": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.7-flash\\nPlease retry in 3.833945039s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\n        \"links\": [\n          {\n            \"description\": \"Learn more about Gemini API quotas\",\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.QuotaFailure\",\n        \"violations\": [\n          {\n            \"quotaMetric\": \"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\n            \"quotaId\": \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\n            \"quotaDimensions\": {\n              \"location\": \"global\",\n              \"model\": \"gemini-3.7-flash\"\n            },\n            \"quotaValue\": \"20\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.RetryInfo\",\n        \"retryDelay\": \"3s\"\n      }\n    ]\n  }\n}\n",
+    "first_attempt_status": "RATE_LIMITED",
+    "final_status": "RATE_LIMITED",
+    "retry_count": 0,
+    "total_elapsed_ms": 1125,
+    "scenario_id": "scenario_geopolitical_shock_1",
+    "round": 1,
+    "scores": {
+      "json": 0,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 0,
+      "confidence": 0,
+      "latency": 0,
+      "tokens": 0,
+      "total": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "nemotron-3.5-lightning-free",
+    "success": true,
+    "text": "{\n  \"committee_member_id\": \"MIOS-001\",\n  \"vote\": \"DO_NOT_ACT\",\n  \"reason\": \"Market regime is NORMAL; EV-REGIME-SHIFT evidence does not constitute an active regime shift trigger.\",\n  \"timestamp_utc\": \"2025-08-27T10:30:00Z\",\n  \"evidence_referenced\": [\"EV-REGIME-SHIFT\"],\n  \"market_regime\": \"NORMAL\"\n}",
+    "parsed_json": {
+      "committee_member_id": "MIOS-001",
+      "vote": "DO_NOT_ACT",
+      "reason": "Market regime is NORMAL; EV-REGIME-SHIFT evidence does not constitute an active regime shift trigger.",
+      "timestamp_utc": "2025-08-27T10:30:00Z",
+      "evidence_referenced": [
+        "EV-REGIME-SHIFT"
+      ],
+      "market_regime": "NORMAL"
+    },
+    "input_tokens": 84,
+    "output_tokens": 1310,
+    "latency_ms": 27022,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 27023,
+    "scenario_id": "scenario_regime_transition_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 0,
+      "tokens": 0,
+      "total": 25,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "nemotron-3-ultra-free",
+    "success": true,
+    "text": "{\n  \"committee_member_id\": \"MIOS-CM-001\",\n  \"vote_timestamp\": \"2025-01-15T14:30:00Z\",\n  \"market_regime_assessment\": \"NORMAL\",\n  \"vote\": \"MAINTAIN_CURRENT_REGIME\",\n  \"confidence_level\": 0.78,\n  \"reasoning\": \"The single evidence item EV-REGIME-SHIFT lacks sufficient specificity and corroborating signals to justify a regime change from NORMAL. The evidence text appears generic without quantitative thresholds, volume anomalies, or cross-asset confirmation. Current market microstructure indicators remain within normal parameters.\",\n  \"evidence_evaluation\": {\n    \"EV-REGIME-SHIFT\": {\n      \"weight\": 0.35,\n      \"credibility\": 0.6,\n      \"relevance\": 0.5,\n      \"assessment\": \"Insufficient alone to trigger regime transition; requires confirmation from volatility surface, correlation breakdown, or liquidity metrics\"\n    }\n  },\n  \"required_additional_evidence\": [\n    \"VIX term structure inversion\",\n    \"Cross-asset correlation spike >0.8\",\n    \"Funding liquidity stress indicators\",\n    \"Order book depth deterioration >30%\"\n  ],\n  \"next_review_trigger\": \"Any two of required_additional_evidence triggered simultaneously\"\n}",
+    "parsed_json": {
+      "committee_member_id": "MIOS-CM-001",
+      "vote_timestamp": "2025-01-15T14:30:00Z",
+      "market_regime_assessment": "NORMAL",
+      "vote": "MAINTAIN_CURRENT_REGIME",
+      "confidence_level": 0.78,
+      "reasoning": "The single evidence item EV-REGIME-SHIFT lacks sufficient specificity and corroborating signals to justify a regime change from NORMAL. The evidence text appears generic without quantitative thresholds, volume anomalies, or cross-asset confirmation. Current market microstructure indicators remain within normal parameters.",
+      "evidence_evaluation": {
+        "EV-REGIME-SHIFT": {
+          "weight": 0.35,
+          "credibility": 0.6,
+          "relevance": 0.5,
+          "assessment": "Insufficient alone to trigger regime transition; requires confirmation from volatility surface, correlation breakdown, or liquidity metrics"
+        }
+      },
+      "required_additional_evidence": [
+        "VIX term structure inversion",
+        "Cross-asset correlation spike >0.8",
+        "Funding liquidity stress indicators",
+        "Order book depth deterioration >30%"
+      ],
+      "next_review_trigger": "Any two of required_additional_evidence triggered simultaneously"
+    },
+    "input_tokens": 84,
+    "output_tokens": 474,
+    "latency_ms": 10560,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 10560,
+    "scenario_id": "scenario_regime_transition_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 0,
+      "tokens": 5,
+      "total": 30,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "hy3-free",
+    "success": true,
+    "text": "{\"}{\": {\"committee_member\": \"MIOS-CM-1\", \"vote\": \"REJECT_INTERVENTION\", \"market_regime\": \"NORMAL\", \"evidence_considered\": [\"EV-REGIME-SHIFT\"], \"rationale\": \"Market regime classified as NORMAL; single evidence of regime shift insufficient to override.\"}}",
+    "parsed_json": {
+      "}{": {
+        "committee_member": "MIOS-CM-1",
+        "vote": "REJECT_INTERVENTION",
+        "market_regime": "NORMAL",
+        "evidence_considered": [
+          "EV-REGIME-SHIFT"
+        ],
+        "rationale": "Market regime classified as NORMAL; single evidence of regime shift insufficient to override."
+      }
+    },
+    "input_tokens": 77,
+    "output_tokens": 889,
+    "latency_ms": 8861,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 8861,
+    "scenario_id": "scenario_regime_transition_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 1,
+      "tokens": 3,
+      "total": 29,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "opencode",
+    "model": "laguna-s-2.1-free",
+    "success": true,
+    "text": "{\n  \"committee_member_id\": \"MIOS-CM-001\",\n  \"vote\": \"APPROVE\",\n  \"rationale\": \"Based on the provided context indicating a NORMAL market regime and the available evidence (EV-REGIME-SHIFT), I assess the current conditions as stable and consistent with expected parameters. The evidence does not indicate any immediate threats or anomalies requiring intervention. Therefore, I approve the current market status without reservations.\",\n  \"timestamp\": \"2023-10-15T14:30:00Z\",\n  \"evidence_considered\": [\"EV-REGIME-SHIFT\"]\n}",
+    "parsed_json": {
+      "committee_member_id": "MIOS-CM-001",
+      "vote": "APPROVE",
+      "rationale": "Based on the provided context indicating a NORMAL market regime and the available evidence (EV-REGIME-SHIFT), I assess the current conditions as stable and consistent with expected parameters. The evidence does not indicate any immediate threats or anomalies requiring intervention. Therefore, I approve the current market status without reservations.",
+      "timestamp": "2023-10-15T14:30:00Z",
+      "evidence_considered": [
+        "EV-REGIME-SHIFT"
+      ]
+    },
+    "input_tokens": 78,
+    "output_tokens": 142,
+    "latency_ms": 9372,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 9372,
+    "scenario_id": "scenario_regime_transition_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 1,
+      "tokens": 5,
+      "total": 31,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "text": "{\"vote\":\"NORMAL\",\"evidence_ids\":[\"EV-REGIME-SHIFT\"]}",
+    "parsed_json": {
+      "vote": "NORMAL",
+      "evidence_ids": [
+        "EV-REGIME-SHIFT"
+      ]
+    },
+    "input_tokens": 165,
+    "output_tokens": 206,
+    "latency_ms": 871,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 871,
+    "scenario_id": "scenario_regime_transition_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 5,
+      "tokens": 5,
+      "total": 35,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "ollama-cloud",
+    "model": "gpt-oss:120b",
+    "success": true,
+    "text": "{\n  \"member_id\": \"MIOS-001\",\n  \"vote\": \"MAINTAIN\",\n  \"justification\": \"The current market regime is NORMAL and the provided evidence (EV-REGIME-SHIFT) does not demonstrate a shift. Therefore, I vote to maintain the existing regime.\",\n  \"evidence_ids\": [\"EV-REGIME-SHIFT\"]\n}",
+    "parsed_json": {
+      "member_id": "MIOS-001",
+      "vote": "MAINTAIN",
+      "justification": "The current market regime is NORMAL and the provided evidence (EV-REGIME-SHIFT) does not demonstrate a shift. Therefore, I vote to maintain the existing regime.",
+      "evidence_ids": [
+        "EV-REGIME-SHIFT"
+      ]
+    },
+    "input_tokens": 138,
+    "output_tokens": 352,
+    "latency_ms": 1504,
+    "error_code": null,
+    "error_message": null,
+    "first_attempt_status": "SUCCESS",
+    "final_status": "SUCCESS",
+    "retry_count": 0,
+    "total_elapsed_ms": 1504,
+    "scenario_id": "scenario_regime_transition_1",
+    "round": 1,
+    "scores": {
+      "json": 10,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 15,
+      "confidence": 0,
+      "latency": 5,
+      "tokens": 5,
+      "total": 35,
+      "debate": 0
+    }
+  },
+  {
+    "provider": "gemini",
+    "model": "gemini-3.7-flash",
+    "success": false,
+    "text": null,
+    "parsed_json": null,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "latency_ms": 528,
+    "error_code": "RATE_LIMITED",
+    "error_message": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.7-flash\\nPlease retry in 12.497947705s.\",\n    \"status\": \"RESOURCE_EXHAUSTED\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.Help\",\n        \"links\": [\n          {\n            \"description\": \"Learn more about Gemini API quotas\",\n            \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.QuotaFailure\",\n        \"violations\": [\n          {\n            \"quotaMetric\": \"generativelanguage.googleapis.com/generate_content_free_tier_requests\",\n            \"quotaId\": \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\",\n            \"quotaDimensions\": {\n              \"location\": \"global\",\n              \"model\": \"gemini-3.7-flash\"\n            },\n            \"quotaValue\": \"20\"\n          }\n        ]\n      },\n      {\n        \"@type\": \"type.googleapis.com/google.rpc.RetryInfo\",\n        \"retryDelay\": \"12s\"\n      }\n    ]\n  }\n}\n",
+    "first_attempt_status": "RATE_LIMITED",
+    "final_status": "RATE_LIMITED",
+    "retry_count": 0,
+    "total_elapsed_ms": 529,
+    "scenario_id": "scenario_regime_transition_1",
+    "round": 1,
+    "scores": {
+      "json": 0,
+      "grounding": 0,
+      "reasoning": 0,
+      "contradiction": 0,
+      "confidence": 0,
+      "latency": 0,
+      "tokens": 0,
+      "total": 0
+    }
+  }
+]

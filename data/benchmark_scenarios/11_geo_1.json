@@ -1,0 +1,32 @@
+{
+  "scenario_id": "scen_geo_1",
+  "scenario_type": "geopolitical_shock",
+  "expected_direction": "BULLISH",
+  "expected_regime": "CRISIS",
+  "market_context": "Geopolitical shock context",
+  "engine_outputs": {},
+  "evidence": [
+    {
+      "id": "EV-GEO",
+      "text": "War breaks out in Middle East"
+    }
+  ],
+  "narratives": [],
+  "bullish_evidence": [
+    "EV-GEO"
+  ],
+  "bearish_evidence": [],
+  "critical_evidence": [
+    "EV-GEO"
+  ],
+  "expected_reasoning_points": [
+    "Matches direction"
+  ],
+  "unacceptable_reasoning": [
+    "Ignores evidence"
+  ],
+  "confidence_range": [
+    0.6,
+    1.0
+  ]
+}

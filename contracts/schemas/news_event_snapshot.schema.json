@@ -1,0 +1,45 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "date": {
+      "format": "date-time",
+      "title": "Date",
+      "type": "string"
+    },
+    "headline": {
+      "maxLength": 500,
+      "minLength": 1,
+      "title": "Headline",
+      "type": "string"
+    },
+    "tone": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Tone"
+    },
+    "url": {
+      "maxLength": 1000,
+      "minLength": 1,
+      "title": "Url",
+      "type": "string"
+    }
+  },
+  "required": [
+    "headline",
+    "url",
+    "date"
+  ],
+  "title": "NewsEventSnapshot",
+  "type": "object"
+}

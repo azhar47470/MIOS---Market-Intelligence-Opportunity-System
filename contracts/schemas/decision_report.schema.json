@@ -1,0 +1,374 @@
+{
+  "$defs": {
+    "EvidenceRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "maxLength": 80,
+          "minLength": 1,
+          "title": "Category",
+          "type": "string"
+        },
+        "confidence": {
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "integer"
+        },
+        "description": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "evidence_id": {
+          "maxLength": 120,
+          "minLength": 1,
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "source": {
+          "maxLength": 120,
+          "minLength": 1,
+          "title": "Source",
+          "type": "string"
+        },
+        "strength": {
+          "$ref": "#/$defs/EvidenceStrength"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "category",
+        "description",
+        "strength",
+        "confidence",
+        "source"
+      ],
+      "title": "EvidenceRecord",
+      "type": "object"
+    },
+    "EvidenceStrength": {
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL"
+      ],
+      "title": "EvidenceStrength",
+      "type": "string"
+    },
+    "ExpectedMove": {
+      "additionalProperties": false,
+      "properties": {
+        "direction": {
+          "enum": [
+            "UP",
+            "DOWN",
+            "SIDEWAYS",
+            "MIXED"
+          ],
+          "title": "Direction",
+          "type": "string"
+        },
+        "max_usd": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Usd"
+        },
+        "min_usd": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Min Usd"
+        },
+        "summary": {
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Summary",
+          "type": "string"
+        }
+      },
+      "required": [
+        "direction",
+        "summary"
+      ],
+      "title": "ExpectedMove",
+      "type": "object"
+    },
+    "InvalidationCondition": {
+      "additionalProperties": false,
+      "properties": {
+        "condition": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Condition",
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "#/$defs/NotificationPriority",
+          "default": "normal"
+        }
+      },
+      "required": [
+        "condition"
+      ],
+      "title": "InvalidationCondition",
+      "type": "object"
+    },
+    "MarketRegime": {
+      "enum": [
+        "BULL",
+        "BEAR",
+        "RANGE",
+        "RISK_ON",
+        "RISK_OFF",
+        "HIGH_VOLATILITY",
+        "LOW_VOLATILITY",
+        "EVENT_DRIVEN",
+        "UNKNOWN"
+      ],
+      "title": "MarketRegime",
+      "type": "string"
+    },
+    "NotificationPriority": {
+      "enum": [
+        "low",
+        "normal",
+        "high",
+        "critical"
+      ],
+      "title": "NotificationPriority",
+      "type": "string"
+    },
+    "PriceLevel": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "maxLength": 80,
+          "minLength": 1,
+          "title": "Label",
+          "type": "string"
+        },
+        "price": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Price"
+        },
+        "rationale": {
+          "anyOf": [
+            {
+              "maxLength": 300,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rationale"
+        }
+      },
+      "required": [
+        "label",
+        "price"
+      ],
+      "title": "PriceLevel",
+      "type": "object"
+    },
+    "Recommendation": {
+      "enum": [
+        "Strong Buy",
+        "Buy",
+        "Hold",
+        "Wait",
+        "Take Profit",
+        "Strong Sell"
+      ],
+      "title": "Recommendation",
+      "type": "string"
+    },
+    "RiskRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "probability": {
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Probability",
+          "type": "integer"
+        },
+        "risk": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Risk",
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "#/$defs/EvidenceStrength"
+        }
+      },
+      "required": [
+        "risk",
+        "severity",
+        "probability"
+      ],
+      "title": "RiskRecord",
+      "type": "object"
+    },
+    "SupportResistanceLevels": {
+      "additionalProperties": false,
+      "properties": {
+        "resistance": {
+          "items": {
+            "$ref": "#/$defs/PriceLevel"
+          },
+          "title": "Resistance",
+          "type": "array"
+        },
+        "support": {
+          "items": {
+            "$ref": "#/$defs/PriceLevel"
+          },
+          "title": "Support",
+          "type": "array"
+        }
+      },
+      "title": "SupportResistanceLevels",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "confidence": {
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Confidence",
+      "type": "integer"
+    },
+    "contradicting_evidence": {
+      "items": {
+        "$ref": "#/$defs/EvidenceRecord"
+      },
+      "title": "Contradicting Evidence",
+      "type": "array"
+    },
+    "expected_holding_period": {
+      "maxLength": 80,
+      "minLength": 1,
+      "title": "Expected Holding Period",
+      "type": "string"
+    },
+    "expected_move": {
+      "$ref": "#/$defs/ExpectedMove"
+    },
+    "explanation": {
+      "maxLength": 2000,
+      "minLength": 1,
+      "title": "Explanation",
+      "type": "string"
+    },
+    "invalidation_conditions": {
+      "items": {
+        "$ref": "#/$defs/InvalidationCondition"
+      },
+      "minItems": 1,
+      "title": "Invalidation Conditions",
+      "type": "array"
+    },
+    "investment_score": {
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Investment Score",
+      "type": "integer"
+    },
+    "market_regime": {
+      "$ref": "#/$defs/MarketRegime"
+    },
+    "opportunity_score": {
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Opportunity Score",
+      "type": "integer"
+    },
+    "recommendation": {
+      "$ref": "#/$defs/Recommendation"
+    },
+    "recommendation_id": {
+      "maxLength": 120,
+      "minLength": 1,
+      "title": "Recommendation Id",
+      "type": "string"
+    },
+    "risk_summary": {
+      "items": {
+        "$ref": "#/$defs/RiskRecord"
+      },
+      "minItems": 1,
+      "title": "Risk Summary",
+      "type": "array"
+    },
+    "support_resistance": {
+      "$ref": "#/$defs/SupportResistanceLevels"
+    },
+    "supporting_evidence": {
+      "items": {
+        "$ref": "#/$defs/EvidenceRecord"
+      },
+      "minItems": 1,
+      "title": "Supporting Evidence",
+      "type": "array"
+    },
+    "timestamp": {
+      "format": "date-time",
+      "title": "Timestamp",
+      "type": "string"
+    }
+  },
+  "required": [
+    "recommendation_id",
+    "recommendation",
+    "investment_score",
+    "opportunity_score",
+    "confidence",
+    "expected_move",
+    "expected_holding_period",
+    "market_regime",
+    "supporting_evidence",
+    "risk_summary",
+    "invalidation_conditions",
+    "support_resistance",
+    "explanation",
+    "timestamp"
+  ],
+  "title": "DecisionReport",
+  "type": "object"
+}

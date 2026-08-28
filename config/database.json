@@ -1,0 +1,18 @@
+{
+  "mode": "development_json",
+  "production_target": {
+    "relational": "postgresql",
+    "cache": "redis",
+    "time_series": "postgresql_timescale_or_equivalent",
+    "object": "s3_compatible_object_store",
+    "graph": "postgresql_graph_tables_or_dedicated_graph_store"
+  },
+  "decision_journal_backend": "sqlite",
+  "sqlite_path": "data/mios.db",
+  "development_paths": {
+    "decision_journal": "data/decision_journal.json",
+    "notification_state": "data/notification_state.json",
+    "knowledge_base": "knowledge"
+  }
+}
+

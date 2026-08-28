@@ -1,0 +1,37 @@
+{
+  "scenario_id": "scen_bull_3",
+  "scenario_type": "bullish",
+  "expected_direction": "BULLISH",
+  "expected_regime": "INFLATION",
+  "market_context": "Inflation shock",
+  "engine_outputs": {},
+  "evidence": [
+    {
+      "id": "EV-1",
+      "text": "CPI surprise up"
+    },
+    {
+      "id": "EV-2",
+      "text": "DXY falling"
+    }
+  ],
+  "narratives": [],
+  "bullish_evidence": [
+    "EV-1",
+    "EV-2"
+  ],
+  "bearish_evidence": [],
+  "critical_evidence": [
+    "EV-1"
+  ],
+  "expected_reasoning_points": [
+    "Matches direction"
+  ],
+  "unacceptable_reasoning": [
+    "Ignores evidence"
+  ],
+  "confidence_range": [
+    0.6,
+    1.0
+  ]
+}

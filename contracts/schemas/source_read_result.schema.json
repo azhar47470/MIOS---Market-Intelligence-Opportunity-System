@@ -1,0 +1,62 @@
+{
+  "$defs": {
+    "ContractStatus": {
+      "enum": [
+        "SUCCESS",
+        "PARTIAL_SUCCESS",
+        "STALE_DATA",
+        "FAILED",
+        "NO_DATA",
+        "INVALID_INPUT"
+      ],
+      "title": "ContractStatus",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "confidence_penalty": {
+      "default": 0,
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Confidence Penalty",
+      "type": "integer"
+    },
+    "data": {
+      "anyOf": [
+        {},
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Data"
+    },
+    "error": {
+      "anyOf": [
+        {
+          "maxLength": 1000,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Error"
+    },
+    "status": {
+      "$ref": "#/$defs/ContractStatus"
+    },
+    "used_cache": {
+      "default": false,
+      "title": "Used Cache",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "status"
+  ],
+  "title": "SourceReadResult",
+  "type": "object"
+}

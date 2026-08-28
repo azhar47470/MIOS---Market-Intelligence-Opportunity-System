@@ -1,0 +1,37 @@
+{
+  "scenario_id": "scen_bull_2",
+  "scenario_type": "bullish",
+  "expected_direction": "BULLISH",
+  "expected_regime": "NORMAL",
+  "market_context": "Macro bullish",
+  "engine_outputs": {},
+  "evidence": [
+    {
+      "id": "EV-1",
+      "text": "Rate cuts priced in"
+    },
+    {
+      "id": "EV-2",
+      "text": "Physical demand high"
+    }
+  ],
+  "narratives": [],
+  "bullish_evidence": [
+    "EV-1",
+    "EV-2"
+  ],
+  "bearish_evidence": [],
+  "critical_evidence": [
+    "EV-2"
+  ],
+  "expected_reasoning_points": [
+    "Matches direction"
+  ],
+  "unacceptable_reasoning": [
+    "Ignores evidence"
+  ],
+  "confidence_range": [
+    0.6,
+    1.0
+  ]
+}

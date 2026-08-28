@@ -1,0 +1,32 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "long_positions": {
+      "minimum": 0,
+      "title": "Long Positions",
+      "type": "integer"
+    },
+    "net_position": {
+      "title": "Net Position",
+      "type": "integer"
+    },
+    "report_date": {
+      "format": "date-time",
+      "title": "Report Date",
+      "type": "string"
+    },
+    "short_positions": {
+      "minimum": 0,
+      "title": "Short Positions",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "long_positions",
+    "short_positions",
+    "net_position",
+    "report_date"
+  ],
+  "title": "COTSnapshot",
+  "type": "object"
+}

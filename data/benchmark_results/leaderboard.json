@@ -1,0 +1,93 @@
+[
+  {
+    "Model": "hy3-free",
+    "Success Rate": "100%",
+    "Timeout Rate": "0%",
+    "Rate Limit Rate": "0%",
+    "Avg Latency (ms)": 9753,
+    "P95 Latency (ms)": 12310,
+    "Quality": "29.2",
+    "Reliability": "100.0",
+    "Overall": "57.5",
+    "_overall_raw": 57.5,
+    "_quality_raw": 29.166666666666668
+  },
+  {
+    "Model": "nemotron-3-ultra-free",
+    "Success Rate": "100%",
+    "Timeout Rate": "0%",
+    "Rate Limit Rate": "0%",
+    "Avg Latency (ms)": 10927,
+    "P95 Latency (ms)": 28843,
+    "Quality": "27.1",
+    "Reliability": "100.0",
+    "Overall": "56.2",
+    "_overall_raw": 56.25,
+    "_quality_raw": 27.083333333333332
+  },
+  {
+    "Model": "nemotron-3.5-lightning-free",
+    "Success Rate": "100%",
+    "Timeout Rate": "0%",
+    "Rate Limit Rate": "0%",
+    "Avg Latency (ms)": 24695,
+    "P95 Latency (ms)": 57315,
+    "Quality": "23.3",
+    "Reliability": "100.0",
+    "Overall": "54.0",
+    "_overall_raw": 54.0,
+    "_quality_raw": 23.333333333333332
+  },
+  {
+    "Model": "laguna-s-2.1-free",
+    "Success Rate": "100%",
+    "Timeout Rate": "0%",
+    "Rate Limit Rate": "0%",
+    "Avg Latency (ms)": 6323,
+    "P95 Latency (ms)": 9372,
+    "Quality": "23.3",
+    "Reliability": "100.0",
+    "Overall": "54.0",
+    "_overall_raw": 54.0,
+    "_quality_raw": 23.333333333333332
+  },
+  {
+    "Model": "openai/gpt-oss-120b",
+    "Success Rate": "100%",
+    "Timeout Rate": "0%",
+    "Rate Limit Rate": "0%",
+    "Avg Latency (ms)": 1044,
+    "P95 Latency (ms)": 1766,
+    "Quality": "22.5",
+    "Reliability": "100.0",
+    "Overall": "53.5",
+    "_overall_raw": 53.5,
+    "_quality_raw": 22.5
+  },
+  {
+    "Model": "gpt-oss:120b",
+    "Success Rate": "100%",
+    "Timeout Rate": "0%",
+    "Rate Limit Rate": "0%",
+    "Avg Latency (ms)": 1860,
+    "P95 Latency (ms)": 2336,
+    "Quality": "22.5",
+    "Reliability": "100.0",
+    "Overall": "53.5",
+    "_overall_raw": 53.5,
+    "_quality_raw": 22.5
+  },
+  {
+    "Model": "gemini-3.7-flash",
+    "Success Rate": "8%",
+    "Timeout Rate": "0%",
+    "Rate Limit Rate": "58%",
+    "Avg Latency (ms)": 5001,
+    "P95 Latency (ms)": 16260,
+    "Quality": "30.0",
+    "Reliability": "39.6",
+    "Overall": "33.8",
+    "_overall_raw": 33.83333333333333,
+    "_quality_raw": 30.0
+  }
+]

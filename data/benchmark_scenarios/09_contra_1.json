@@ -1,0 +1,38 @@
+{
+  "scenario_id": "scen_contra_1",
+  "scenario_type": "contradiction",
+  "expected_direction": "BULLISH",
+  "expected_regime": "NORMAL",
+  "market_context": "Macro vs Tech",
+  "engine_outputs": {},
+  "evidence": [
+    {
+      "id": "EV-MACRO",
+      "text": "Huge rate cut"
+    },
+    {
+      "id": "EV-TECH",
+      "text": "Short-term technical sell signal"
+    }
+  ],
+  "narratives": [],
+  "bullish_evidence": [
+    "EV-MACRO"
+  ],
+  "bearish_evidence": [
+    "EV-TECH"
+  ],
+  "critical_evidence": [
+    "EV-MACRO"
+  ],
+  "expected_reasoning_points": [
+    "Matches direction"
+  ],
+  "unacceptable_reasoning": [
+    "Ignores evidence"
+  ],
+  "confidence_range": [
+    0.6,
+    1.0
+  ]
+}

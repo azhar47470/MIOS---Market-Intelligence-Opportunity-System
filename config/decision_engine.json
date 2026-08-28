@@ -1,0 +1,56 @@
+{
+  "thresholds": {
+    "minimum_confidence_for_action": 60,
+    "physical_minimum_opportunity_score": 75,
+    "physical_minimum_investment_score": 70,
+    "forex_minimum_opportunity_score": 60,
+    "forex_minimum_investment_score": 60,
+    "etf_minimum_opportunity_score": 70,
+    "etf_minimum_investment_score": 65,
+    "minimum_expected_move_usd": "0",
+    "max_high_severity_risks_for_action": 1,
+    "physical_action_threshold": 85,
+    "forex_action_threshold": 60,
+    "forex_high_confidence_threshold": 70,
+    "etf_action_threshold": 70,
+    "physical_minimum_expected_move_usd": "50",
+    "forex_minimum_expected_move_usd": "10",
+    "etf_minimum_expected_move_usd": "40"
+  },
+  "weights": {
+    "base_weights": {
+      "technical": "0.25",
+      "fundamental": "0.25",
+      "market_regime": "0.15",
+      "institutional": "0.15",
+      "geopolitical": "0.10",
+      "news": "0.10"
+    },
+    "regime_overrides": {
+      "EVENT_DRIVEN": {
+        "technical": "0.15",
+        "fundamental": "0.35",
+        "market_regime": "0.20",
+        "institutional": "0.10",
+        "geopolitical": "0.10",
+        "news": "0.10"
+      },
+      "RISK_OFF": {
+        "technical": "0.15",
+        "fundamental": "0.20",
+        "market_regime": "0.20",
+        "institutional": "0.10",
+        "geopolitical": "0.25",
+        "news": "0.10"
+      },
+      "HIGH_VOLATILITY": {
+        "technical": "0.20",
+        "fundamental": "0.20",
+        "market_regime": "0.25",
+        "institutional": "0.10",
+        "geopolitical": "0.15",
+        "news": "0.10"
+      }
+    }
+  }
+}

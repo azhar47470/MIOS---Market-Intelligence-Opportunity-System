@@ -1,0 +1,1436 @@
+[
+  {
+    "model": "opencode/nemotron-3.5-lightning-free",
+    "scenario": "scen_bull_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 43508,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 85.0
+  },
+  {
+    "model": "opencode/nemotron-3-ultra-free",
+    "scenario": "scen_bull_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 41142,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 5.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 90.0
+  },
+  {
+    "model": "opencode/hy3-free",
+    "scenario": "scen_bull_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 10071,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 85.0
+  },
+  {
+    "model": "opencode/laguna-s-2.1-free",
+    "scenario": "scen_bull_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 6702,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 5.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 90.0
+  },
+  {
+    "model": "groq/openai/gpt-oss-120b",
+    "scenario": "scen_bull_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 1153,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 85.0
+  },
+  {
+    "model": "ollama-cloud/gpt-oss:120b",
+    "scenario": "scen_bull_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 2034,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 85.0
+  },
+  {
+    "model": "opencode/nemotron-3.5-lightning-free",
+    "scenario": "scen_bull_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 46256,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 85.0
+  },
+  {
+    "model": "opencode/nemotron-3-ultra-free",
+    "scenario": "scen_bull_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 16746,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 5.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 90.0
+  },
+  {
+    "model": "opencode/hy3-free",
+    "scenario": "scen_bull_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 10813,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 85.0
+  },
+  {
+    "model": "opencode/laguna-s-2.1-free",
+    "scenario": "scen_bull_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 8129,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 5.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 90.0
+  },
+  {
+    "model": "groq/openai/gpt-oss-120b",
+    "scenario": "scen_bull_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 1323,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 85.0
+  },
+  {
+    "model": "ollama-cloud/gpt-oss:120b",
+    "scenario": "scen_bull_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 2130,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 85.0
+  },
+  {
+    "model": "opencode/nemotron-3.5-lightning-free",
+    "scenario": "scen_bull_3",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 14871,
+    "scores": {
+      "json": 10.0,
+      "direction": 0.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 40.0
+  },
+  {
+    "model": "opencode/nemotron-3-ultra-free",
+    "scenario": "scen_bull_3",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 12375,
+    "scores": {
+      "json": 10.0,
+      "direction": 0.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 5.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 45.0
+  },
+  {
+    "model": "opencode/hy3-free",
+    "scenario": "scen_bull_3",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 10334,
+    "scores": {
+      "json": 10.0,
+      "direction": 0.0,
+      "confidence": 0.0,
+      "grounding": 20.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 30.0
+  },
+  {
+    "model": "opencode/laguna-s-2.1-free",
+    "scenario": "scen_bull_3",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 9706,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 5.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 90.0
+  },
+  {
+    "model": "groq/openai/gpt-oss-120b",
+    "scenario": "scen_bull_3",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 1260,
+    "scores": {
+      "json": 10.0,
+      "direction": 0.0,
+      "confidence": 0.0,
+      "grounding": 20.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 30.0
+  },
+  {
+    "model": "ollama-cloud/gpt-oss:120b",
+    "scenario": "scen_bull_3",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 2834,
+    "scores": {
+      "json": 10.0,
+      "direction": 0.0,
+      "confidence": 0.0,
+      "grounding": 20.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 30.0
+  },
+  {
+    "model": "opencode/nemotron-3.5-lightning-free",
+    "scenario": "scen_bear_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 12897,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 85.0
+  },
+  {
+    "model": "opencode/nemotron-3-ultra-free",
+    "scenario": "scen_bear_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 11928,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 5.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 90.0
+  },
+  {
+    "model": "opencode/hy3-free",
+    "scenario": "scen_bear_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 10916,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 85.0
+  },
+  {
+    "model": "opencode/laguna-s-2.1-free",
+    "scenario": "scen_bear_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 7107,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 85.0
+  },
+  {
+    "model": "groq/openai/gpt-oss-120b",
+    "scenario": "scen_bear_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 1493,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 85.0
+  },
+  {
+    "model": "ollama-cloud/gpt-oss:120b",
+    "scenario": "scen_bear_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 1976,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 85.0
+  },
+  {
+    "model": "opencode/nemotron-3.5-lightning-free",
+    "scenario": "scen_bear_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 50043,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 85.0
+  },
+  {
+    "model": "opencode/nemotron-3-ultra-free",
+    "scenario": "scen_bear_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 46698,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 5.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 90.0
+  },
+  {
+    "model": "opencode/hy3-free",
+    "scenario": "scen_bear_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 10328,
+    "scores": {
+      "json": 0.0,
+      "direction": 0.0,
+      "grounding": 0.0,
+      "reasoning": 0.0,
+      "confidence": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 0.0
+  },
+  {
+    "model": "opencode/laguna-s-2.1-free",
+    "scenario": "scen_bear_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 9457,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 5.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 90.0
+  },
+  {
+    "model": "groq/openai/gpt-oss-120b",
+    "scenario": "scen_bear_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 1146,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 85.0
+  },
+  {
+    "model": "ollama-cloud/gpt-oss:120b",
+    "scenario": "scen_bear_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 1935,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 85.0
+  },
+  {
+    "model": "opencode/nemotron-3.5-lightning-free",
+    "scenario": "scen_bear_3",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 19175,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 85.0
+  },
+  {
+    "model": "opencode/nemotron-3-ultra-free",
+    "scenario": "scen_bear_3",
+    "round": 1,
+    "success": false,
+    "error_code": "SERVER_ERROR",
+    "latency_ms": 44564,
+    "scores": {
+      "json": 0.0,
+      "direction": 0.0,
+      "grounding": 0.0,
+      "reasoning": 0.0,
+      "confidence": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0
+    },
+    "score_total": 0.0
+  },
+  {
+    "model": "opencode/hy3-free",
+    "scenario": "scen_bear_3",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 13010,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 5.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 90.0
+  },
+  {
+    "model": "opencode/laguna-s-2.1-free",
+    "scenario": "scen_bear_3",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 10210,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 5.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 90.0
+  },
+  {
+    "model": "groq/openai/gpt-oss-120b",
+    "scenario": "scen_bear_3",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 1178,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 85.0
+  },
+  {
+    "model": "ollama-cloud/gpt-oss:120b",
+    "scenario": "scen_bear_3",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 2397,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 85.0
+  },
+  {
+    "model": "opencode/nemotron-3.5-lightning-free",
+    "scenario": "scen_wait_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 11566,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 0.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 45.0
+  },
+  {
+    "model": "opencode/nemotron-3-ultra-free",
+    "scenario": "scen_wait_1",
+    "round": 1,
+    "success": false,
+    "error_code": "PROVIDER_ERROR",
+    "latency_ms": 1285,
+    "scores": {
+      "json": 0.0,
+      "direction": 0.0,
+      "grounding": 0.0,
+      "reasoning": 0.0,
+      "confidence": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0
+    },
+    "score_total": 0.0
+  },
+  {
+    "model": "opencode/hy3-free",
+    "scenario": "scen_wait_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 8151,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 0.0,
+      "grounding": 0.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 35.0
+  },
+  {
+    "model": "opencode/laguna-s-2.1-free",
+    "scenario": "scen_wait_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 6453,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 0.0,
+      "grounding": 0.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 5.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 40.0
+  },
+  {
+    "model": "groq/openai/gpt-oss-120b",
+    "scenario": "scen_wait_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 1007,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 0.0,
+      "grounding": 0.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 35.0
+  },
+  {
+    "model": "ollama-cloud/gpt-oss:120b",
+    "scenario": "scen_wait_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 2012,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 0.0,
+      "grounding": 0.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 35.0
+  },
+  {
+    "model": "opencode/nemotron-3.5-lightning-free",
+    "scenario": "scen_wait_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 9000,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 0.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 45.0
+  },
+  {
+    "model": "opencode/nemotron-3-ultra-free",
+    "scenario": "scen_wait_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 4877,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 0.0,
+      "grounding": 0.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 5.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 40.0
+  },
+  {
+    "model": "opencode/hy3-free",
+    "scenario": "scen_wait_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 10709,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 0.0,
+      "grounding": 0.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 35.0
+  },
+  {
+    "model": "opencode/laguna-s-2.1-free",
+    "scenario": "scen_wait_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 6772,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 0.0,
+      "grounding": 0.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 5.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 40.0
+  },
+  {
+    "model": "groq/openai/gpt-oss-120b",
+    "scenario": "scen_wait_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 1029,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 0.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 45.0
+  },
+  {
+    "model": "ollama-cloud/gpt-oss:120b",
+    "scenario": "scen_wait_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 2080,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 0.0,
+      "grounding": 0.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 35.0
+  },
+  {
+    "model": "opencode/nemotron-3.5-lightning-free",
+    "scenario": "scen_contra_1",
+    "round": 1,
+    "success": false,
+    "error_code": "TIMEOUT",
+    "latency_ms": 60458,
+    "scores": {
+      "json": 0.0,
+      "direction": 0.0,
+      "grounding": 0.0,
+      "reasoning": 0.0,
+      "confidence": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 95.0
+    },
+    "score_total": 0.0
+  },
+  {
+    "model": "opencode/nemotron-3-ultra-free",
+    "scenario": "scen_contra_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 16943,
+    "scores": {
+      "json": 10.0,
+      "direction": 0.0,
+      "confidence": 0.0,
+      "grounding": 20.0,
+      "reasoning": 0.0,
+      "contradiction": 10.0,
+      "max_achievable": 95.0,
+      "debate": 5.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 45.0
+  },
+  {
+    "model": "opencode/hy3-free",
+    "scenario": "scen_contra_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 12024,
+    "scores": {
+      "json": 10.0,
+      "direction": 0.0,
+      "confidence": 0.0,
+      "grounding": 20.0,
+      "reasoning": 0.0,
+      "contradiction": 10.0,
+      "max_achievable": 95.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 40.0
+  },
+  {
+    "model": "opencode/laguna-s-2.1-free",
+    "scenario": "scen_contra_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 6993,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 10.0,
+      "max_achievable": 95.0,
+      "debate": 5.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 100.0
+  },
+  {
+    "model": "groq/openai/gpt-oss-120b",
+    "scenario": "scen_contra_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 1225,
+    "scores": {
+      "json": 10.0,
+      "direction": 0.0,
+      "confidence": 0.0,
+      "grounding": 20.0,
+      "reasoning": 0.0,
+      "contradiction": 10.0,
+      "max_achievable": 95.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 40.0
+  },
+  {
+    "model": "ollama-cloud/gpt-oss:120b",
+    "scenario": "scen_contra_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 2176,
+    "scores": {
+      "json": 10.0,
+      "direction": 0.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 0.0,
+      "contradiction": 10.0,
+      "max_achievable": 95.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 50.0
+  },
+  {
+    "model": "opencode/nemotron-3.5-lightning-free",
+    "scenario": "scen_contra_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 33351,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 10.0,
+      "max_achievable": 95.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 95.0
+  },
+  {
+    "model": "opencode/nemotron-3-ultra-free",
+    "scenario": "scen_contra_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 25191,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 10.0,
+      "max_achievable": 95.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 95.0
+  },
+  {
+    "model": "opencode/hy3-free",
+    "scenario": "scen_contra_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 13017,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 10.0,
+      "max_achievable": 95.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 95.0
+  },
+  {
+    "model": "opencode/laguna-s-2.1-free",
+    "scenario": "scen_contra_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 12843,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 10.0,
+      "max_achievable": 95.0,
+      "debate": 5.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 100.0
+  },
+  {
+    "model": "groq/openai/gpt-oss-120b",
+    "scenario": "scen_contra_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 1038,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 10.0,
+      "max_achievable": 95.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 95.0
+  },
+  {
+    "model": "ollama-cloud/gpt-oss:120b",
+    "scenario": "scen_contra_2",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 2118,
+    "scores": {
+      "json": 10.0,
+      "direction": 25.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 20.0,
+      "contradiction": 10.0,
+      "max_achievable": 95.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 95.0
+  },
+  {
+    "model": "opencode/nemotron-3.5-lightning-free",
+    "scenario": "scen_geo_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 9655,
+    "scores": {
+      "json": 10.0,
+      "direction": 0.0,
+      "confidence": 0.0,
+      "grounding": 20.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 30.0
+  },
+  {
+    "model": "opencode/nemotron-3-ultra-free",
+    "scenario": "scen_geo_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 13571,
+    "scores": {
+      "json": 10.0,
+      "direction": 0.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 40.0
+  },
+  {
+    "model": "opencode/hy3-free",
+    "scenario": "scen_geo_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 14486,
+    "scores": {
+      "json": 10.0,
+      "direction": 0.0,
+      "confidence": 0.0,
+      "grounding": 20.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 30.0
+  },
+  {
+    "model": "opencode/laguna-s-2.1-free",
+    "scenario": "scen_geo_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 12909,
+    "scores": {
+      "json": 10.0,
+      "direction": 0.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 5.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 45.0
+  },
+  {
+    "model": "groq/openai/gpt-oss-120b",
+    "scenario": "scen_geo_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 1442,
+    "scores": {
+      "json": 10.0,
+      "direction": 0.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 40.0
+  },
+  {
+    "model": "ollama-cloud/gpt-oss:120b",
+    "scenario": "scen_geo_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 2096,
+    "scores": {
+      "json": 10.0,
+      "direction": 0.0,
+      "confidence": 10.0,
+      "grounding": 20.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 40.0
+  },
+  {
+    "model": "opencode/nemotron-3.5-lightning-free",
+    "scenario": "scen_regime_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 11145,
+    "scores": {
+      "json": 10.0,
+      "direction": 0.0,
+      "confidence": 0.0,
+      "grounding": 20.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 30.0
+  },
+  {
+    "model": "opencode/nemotron-3-ultra-free",
+    "scenario": "scen_regime_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 32879,
+    "scores": {
+      "json": 10.0,
+      "direction": 0.0,
+      "confidence": 0.0,
+      "grounding": 20.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 5.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 35.0
+  },
+  {
+    "model": "opencode/hy3-free",
+    "scenario": "scen_regime_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 28158,
+    "scores": {
+      "json": 10.0,
+      "direction": 0.0,
+      "confidence": 0.0,
+      "grounding": 20.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 30.0
+  },
+  {
+    "model": "opencode/laguna-s-2.1-free",
+    "scenario": "scen_regime_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 19283,
+    "scores": {
+      "json": 10.0,
+      "direction": 0.0,
+      "confidence": 0.0,
+      "grounding": 20.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 5.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 35.0
+  },
+  {
+    "model": "groq/openai/gpt-oss-120b",
+    "scenario": "scen_regime_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 1456,
+    "scores": {
+      "json": 10.0,
+      "direction": 0.0,
+      "confidence": 0.0,
+      "grounding": 20.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 30.0
+  },
+  {
+    "model": "ollama-cloud/gpt-oss:120b",
+    "scenario": "scen_regime_1",
+    "round": 1,
+    "success": true,
+    "error_code": null,
+    "latency_ms": 2492,
+    "scores": {
+      "json": 10.0,
+      "direction": 0.0,
+      "confidence": 0.0,
+      "grounding": 20.0,
+      "reasoning": 0.0,
+      "contradiction": 0.0,
+      "max_achievable": 85.0,
+      "debate": 0.0,
+      "max_achievable_r2": 5.0
+    },
+    "score_total": 30.0
+  }
+]

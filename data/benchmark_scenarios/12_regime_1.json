@@ -1,0 +1,36 @@
+{
+  "scenario_id": "scen_regime_1",
+  "scenario_type": "regime_transition",
+  "expected_direction": "WAIT",
+  "expected_regime": "NORMAL",
+  "market_context": "Transitioning from NORMAL to STAGFLATION. Shifting from old to new regime.",
+  "engine_outputs": {},
+  "evidence": [
+    {
+      "id": "EV-1",
+      "text": "Inflation metrics rising"
+    },
+    {
+      "id": "EV-2",
+      "text": "Growth metrics falling"
+    }
+  ],
+  "narratives": [],
+  "bullish_evidence": [
+    "EV-1"
+  ],
+  "bearish_evidence": [
+    "EV-2"
+  ],
+  "critical_evidence": [],
+  "expected_reasoning_points": [
+    "Matches direction"
+  ],
+  "unacceptable_reasoning": [
+    "Ignores evidence"
+  ],
+  "confidence_range": [
+    0.0,
+    0.4
+  ]
+}

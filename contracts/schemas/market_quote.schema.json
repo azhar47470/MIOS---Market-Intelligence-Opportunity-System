@@ -1,0 +1,105 @@
+{
+  "$defs": {
+    "DataProviderId": {
+      "enum": [
+        "twelve_data",
+        "fred",
+        "newsapi",
+        "groq",
+        "discord",
+        "finnhub",
+        "gemini",
+        "cftc_cot",
+        "spdr_gld",
+        "gdelt"
+      ],
+      "title": "DataProviderId",
+      "type": "string"
+    },
+    "MarketSymbol": {
+      "enum": [
+        "XAU/USD",
+        "DXY",
+        "US10Y"
+      ],
+      "title": "MarketSymbol",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "ask": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0.0,
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Ask"
+    },
+    "bid": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0.0,
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Bid"
+    },
+    "price": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0.0,
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        }
+      ],
+      "title": "Price"
+    },
+    "provider": {
+      "$ref": "#/$defs/DataProviderId"
+    },
+    "provider_symbol": {
+      "maxLength": 80,
+      "minLength": 1,
+      "title": "Provider Symbol",
+      "type": "string"
+    },
+    "symbol": {
+      "$ref": "#/$defs/MarketSymbol"
+    },
+    "timestamp": {
+      "format": "date-time",
+      "title": "Timestamp",
+      "type": "string"
+    }
+  },
+  "required": [
+    "symbol",
+    "provider_symbol",
+    "price",
+    "timestamp",
+    "provider"
+  ],
+  "title": "MarketQuote",
+  "type": "object"
+}

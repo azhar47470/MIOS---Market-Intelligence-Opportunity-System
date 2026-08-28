@@ -1,0 +1,45 @@
+.venv/
+.env
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.pytest_tmp/
+.ruff_cache/
+.mypy_cache/
+data/notification_state.json
+data/decision_journal.json
+data/paper_trading.json
+logs/
+
+# AI coding-agent / local development tooling
+.agent/
+.agents/
+.codex/
+.impeccable/
+
+# Local scratch / generated files
+scratch*.py
+scratch*.js
+latest.json
+
+# Local runtime databases
+mios.db
+data/*.db
+data/*.db-shm
+data/*.db-wal
+
+# Python caches / local environment
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.pytest_tmp/
+.ruff_cache/
+.mypy_cache/
+
+# Runtime logs/state
+logs/
+data/notification_state.json
+data/decision_journal.json
+data/paper_trading.json
+data/benchmark_results/raw/

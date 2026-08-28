@@ -1,0 +1,85 @@
+{
+  "$defs": {
+    "KnowledgeCategory": {
+      "enum": [
+        "macro_history",
+        "historical_cases",
+        "relationships",
+        "research_notes",
+        "market_memory"
+      ],
+      "title": "KnowledgeCategory",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "body": {
+      "maxLength": 10000,
+      "minLength": 1,
+      "title": "Body",
+      "type": "string"
+    },
+    "category": {
+      "$ref": "#/$defs/KnowledgeCategory"
+    },
+    "confidence": {
+      "default": 75,
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Confidence",
+      "type": "integer"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "record_id": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Record Id",
+      "type": "string"
+    },
+    "related_record_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Related Record Ids",
+      "type": "array"
+    },
+    "source": {
+      "default": "MIOS",
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Source",
+      "type": "string"
+    },
+    "tags": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Tags",
+      "type": "array"
+    },
+    "title": {
+      "maxLength": 240,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "title": "Updated At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "record_id",
+    "category",
+    "title",
+    "body"
+  ],
+  "title": "KnowledgeRecord",
+  "type": "object"
+}

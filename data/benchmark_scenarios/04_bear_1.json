@@ -1,0 +1,37 @@
+{
+  "scenario_id": "scen_bear_1",
+  "scenario_type": "bearish",
+  "expected_direction": "BEARISH",
+  "expected_regime": "NORMAL",
+  "market_context": "Strong selloff",
+  "engine_outputs": {},
+  "evidence": [
+    {
+      "id": "EV-1",
+      "text": "Gold drops below 2400"
+    },
+    {
+      "id": "EV-2",
+      "text": "ETF outflows"
+    }
+  ],
+  "narratives": [],
+  "bullish_evidence": [],
+  "bearish_evidence": [
+    "EV-1",
+    "EV-2"
+  ],
+  "critical_evidence": [
+    "EV-1"
+  ],
+  "expected_reasoning_points": [
+    "Matches direction"
+  ],
+  "unacceptable_reasoning": [
+    "Ignores evidence"
+  ],
+  "confidence_range": [
+    0.6,
+    1.0
+  ]
+}

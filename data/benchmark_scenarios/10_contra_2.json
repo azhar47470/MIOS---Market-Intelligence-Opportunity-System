@@ -1,0 +1,38 @@
+{
+  "scenario_id": "scen_contra_2",
+  "scenario_type": "contradiction",
+  "expected_direction": "BEARISH",
+  "expected_regime": "NORMAL",
+  "market_context": "Macro overrides tech",
+  "engine_outputs": {},
+  "evidence": [
+    {
+      "id": "EV-TECH",
+      "text": "Overbought bounce"
+    },
+    {
+      "id": "EV-MACRO",
+      "text": "Massive rate hike"
+    }
+  ],
+  "narratives": [],
+  "bullish_evidence": [
+    "EV-TECH"
+  ],
+  "bearish_evidence": [
+    "EV-MACRO"
+  ],
+  "critical_evidence": [
+    "EV-MACRO"
+  ],
+  "expected_reasoning_points": [
+    "Matches direction"
+  ],
+  "unacceptable_reasoning": [
+    "Ignores evidence"
+  ],
+  "confidence_range": [
+    0.6,
+    1.0
+  ]
+}

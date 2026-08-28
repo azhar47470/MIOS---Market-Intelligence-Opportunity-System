@@ -1,0 +1,38 @@
+{
+  "LOW": {
+    "sample_count": 192,
+    "pullback_0_5_pct_hit_rate": 0.8542,
+    "pullback_1_0_pct_hit_rate": 0.724,
+    "pullback_2_0_pct_hit_rate": 0.474,
+    "mean_adverse_excursion": 0.0238,
+    "median_adverse_excursion": 0.0184,
+    "max_adverse_excursion": 0.1331
+  },
+  "MEDIUM": {
+    "sample_count": 507,
+    "pullback_0_5_pct_hit_rate": 0.8323,
+    "pullback_1_0_pct_hit_rate": 0.7337,
+    "pullback_2_0_pct_hit_rate": 0.4694,
+    "mean_adverse_excursion": 0.0275,
+    "median_adverse_excursion": 0.0189,
+    "max_adverse_excursion": 0.191
+  },
+  "HIGH": {
+    "sample_count": 21,
+    "pullback_0_5_pct_hit_rate": 0.8571,
+    "pullback_1_0_pct_hit_rate": 0.619,
+    "pullback_2_0_pct_hit_rate": 0.381,
+    "mean_adverse_excursion": 0.0337,
+    "median_adverse_excursion": 0.013,
+    "max_adverse_excursion": 0.1978
+  },
+  "EXTREME": {
+    "sample_count": 1,
+    "pullback_0_5_pct_hit_rate": 0.0,
+    "pullback_1_0_pct_hit_rate": 0.0,
+    "pullback_2_0_pct_hit_rate": 0.0,
+    "mean_adverse_excursion": 0.0004,
+    "median_adverse_excursion": 0.0004,
+    "max_adverse_excursion": 0.0004
+  }
+}

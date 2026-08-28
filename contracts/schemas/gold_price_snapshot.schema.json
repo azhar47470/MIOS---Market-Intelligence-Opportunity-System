@@ -1,0 +1,29 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "price": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0.0,
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        }
+      ],
+      "title": "Price"
+    },
+    "timestamp": {
+      "format": "date-time",
+      "title": "Timestamp",
+      "type": "string"
+    }
+  },
+  "required": [
+    "price",
+    "timestamp"
+  ],
+  "title": "GoldPriceSnapshot",
+  "type": "object"
+}

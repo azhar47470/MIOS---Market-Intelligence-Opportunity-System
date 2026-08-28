@@ -1,0 +1,60 @@
+{
+  "$defs": {
+    "AgentRole": {
+      "enum": [
+        "macro_economist",
+        "technical_analyst",
+        "geopolitical_analyst",
+        "news_analyst",
+        "institutional_analyst",
+        "risk_analyst",
+        "devils_advocate"
+      ],
+      "title": "AgentRole",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "prompt_version": {
+      "maxLength": 40,
+      "minLength": 1,
+      "title": "Prompt Version",
+      "type": "string"
+    },
+    "raw_json": {
+      "maxLength": 20000,
+      "minLength": 1,
+      "title": "Raw Json",
+      "type": "string"
+    },
+    "role": {
+      "$ref": "#/$defs/AgentRole"
+    },
+    "validated": {
+      "title": "Validated",
+      "type": "boolean"
+    },
+    "validation_error": {
+      "anyOf": [
+        {
+          "maxLength": 1000,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Validation Error"
+    }
+  },
+  "required": [
+    "role",
+    "prompt_version",
+    "raw_json",
+    "validated"
+  ],
+  "title": "AIResponseEnvelope",
+  "type": "object"
+}

@@ -1,0 +1,36 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "country": {
+      "maxLength": 80,
+      "minLength": 1,
+      "title": "Country",
+      "type": "string"
+    },
+    "importance": {
+      "maxLength": 40,
+      "minLength": 1,
+      "title": "Importance",
+      "type": "string"
+    },
+    "time": {
+      "format": "date-time",
+      "title": "Time",
+      "type": "string"
+    },
+    "title": {
+      "maxLength": 180,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "time",
+    "importance",
+    "country"
+  ],
+  "title": "EconomicEventSnapshot",
+  "type": "object"
+}

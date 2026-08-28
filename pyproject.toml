@@ -1,0 +1,33 @@
+[project]
+name = "gold-intelligence-platform"
+version = "0.1.0"
+description = "Institutional gold market intelligence platform"
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.8,<3",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8.0",
+    "ruff",
+    "black",
+]
+
+[project.scripts]
+mios = "app.main:main"
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = []
+
+[tool.pytest.ini_options]
+addopts = "--basetemp=.pytest_tmp"

@@ -1,0 +1,404 @@
+{
+  "$defs": {
+    "ContractStatus": {
+      "enum": [
+        "SUCCESS",
+        "PARTIAL_SUCCESS",
+        "STALE_DATA",
+        "FAILED",
+        "NO_DATA",
+        "INVALID_INPUT"
+      ],
+      "title": "ContractStatus",
+      "type": "string"
+    },
+    "DXYSnapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "change": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Change"
+        },
+        "price": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Price"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "title": "Timestamp",
+          "type": "string"
+        }
+      },
+      "required": [
+        "price",
+        "timestamp"
+      ],
+      "title": "DXYSnapshot",
+      "type": "object"
+    },
+    "DataProviderId": {
+      "enum": [
+        "twelve_data",
+        "fred",
+        "newsapi",
+        "groq",
+        "discord",
+        "finnhub",
+        "gemini",
+        "cftc_cot",
+        "spdr_gld",
+        "gdelt"
+      ],
+      "title": "DataProviderId",
+      "type": "string"
+    },
+    "GoldPriceSnapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "price": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Price"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "title": "Timestamp",
+          "type": "string"
+        }
+      },
+      "required": [
+        "price",
+        "timestamp"
+      ],
+      "title": "GoldPriceSnapshot",
+      "type": "object"
+    },
+    "MarketSymbol": {
+      "enum": [
+        "XAU/USD",
+        "DXY",
+        "US10Y"
+      ],
+      "title": "MarketSymbol",
+      "type": "string"
+    },
+    "OhlcBar": {
+      "additionalProperties": false,
+      "properties": {
+        "close": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Close"
+        },
+        "high": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "High"
+        },
+        "low": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Low"
+        },
+        "open": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Open"
+        },
+        "provider": {
+          "$ref": "#/$defs/DataProviderId"
+        },
+        "provider_symbol": {
+          "maxLength": 80,
+          "minLength": 1,
+          "title": "Provider Symbol",
+          "type": "string"
+        },
+        "symbol": {
+          "$ref": "#/$defs/MarketSymbol"
+        },
+        "timeframe": {
+          "$ref": "#/$defs/Timeframe"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "title": "Timestamp",
+          "type": "string"
+        },
+        "volume": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Volume"
+        }
+      },
+      "required": [
+        "symbol",
+        "provider_symbol",
+        "timeframe",
+        "timestamp",
+        "open",
+        "high",
+        "low",
+        "close",
+        "provider"
+      ],
+      "title": "OhlcBar",
+      "type": "object"
+    },
+    "SourceReadResult_DXYSnapshot_": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence_penalty": {
+          "default": 0,
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Confidence Penalty",
+          "type": "integer"
+        },
+        "data": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DXYSnapshot"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "error": {
+          "anyOf": [
+            {
+              "maxLength": 1000,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Error"
+        },
+        "status": {
+          "$ref": "#/$defs/ContractStatus"
+        },
+        "used_cache": {
+          "default": false,
+          "title": "Used Cache",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "title": "SourceReadResult[DXYSnapshot]",
+      "type": "object"
+    },
+    "SourceReadResult_GoldPriceSnapshot_": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence_penalty": {
+          "default": 0,
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Confidence Penalty",
+          "type": "integer"
+        },
+        "data": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/GoldPriceSnapshot"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "error": {
+          "anyOf": [
+            {
+              "maxLength": 1000,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Error"
+        },
+        "status": {
+          "$ref": "#/$defs/ContractStatus"
+        },
+        "used_cache": {
+          "default": false,
+          "title": "Used Cache",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "title": "SourceReadResult[GoldPriceSnapshot]",
+      "type": "object"
+    },
+    "SourceReadResult_tuple_OhlcBar__________": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence_penalty": {
+          "default": 0,
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Confidence Penalty",
+          "type": "integer"
+        },
+        "data": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/OhlcBar"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Data"
+        },
+        "error": {
+          "anyOf": [
+            {
+              "maxLength": 1000,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Error"
+        },
+        "status": {
+          "$ref": "#/$defs/ContractStatus"
+        },
+        "used_cache": {
+          "default": false,
+          "title": "Used Cache",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "title": "SourceReadResult[tuple[OhlcBar, ...]]",
+      "type": "object"
+    },
+    "Timeframe": {
+      "enum": [
+        "1min",
+        "5min",
+        "15min",
+        "1h",
+        "4h",
+        "1day"
+      ],
+      "title": "Timeframe",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "dxy": {
+      "$ref": "#/$defs/SourceReadResult_DXYSnapshot_"
+    },
+    "gold_bars": {
+      "$ref": "#/$defs/SourceReadResult_tuple_OhlcBar__________"
+    },
+    "gold_price": {
+      "$ref": "#/$defs/SourceReadResult_GoldPriceSnapshot_"
+    }
+  },
+  "required": [
+    "gold_price",
+    "gold_bars",
+    "dxy"
+  ],
+  "title": "MarketSourceBundle",
+  "type": "object"
+}

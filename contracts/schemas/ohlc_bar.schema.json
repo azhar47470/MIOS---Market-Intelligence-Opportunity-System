@@ -1,0 +1,146 @@
+{
+  "$defs": {
+    "DataProviderId": {
+      "enum": [
+        "twelve_data",
+        "fred",
+        "newsapi",
+        "groq",
+        "discord",
+        "finnhub",
+        "gemini",
+        "cftc_cot",
+        "spdr_gld",
+        "gdelt"
+      ],
+      "title": "DataProviderId",
+      "type": "string"
+    },
+    "MarketSymbol": {
+      "enum": [
+        "XAU/USD",
+        "DXY",
+        "US10Y"
+      ],
+      "title": "MarketSymbol",
+      "type": "string"
+    },
+    "Timeframe": {
+      "enum": [
+        "1min",
+        "5min",
+        "15min",
+        "1h",
+        "4h",
+        "1day"
+      ],
+      "title": "Timeframe",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "close": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0.0,
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        }
+      ],
+      "title": "Close"
+    },
+    "high": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0.0,
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        }
+      ],
+      "title": "High"
+    },
+    "low": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0.0,
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        }
+      ],
+      "title": "Low"
+    },
+    "open": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0.0,
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        }
+      ],
+      "title": "Open"
+    },
+    "provider": {
+      "$ref": "#/$defs/DataProviderId"
+    },
+    "provider_symbol": {
+      "maxLength": 80,
+      "minLength": 1,
+      "title": "Provider Symbol",
+      "type": "string"
+    },
+    "symbol": {
+      "$ref": "#/$defs/MarketSymbol"
+    },
+    "timeframe": {
+      "$ref": "#/$defs/Timeframe"
+    },
+    "timestamp": {
+      "format": "date-time",
+      "title": "Timestamp",
+      "type": "string"
+    },
+    "volume": {
+      "anyOf": [
+        {
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Volume"
+    }
+  },
+  "required": [
+    "symbol",
+    "provider_symbol",
+    "timeframe",
+    "timestamp",
+    "open",
+    "high",
+    "low",
+    "close",
+    "provider"
+  ],
+  "title": "OhlcBar",
+  "type": "object"
+}

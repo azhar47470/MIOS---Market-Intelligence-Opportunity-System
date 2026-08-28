@@ -1,0 +1,206 @@
+{
+  "$defs": {
+    "COTSnapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "long_positions": {
+          "minimum": 0,
+          "title": "Long Positions",
+          "type": "integer"
+        },
+        "net_position": {
+          "title": "Net Position",
+          "type": "integer"
+        },
+        "report_date": {
+          "format": "date-time",
+          "title": "Report Date",
+          "type": "string"
+        },
+        "short_positions": {
+          "minimum": 0,
+          "title": "Short Positions",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "long_positions",
+        "short_positions",
+        "net_position",
+        "report_date"
+      ],
+      "title": "COTSnapshot",
+      "type": "object"
+    },
+    "ContractStatus": {
+      "enum": [
+        "SUCCESS",
+        "PARTIAL_SUCCESS",
+        "STALE_DATA",
+        "FAILED",
+        "NO_DATA",
+        "INVALID_INPUT"
+      ],
+      "title": "ContractStatus",
+      "type": "string"
+    },
+    "ETFSnapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "format": "date-time",
+          "title": "Date",
+          "type": "string"
+        },
+        "flow_delta": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Flow Delta"
+        },
+        "ounces": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            }
+          ],
+          "title": "Ounces"
+        }
+      },
+      "required": [
+        "ounces",
+        "date"
+      ],
+      "title": "ETFSnapshot",
+      "type": "object"
+    },
+    "SourceReadResult_COTSnapshot_": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence_penalty": {
+          "default": 0,
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Confidence Penalty",
+          "type": "integer"
+        },
+        "data": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/COTSnapshot"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "error": {
+          "anyOf": [
+            {
+              "maxLength": 1000,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Error"
+        },
+        "status": {
+          "$ref": "#/$defs/ContractStatus"
+        },
+        "used_cache": {
+          "default": false,
+          "title": "Used Cache",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "title": "SourceReadResult[COTSnapshot]",
+      "type": "object"
+    },
+    "SourceReadResult_ETFSnapshot_": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence_penalty": {
+          "default": 0,
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Confidence Penalty",
+          "type": "integer"
+        },
+        "data": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ETFSnapshot"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "error": {
+          "anyOf": [
+            {
+              "maxLength": 1000,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Error"
+        },
+        "status": {
+          "$ref": "#/$defs/ContractStatus"
+        },
+        "used_cache": {
+          "default": false,
+          "title": "Used Cache",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "title": "SourceReadResult[ETFSnapshot]",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "cot": {
+      "$ref": "#/$defs/SourceReadResult_COTSnapshot_"
+    },
+    "gld": {
+      "$ref": "#/$defs/SourceReadResult_ETFSnapshot_"
+    }
+  },
+  "required": [
+    "cot",
+    "gld"
+  ],
+  "title": "InstitutionalSourceBundle",
+  "type": "object"
+}

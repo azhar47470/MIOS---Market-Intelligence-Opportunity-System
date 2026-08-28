@@ -1,0 +1,43 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "gld_daily_ounce_change": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Gld Daily Ounce Change"
+    },
+    "latest_managed_money_net": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Latest Managed Money Net"
+    },
+    "source_count": {
+      "minimum": 0,
+      "title": "Source Count",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "source_count"
+  ],
+  "title": "InstitutionalFeatureSet",
+  "type": "object"
+}

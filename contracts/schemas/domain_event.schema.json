@@ -1,0 +1,74 @@
+{
+  "$defs": {
+    "EventPriority": {
+      "enum": [
+        "low",
+        "normal",
+        "high",
+        "critical"
+      ],
+      "title": "EventPriority",
+      "type": "string"
+    },
+    "EventType": {
+      "enum": [
+        "market_updated",
+        "macro_updated",
+        "cot_updated",
+        "etf_updated",
+        "calendar_updated",
+        "news_updated",
+        "dxy_updated",
+        "recommendation_changed",
+        "system_warning"
+      ],
+      "title": "EventType",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "correlation_id": {
+      "anyOf": [
+        {
+          "maxLength": 160,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Correlation Id"
+    },
+    "event_id": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Event Id",
+      "type": "string"
+    },
+    "event_type": {
+      "$ref": "#/$defs/EventType"
+    },
+    "occurred_at": {
+      "format": "date-time",
+      "title": "Occurred At",
+      "type": "string"
+    },
+    "payload": {
+      "additionalProperties": true,
+      "title": "Payload",
+      "type": "object"
+    },
+    "priority": {
+      "$ref": "#/$defs/EventPriority",
+      "default": "normal"
+    }
+  },
+  "required": [
+    "event_id",
+    "event_type"
+  ],
+  "title": "DomainEvent",
+  "type": "object"
+}

@@ -1,0 +1,56 @@
+{
+  "$defs": {
+    "AgentRole": {
+      "enum": [
+        "macro_economist",
+        "technical_analyst",
+        "geopolitical_analyst",
+        "news_analyst",
+        "institutional_analyst",
+        "risk_analyst",
+        "devils_advocate"
+      ],
+      "title": "AgentRole",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "output_schema_name": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Output Schema Name",
+      "type": "string"
+    },
+    "role": {
+      "$ref": "#/$defs/AgentRole"
+    },
+    "system_prompt": {
+      "maxLength": 5000,
+      "minLength": 1,
+      "title": "System Prompt",
+      "type": "string"
+    },
+    "template_id": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Template Id",
+      "type": "string"
+    },
+    "version": {
+      "default": "1.0",
+      "maxLength": 40,
+      "minLength": 1,
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "template_id",
+    "role",
+    "system_prompt",
+    "output_schema_name"
+  ],
+  "title": "PromptTemplate",
+  "type": "object"
+}

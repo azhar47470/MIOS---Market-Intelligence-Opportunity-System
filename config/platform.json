@@ -1,0 +1,289 @@
+{
+  "version": "1.0",
+  "ai_reasoning_enabled": true,
+  "ai_reasoning": {
+    "providers": [
+      {
+        "provider": "groq",
+        "enabled": true,
+        "models": ["openai/gpt-oss-120b"]
+      },
+      {
+        "provider": "opencode",
+        "enabled": true,
+        "models": ["laguna-s-2.1-free"]
+      },
+      {
+        "provider": "ollama",
+        "enabled": true,
+        "models": ["gpt-oss:120b"]
+      },
+      {
+        "provider": "gemini",
+        "enabled": true,
+        "models": [
+          "gemini-3.5-flash",
+          "gemini-3.1-flash-lite"
+        ]
+      }
+    ],
+    "temperature": 0,
+    "max_tokens": 2000
+  },
+  "polling": {
+    "run_forever_interval_seconds": 60,
+    "slow_poll_seconds": 14400,
+    "news_poll_seconds": 300,
+    "economic_calendar_poll_seconds": 300,
+    "institutional_poll_seconds": 86400
+  },
+  "macro_series": {
+    "FEDFUNDS": { "enabled": true, "cache_seconds": 86400 },
+    "DFII10": { "enabled": true, "cache_seconds": 86400 },
+    "CPIAUCSL": { "enabled": true, "cache_seconds": 86400 },
+    "PAYEMS": { "enabled": true, "cache_seconds": 86400 },
+    "GDPC1": { "enabled": true, "cache_seconds": 86400 },
+    "T10Y2Y": { "enabled": true, "cache_seconds": 86400 }
+  },
+  "providers": {
+    "twelve_data": {
+      "provider_id": "twelve_data",
+      "enabled": true,
+      "base_url": "https://api.twelvedata.com",
+      "auth_mode": "query_param",
+      "api_key_env": "TWELVE_DATA_API_KEY",
+      "api_key_param": "apikey",
+      "timeout_seconds": 10,
+      "retry_attempts": 2,
+      "symbol_map": {
+        "XAU/USD": "XAU/USD"
+      },
+      "endpoints": {
+        "time_series": {
+          "path": "/time_series",
+          "cache_seconds": 60
+        }
+      }
+    },
+    "fred": {
+      "provider_id": "fred",
+      "enabled": true,
+      "base_url": "https://api.stlouisfed.org/fred",
+      "auth_mode": "query_param",
+      "api_key_env": "FRED_API_KEY",
+      "api_key_param": "api_key",
+      "timeout_seconds": 10,
+      "retry_attempts": 2,
+      "endpoints": {
+        "series_observations": {
+          "path": "/series/observations",
+          "cache_seconds": 86400
+        },
+        "releases_dates": {
+          "path": "/releases/dates",
+          "cache_seconds": 300
+        }
+      }
+    },
+    "newsapi": {
+      "provider_id": "newsapi",
+      "enabled": true,
+      "base_url": "https://newsapi.org",
+      "auth_mode": "query_param",
+      "api_key_env": "NEWSAPI_KEY",
+      "api_key_param": "apiKey",
+      "timeout_seconds": 10,
+      "retry_attempts": 2,
+      "endpoints": {
+        "everything": {
+          "path": "/v2/everything",
+          "cache_seconds": 1800
+        }
+      }
+    },
+    "finnhub": {
+      "provider_id": "finnhub",
+      "enabled": true,
+      "base_url": "https://finnhub.io/api/v1",
+      "auth_mode": "query_param",
+      "api_key_env": "FINNHUB_API_KEY",
+      "api_key_param": "token",
+      "timeout_seconds": 10,
+      "retry_attempts": 2,
+      "endpoints": {
+        "news": {
+          "path": "/news",
+          "cache_seconds": 900
+        }
+      }
+    },
+    "groq": {
+      "provider_id": "groq",
+      "enabled": true,
+      "base_url": "https://api.groq.com/openai/v1",
+      "auth_mode": "header",
+      "api_key_env": "GROQ_API_KEY",
+      "timeout_seconds": 30,
+      "retry_attempts": 2,
+      "endpoints": {
+        "chat_completions": {
+          "path": "/chat/completions",
+          "method": "POST",
+          "cache_seconds": 0
+        }
+      }
+    },
+    "opencode": {
+      "provider_id": "opencode",
+      "enabled": true,
+      "base_url": "https://opencode.ai/zen",
+      "auth_mode": "header",
+      "api_key_env": "OPENCODE_API_KEY",
+      "timeout_seconds": 60,
+      "retry_attempts": 1,
+      "endpoints": {
+        "chat_completions": {
+          "path": "/v1/chat/completions",
+          "method": "POST",
+          "cache_seconds": 0
+        }
+      }
+    },
+    "ollama": {
+      "provider_id": "ollama",
+      "enabled": true,
+      "base_url": "https://ollama.com",
+      "auth_mode": "header",
+      "api_key_env": "OLLAMA_API_KEY",
+      "timeout_seconds": 60,
+      "retry_attempts": 1,
+      "endpoints": {
+        "chat_completions": {
+          "path": "/v1/chat/completions",
+          "method": "POST",
+          "cache_seconds": 0
+        }
+      }
+    },
+    "gemini": {
+      "provider_id": "gemini",
+      "enabled": true,
+      "base_url": "https://generativelanguage.googleapis.com",
+      "auth_mode": "query_param",
+      "api_key_env": "GEMINI_API_KEY",
+      "api_key_param": "key",
+      "timeout_seconds": 30,
+      "retry_attempts": 2,
+      "endpoints": {
+        "generate_content": {
+          "path": "/v1beta/models/{model}:generateContent",
+          "method": "POST",
+          "cache_seconds": 0
+        }
+      }
+    },
+    "discord": {
+      "provider_id": "discord",
+      "enabled": true,
+      "base_url": "https://discord.com/api",
+      "auth_mode": "none",
+      "api_key_env": "DISCORD_WEBHOOK_URL",
+      "timeout_seconds": 10,
+      "retry_attempts": 2,
+      "endpoints": {}
+    },
+    "cftc_cot": {
+      "provider_id": "cftc_cot",
+      "enabled": true,
+      "base_url": "https://publicreporting.cftc.gov",
+      "auth_mode": "none",
+      "timeout_seconds": 10,
+      "retry_attempts": 2,
+      "endpoints": {
+        "cot_disaggregated": {
+          "path": "/resource/72hh-3qpy.json",
+          "cache_seconds": 604800
+        }
+      }
+    },
+    "spdr_gld": {
+      "provider_id": "spdr_gld",
+      "enabled": true,
+      "base_url": "https://api.spdrgoldshares.com",
+      "auth_mode": "none",
+      "timeout_seconds": 10,
+      "retry_attempts": 2,
+      "endpoints": {
+        "gld_data": {
+          "path": "/api/v1/data",
+          "query_params": {
+            "product": "gld",
+            "exchange": "NYSE",
+            "lang": "en"
+          },
+          "cache_seconds": 3600
+        }
+      }
+    },
+    "gdelt": {
+      "provider_id": "gdelt",
+      "enabled": true,
+      "base_url": "https://api.gdeltproject.org",
+      "auth_mode": "none",
+      "timeout_seconds": 10,
+      "retry_attempts": 2,
+      "endpoints": {
+        "doc_articles": {
+          "path": "/api/v2/doc/doc?mode=artlist&format=json",
+          "cache_seconds": 900
+        }
+      }
+    },
+    "rss_news": {
+      "provider_id": "rss_news",
+      "enabled": true,
+      "base_url": "https://news.google.com",
+      "auth_mode": "none",
+      "timeout_seconds": 10,
+      "retry_attempts": 1,
+      "endpoints": {
+        "google_news": {
+          "path": "/rss/search",
+          "cache_seconds": 900,
+          "query_params": {
+            "hl": "en-US",
+            "gl": "US",
+            "ceid": "US:en"
+          }
+        },
+        "marketaux_all": {
+          "path": "https://api.marketaux.com/v1/news/all",
+          "cache_seconds": 900,
+          "query_params": {
+            "language": "en",
+            "limit": "10"
+          }
+        },
+        "thenewsapi_all": {
+          "path": "https://api.thenewsapi.com/v1/news/all",
+          "cache_seconds": 900,
+          "query_params": {
+            "language": "en",
+            "limit": "10"
+          }
+        },
+        "worldnewsapi_search": {
+          "path": "https://api.worldnewsapi.com/search-news",
+          "cache_seconds": 900,
+          "query_params": {
+            "language": "en",
+            "number": "10"
+          }
+        }
+      }
+    }
+  }
+}
+
+
+

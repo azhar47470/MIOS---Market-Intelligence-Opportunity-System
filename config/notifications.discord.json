@@ -1,0 +1,45 @@
+{
+  "alert_rules": {
+    "send_initial_snapshot": false,
+    "confidence_significant_delta": 8,
+    "consolidation_window_seconds": 900,
+    "min_seconds_between_confidence_alerts": 900,
+    "macro_materiality_threshold": 75,
+    "geopolitical_materiality_threshold": 75,
+    "high_priority_risk_levels": [
+      "high",
+      "critical"
+    ]
+  },
+  "discord": {
+    "enabled": true,
+    "webhook_url_env": "DISCORD_WEBHOOK_URL",
+    "username": "Gold Intelligence Platform",
+    "avatar_url": null,
+    "timeout_seconds": 10,
+    "enabled_notification_types": [
+      "recommendation_alert",
+      "daily_market_summary",
+      "weekly_intelligence_report",
+      "breaking_news_alert",
+      "major_economic_event_alert",
+      "system_health_notification",
+      "engine_status_notification"
+    ],
+    "colors": {
+      "Strong Buy": 2205306,
+      "Buy": 3066993,
+      "Hold": 15844367,
+      "Wait": 12632256,
+      "Take Profit": 15105570,
+      "Strong Sell": 15158332
+    },
+    "priority_colors": {
+      "low": 9807270,
+      "normal": 3447003,
+      "high": 15905331,
+      "critical": 15158332
+    }
+  }
+}
+

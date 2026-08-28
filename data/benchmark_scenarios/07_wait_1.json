@@ -1,0 +1,36 @@
+{
+  "scenario_id": "scen_wait_1",
+  "scenario_type": "wait",
+  "expected_direction": "WAIT",
+  "expected_regime": "NORMAL",
+  "market_context": "Ambiguous sideways market",
+  "engine_outputs": {},
+  "evidence": [
+    {
+      "id": "EV-1",
+      "text": "Mild support"
+    },
+    {
+      "id": "EV-2",
+      "text": "Mild resistance"
+    }
+  ],
+  "narratives": [],
+  "bullish_evidence": [
+    "EV-1"
+  ],
+  "bearish_evidence": [
+    "EV-2"
+  ],
+  "critical_evidence": [],
+  "expected_reasoning_points": [
+    "Matches direction"
+  ],
+  "unacceptable_reasoning": [
+    "Ignores evidence"
+  ],
+  "confidence_range": [
+    0.0,
+    0.4
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "context_id": {
+      "maxLength": 160,
+      "minLength": 1,
+      "title": "Context Id",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "facts": {
+      "additionalProperties": true,
+      "title": "Facts",
+      "type": "object"
+    },
+    "objective": {
+      "maxLength": 500,
+      "minLength": 1,
+      "title": "Objective",
+      "type": "string"
+    },
+    "retrieved_record_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Retrieved Record Ids",
+      "type": "array"
+    }
+  },
+  "required": [
+    "context_id",
+    "objective"
+  ],
+  "title": "AIContext",
+  "type": "object"
+}
