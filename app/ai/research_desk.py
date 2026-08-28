@@ -17,7 +17,17 @@ from app.domain.ai import (
 )
 from app.domain.common import ContractStatus
 from app.domain.enums import Recommendation
-from app.domain.intelligence import AnalysisBundle, DirectionalBias
+from app.domain.intelligence import AnalysisBundle, DirectionalBias, MarketRegime
+
+# Risk-elevated regime states that always require deep reasoning. Trend and liquidity
+# regimes (BULL, BEAR, RANGE, RISK_ON, LOW_VOLATILITY) are treated as stable and only
+# escalate when a separate escalation condition fires.
+_ESCALATION_REGIMES = frozenset({
+    MarketRegime.EVENT_DRIVEN,
+    MarketRegime.RISK_OFF,
+    MarketRegime.HIGH_VOLATILITY,
+    MarketRegime.UNKNOWN,
+})
 
 
 class AIResearchDesk:
@@ -57,7 +67,7 @@ class AIResearchDesk:
         if bundle.regime:
             if bundle.regime.confidence.value < (stability_threshold * 100):
                 return True, "Low decision stability"
-            if bundle.regime.regime.value != "NORMAL":
+            if bundle.regime.regime in _ESCALATION_REGIMES:
                 return True, f"Regime transition: {bundle.regime.regime.value}"
         
         if bundle.geopolitical and bundle.geopolitical.score < geo_shock_threshold:
@@ -71,15 +81,12 @@ class AIResearchDesk:
             if abs(bundle.technical.score - 50) < ambiguous_margin:
                 return True, "Ambiguous technical confidence"
 
-        # Critical opposing evidence
+        # Critical evidence carries no direction on the EvidenceRecord contract, so any
+        # CRITICAL-strength engine evidence (no-data, extreme pullback risk, stale data)
+        # conservatively forces deep reasoning.
         for analysis in [bundle.technical, bundle.fundamental, bundle.institutional]:
-            if analysis:
-                for ev in analysis.evidence:
-                    if ev.strength.value == "CRITICAL" and (
-                        (ev.direction.value == "BEARISH" and analysis.bias.value == "BULLISH") or 
-                        (ev.direction.value == "BULLISH" and analysis.bias.value == "BEARISH")
-                    ):
-                        return True, "Critical opposing evidence"
+            if analysis and any(ev.strength.value == "CRITICAL" for ev in analysis.evidence):
+                return True, "Critical opposing evidence"
 
         return False, None
 

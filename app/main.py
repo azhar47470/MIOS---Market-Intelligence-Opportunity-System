@@ -457,7 +457,7 @@ def _print_mode_output(result, adapter_name: str) -> None:
     elif adapter_name == "forex":
         from app.application.adapters.forex import ForexAdapter
         spot = result.spot_price
-        adapted = ForexAdapter().adapt(unified, spot=spot)
+        adapted = ForexAdapter().adapt(unified, spot=spot, is_actionable=not is_wait)
         if not is_wait:
             print(f"Take Profit : {adapted.take_profit}")
             print(f"Stop Loss   : {adapted.stop_loss}")

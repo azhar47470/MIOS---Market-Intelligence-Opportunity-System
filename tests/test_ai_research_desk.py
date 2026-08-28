@@ -2,6 +2,8 @@ import json
 from datetime import UTC, datetime, timedelta
 from decimal import Decimal
 
+import pytest
+
 from app.ai.agents.llm_client import LLMJsonClient
 from app.ai.context_builder import AIContextBuilder
 from app.ai.research_desk import AIResearchDesk
@@ -18,8 +20,14 @@ from app.application.engines.regime_engine import MarketRegimeEngine
 from app.application.engines.technical_engine import TechnicalIntelligenceEngine
 from app.application.http import HttpResponse
 from app.domain.ai import AgentRole
+from app.domain.common import ConfidenceScore, EvidenceRecord, EvidenceStrength
 from app.domain.enums import Recommendation
-from app.domain.intelligence import AnalysisBundle, DecisionContext, MarketDataSnapshot
+from app.domain.intelligence import (
+    AnalysisBundle,
+    DecisionContext,
+    MarketDataSnapshot,
+    MarketRegime,
+)
 from app.domain.market_data import (
     CotPositioningSnapshot,
     DataProviderId,
@@ -353,3 +361,288 @@ def _analysis_bundle() -> AnalysisBundle:
         institutional=institutional,
         regime=regime,
     )
+
+
+# --- Escalation routing regression tests -----------------------------------
+
+
+def _escalation_desk() -> AIResearchDesk:
+    return AIResearchDesk(
+        config=load_ai_research_config("config/ai_research.json"),
+        client=None,
+    )
+
+
+def _stable_escalation_bundle() -> AnalysisBundle:
+    """A bundle tuned so that no escalation condition fires by default."""
+    bundle = _analysis_bundle()
+    technical = bundle.technical.model_copy(update={"score": 65, "evidence": ()})
+    fundamental = bundle.fundamental.model_copy(update={"score": 60})
+    institutional = bundle.institutional.model_copy(update={"evidence": ()})
+    geopolitical = bundle.geopolitical.model_copy(update={"score": 80})
+    regime = bundle.regime.model_copy(
+        update={
+            "regime": MarketRegime.RISK_ON,
+            "confidence": ConfidenceScore(
+                value=80, reason="Stable risk appetite for escalation tests."
+            ),
+        }
+    )
+    return bundle.model_copy(
+        update={
+            "technical": technical,
+            "fundamental": fundamental,
+            "institutional": institutional,
+            "geopolitical": geopolitical,
+            "regime": regime,
+        }
+    )
+
+
+def _with_regime(bundle: AnalysisBundle, regime: MarketRegime) -> AnalysisBundle:
+    return bundle.model_copy(
+        update={"regime": bundle.regime.model_copy(update={"regime": regime})}
+    )
+
+
+def _critical_evidence(evidence_id: str, source: str) -> EvidenceRecord:
+    return EvidenceRecord(
+        evidence_id=evidence_id,
+        category="TECHNICAL",
+        description="Critical-strength evidence for escalation testing.",
+        strength=EvidenceStrength.CRITICAL,
+        confidence=100,
+        source=source,
+    )
+
+
+def test_stable_regime_does_not_force_deep_reasoning():
+    requires, reason = _escalation_desk()._evaluate_escalation(_stable_escalation_bundle())
+
+    assert requires is False
+    assert reason is None
+
+
+@pytest.mark.parametrize(
+    "regime",
+    [
+        MarketRegime.RISK_OFF,
+        MarketRegime.HIGH_VOLATILITY,
+        MarketRegime.EVENT_DRIVEN,
+        MarketRegime.UNKNOWN,
+    ],
+)
+def test_risk_elevated_regimes_still_force_deep_reasoning(regime):
+    bundle = _with_regime(_stable_escalation_bundle(), regime)
+
+    requires, reason = _escalation_desk()._evaluate_escalation(bundle)
+
+    assert requires is True
+    assert reason == f"Regime transition: {regime.value}"
+
+
+@pytest.mark.parametrize(
+    "regime",
+    [MarketRegime.BULL, MarketRegime.BEAR, MarketRegime.RANGE, MarketRegime.LOW_VOLATILITY],
+)
+def test_trend_and_liquidity_regimes_do_not_auto_escalate(regime):
+    bundle = _with_regime(_stable_escalation_bundle(), regime)
+
+    requires, reason = _escalation_desk()._evaluate_escalation(bundle)
+
+    assert requires is False
+    assert reason is None
+
+
+def test_low_regime_confidence_still_escalates():
+    bundle = _stable_escalation_bundle()
+    bundle = bundle.model_copy(
+        update={
+            "regime": bundle.regime.model_copy(
+                update={
+                    "confidence": ConfidenceScore(
+                        value=20, reason="Weak regime classification conviction."
+                    )
+                }
+            )
+        }
+    )
+
+    requires, reason = _escalation_desk()._evaluate_escalation(bundle)
+
+    assert requires is True
+    assert reason == "Low decision stability"
+
+
+def test_geopolitical_shock_still_escalates():
+    bundle = _stable_escalation_bundle()
+    bundle = bundle.model_copy(
+        update={"geopolitical": bundle.geopolitical.model_copy(update={"score": 10})}
+    )
+
+    requires, reason = _escalation_desk()._evaluate_escalation(bundle)
+
+    assert requires is True
+    assert reason == "Geopolitical shock detected"
+
+
+def test_engine_disagreement_still_escalates():
+    bundle = _stable_escalation_bundle()
+    bundle = bundle.model_copy(
+        update={
+            "technical": bundle.technical.model_copy(update={"score": 95}),
+            "fundamental": bundle.fundamental.model_copy(update={"score": 30}),
+        }
+    )
+
+    requires, reason = _escalation_desk()._evaluate_escalation(bundle)
+
+    assert requires is True
+    assert reason == "Strong engine disagreement (Tech vs Fund)"
+
+
+def test_ambiguous_technical_confidence_still_escalates():
+    bundle = _stable_escalation_bundle()
+    bundle = bundle.model_copy(
+        update={"technical": bundle.technical.model_copy(update={"score": 52})}
+    )
+
+    requires, reason = _escalation_desk()._evaluate_escalation(bundle)
+
+    assert requires is True
+    assert reason == "Ambiguous technical confidence"
+
+
+def test_critical_technical_no_data_evidence_escalates_without_attribute_error():
+    bundle = _stable_escalation_bundle()
+    bundle = bundle.model_copy(
+        update={
+            "technical": bundle.technical.model_copy(
+                update={
+                    "evidence": (
+                        _critical_evidence("TECH-NODATA-001", "TechnicalIntelligenceEngine"),
+                    )
+                }
+            )
+        }
+    )
+
+    requires, reason = _escalation_desk()._evaluate_escalation(bundle)
+
+    assert requires is True
+    assert reason == "Critical opposing evidence"
+
+
+def test_critical_extreme_pullback_evidence_escalates():
+    bundle = _stable_escalation_bundle()
+    bundle = bundle.model_copy(
+        update={
+            "technical": bundle.technical.model_copy(
+                update={
+                    "evidence": (
+                        _critical_evidence("PULLBACK-RISK-001", "PullbackRiskEngine"),
+                    )
+                }
+            )
+        }
+    )
+
+    requires, reason = _escalation_desk()._evaluate_escalation(bundle)
+
+    assert requires is True
+    assert reason == "Critical opposing evidence"
+
+
+def test_critical_institutional_evidence_escalates():
+    bundle = _stable_escalation_bundle()
+    bundle = bundle.model_copy(
+        update={
+            "institutional": bundle.institutional.model_copy(
+                update={
+                    "evidence": (
+                        _critical_evidence("INST-COT-001", "InstitutionalIntelligenceEngine"),
+                    )
+                }
+            )
+        }
+    )
+
+    requires, reason = _escalation_desk()._evaluate_escalation(bundle)
+
+    assert requires is True
+    assert reason == "Critical opposing evidence"
+
+
+def test_high_strength_evidence_does_not_trigger_evidence_escalation():
+    bundle = _stable_escalation_bundle()
+    high_evidence = EvidenceRecord(
+        evidence_id="TECH-RSI-001",
+        category="TECHNICAL",
+        description="Strong but non-critical evidence should not escalate on its own.",
+        strength=EvidenceStrength.HIGH,
+        confidence=90,
+        source="TechnicalIntelligenceEngine",
+    )
+    bundle = bundle.model_copy(
+        update={
+            "technical": bundle.technical.model_copy(update={"evidence": (high_evidence,)})
+        }
+    )
+
+    requires, reason = _escalation_desk()._evaluate_escalation(bundle)
+
+    assert requires is False
+    assert reason is None
+
+
+def test_groq_first_chain_restored_when_no_escalation(monkeypatch):
+    monkeypatch.setenv("GROQ_API_KEY", "test-groq-key")
+    monkeypatch.setenv("GEMINI_API_KEY", "test-gemini-key")
+    platform_config = load_platform_config("config/platform.json")
+    research_config = load_ai_research_config("config/ai_research.json")
+    http = FakeAIHttpClient()
+    desk = AIResearchDesk(
+        config=research_config,
+        client=LLMJsonClient(
+            http_client=http,
+            groq_config=platform_config.providers[DataProviderId.GROQ],
+            gemini_config=platform_config.providers[DataProviderId.GEMINI],
+            opencode_config=platform_config.providers[DataProviderId.OPENCODE],
+            ollama_config=platform_config.providers[DataProviderId.OLLAMA],
+            reasoning_config=platform_config.ai_reasoning,
+        ),
+    )
+
+    report = desk.analyze(_stable_escalation_bundle())
+
+    assert report.committee_report.provider == "adversarial_committee"
+    assert len(http.posts) == 3
+    assert all("groq" in post["url"] for post in http.posts)
+
+
+def test_deep_reasoning_escalation_still_routes_opencode_first(monkeypatch):
+    monkeypatch.setenv("GROQ_API_KEY", "test-groq-key")
+    monkeypatch.setenv("GEMINI_API_KEY", "test-gemini-key")
+    monkeypatch.setenv("OPENCODE_API_KEY", "test-opencode-key")
+    monkeypatch.setenv("OLLAMA_API_KEY", "test-ollama-key")
+    platform_config = load_platform_config("config/platform.json")
+    research_config = load_ai_research_config("config/ai_research.json")
+    http = FakeAIHttpClient()
+    desk = AIResearchDesk(
+        config=research_config,
+        client=LLMJsonClient(
+            http_client=http,
+            groq_config=platform_config.providers[DataProviderId.GROQ],
+            gemini_config=platform_config.providers[DataProviderId.GEMINI],
+            opencode_config=platform_config.providers[DataProviderId.OPENCODE],
+            ollama_config=platform_config.providers[DataProviderId.OLLAMA],
+            reasoning_config=platform_config.ai_reasoning,
+        ),
+    )
+
+    bundle = _with_regime(_stable_escalation_bundle(), MarketRegime.HIGH_VOLATILITY)
+    report = desk.analyze(bundle)
+
+    assert report.committee_report.provider == "adversarial_committee"
+    assert http.posts
+    assert "opencode" in http.posts[0]["url"]

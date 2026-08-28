@@ -15,7 +15,21 @@ class ForexAdapter(DecisionAdapter):
     def name(self) -> str:
         return "forex"
 
-    def adapt(self, unified: UnifiedDecision, spot: float | None = None) -> ForexDecision:
+    def adapt(
+        self,
+        unified: UnifiedDecision,
+        spot: float | None = None,
+        is_actionable: bool = True,
+    ) -> ForexDecision:
+        if not is_actionable:
+            return ForexDecision(
+                signal="WAIT",
+                confidence=unified.confidence,
+                risk=unified.risk,
+                horizon=unified.horizon_label,
+                reasoning=unified.reasoning,
+                timestamp=unified.timestamp,
+            )
         signal = SIGNAL_BY_BIAS.get(unified.market_bias.value, "WAIT")
         entry = round(spot, 2) if spot else None
         take_profit = stop_loss = None

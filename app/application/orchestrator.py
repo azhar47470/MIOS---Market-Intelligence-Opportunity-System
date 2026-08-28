@@ -285,7 +285,7 @@ class GoldIntelligenceOrchestrator:
                 allocation = adapted.allocation_guidance
                 horizon = adapted.horizon
             elif mode == "forex":
-                adapted = adapter.adapt(unified_decision, spot=spot_price_float)
+                adapted = adapter.adapt(unified_decision, spot=spot_price_float, is_actionable=not is_wait)
                 if not is_wait:
                     entry = f"{spot_price_float}"
                     tp = adapted.take_profit

@@ -298,6 +298,39 @@ def test_physical_adapter_obeys_is_actionable_flag():
     # But it must preserve the underlying thesis (e.g. constructive outlook)
     assert "constructive" in blocked.thesis
 
+
+def test_forex_adapter_actionable_long_keeps_entry_targets():
+    decision = ForexAdapter().adapt(
+        _unified(DirectionalBias.BULLISH, 80), spot=4050.25, is_actionable=True
+    )
+
+    assert decision.signal == "LONG"
+    assert decision.entry == 4050.25
+    assert decision.take_profit == round(4050.25 * 1.04, 2)
+    assert decision.stop_loss == round(4050.25 * 0.98, 2)
+
+
+def test_forex_adapter_actionable_short_keeps_entry_targets():
+    decision = ForexAdapter().adapt(
+        _unified(DirectionalBias.BEARISH, 70), spot=4000.0, is_actionable=True
+    )
+
+    assert decision.signal == "SHORT"
+    assert decision.entry == 4000.0
+    assert decision.take_profit == round(4000.0 * 0.96, 2)
+    assert decision.stop_loss == round(4000.0 * 1.02, 2)
+
+
+def test_forex_adapter_wait_carries_no_trade_parameters_when_not_actionable():
+    for bias in (DirectionalBias.BULLISH, DirectionalBias.BEARISH):
+        decision = ForexAdapter().adapt(_unified(bias, 80), spot=4050.25, is_actionable=False)
+
+        assert decision.signal == "WAIT"
+        assert decision.entry is None
+        assert decision.take_profit is None
+        assert decision.stop_loss is None
+        assert decision.confidence == 80
+
 def test_etf_adapter_obeys_is_actionable_flag():
     from app.application.adapters.etf import GoldETFAdapter
     unified = _unified(DirectionalBias.BULLISH, 90)
