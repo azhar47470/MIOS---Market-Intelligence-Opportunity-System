@@ -290,1390 +290,1269 @@ def _dashboard_html() -> str:
     return """<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MIOS Quant Terminal</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-base: #0B0E11;
-      --bg-surface: #12171D;
-      --bg-surface-alt: #181E26;
-      --bg-inset: #0E1217;
-      --border-subtle: #242C37;
-      --border-muted: #1C2430;
-
-      --text-primary: #E8EDF2;
-      --text-secondary: #9BA5B2;
-      --text-tertiary: #5C6672;
-      --text-inverse: #0B0E11;
-
-      --color-gold: #D4A84B;
-      --color-gold-dim: #A88838;
-      --color-bullish: #3FBA76;
-      --color-bearish: #E06860;
-      --color-neutral: #6B7685;
-      --color-warning: #D4A032;
-      --color-info: #4A9BD9;
-
-      --risk-low: #3FBA76;
-      --risk-medium: #D4A032;
-      --risk-high: #E06860;
-      --risk-extreme: #C4384C;
-
-      --font-sans: 'Inter', sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
-
-      --transition: all 0.3s ease;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      background: var(--bg-base);
-      color: var(--text-primary);
-      font-family: var(--font-sans);
-      margin: 0;
-      padding: 0;
-      font-size: 13px;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* Background grid */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(var(--border-muted) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border-muted) 1px, transparent 1px);
-      background-size: 32px 32px;
-      opacity: 0.1;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    .mono { font-family: var(--font-mono); }
-    .uppercase { text-transform: uppercase; letter-spacing: 0.04em; }
-
-    .text-bullish { color: var(--color-bullish); }
-    .text-bearish { color: var(--color-bearish); }
-    .text-gold { color: var(--color-gold); }
-    .text-neutral { color: var(--color-neutral); }
-    .text-warning { color: var(--color-warning); }
-    .text-info { color: var(--color-info); }
-    .text-secondary { color: var(--text-secondary); }
-    .text-tertiary { color: var(--text-tertiary); }
-
-    header {
-      border-bottom: 1px solid var(--border-subtle);
-      background: var(--bg-base);
-      padding: 12px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      font-size: 14px;
-    }
-
-    .brand-icon { color: var(--color-gold); }
-
-    .header-ticker {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      font-size: 14px;
-    }
-
-    .price-value { font-size: 16px; font-weight: 700; }
-
-    .header-meta {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--text-secondary);
-    }
-
-    .system-pulse {
-      display: inline-block;
-      width: 8px; height: 8px;
-      background: var(--color-bullish);
-      border-radius: 50%;
-      margin-left: 8px;
-      box-shadow: 0 0 8px var(--color-bullish);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-
-    .container {
-      display: grid;
-      grid-template-columns: 1fr;
-    }
-
-    .nav-rail {
-      border-right: 1px solid var(--border-subtle);
-      padding: 24px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-    }
-
-    .nav-menu {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .nav-item {
-      padding: 10px 12px;
-      color: var(--text-secondary);
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      border-radius: var(--radius-sm);
-      transition: var(--transition);
-      outline: none;
-    }
-
-    .nav-item:hover, .nav-item:focus {
-      background: var(--bg-surface-alt);
-      color: var(--text-primary);
-    }
-
-    .nav-item.active {
-      color: var(--color-gold);
-      background: rgba(212, 168, 75, 0.1);
-    }
-
-    .main-content {
-      padding: 16px 24px;
-      max-width: 1400px;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    .view { display: none; animation: fadein 0.3s ease; }
-    .view.active { display: block; }
-
-    @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-
-    .panel {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    .panel-header {
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border-muted);
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-secondary);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .panel-body { padding: 16px; }
-
-    /* Layouts */
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-
-    /* Typographic components */
-    .kpi-huge { font-size: 48px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
-    .kpi-lg { font-size: 28px; font-weight: 700; line-height: 1.1; }
-
-    .badge {
-      display: inline-block;
-      padding: 4px 8px;
-      border-radius: var(--radius-sm);
-      font-size: 11px;
-      font-weight: 600;
-      background: var(--bg-inset);
-      border: 1px solid var(--border-muted);
-    }
-
-    .badge-outline { background: transparent; border-color: currentColor; }
-
-    /* Specific components */
-    .hero-card { display: flex; flex-direction: column; justify-content: center; min-height: 200px; }
-
-    .market-chart-container {
-      height: 200px;
-      position: relative;
-      background: var(--bg-inset);
-      border: 1px solid var(--border-muted);
-      margin-top: 12px;
-      border-radius: 4px;
-    }
-
-    .chart-line {
-      position: absolute; left: 0; right: 0; height: 1px;
-      border-top: 1px dashed var(--text-tertiary);
-    }
-
-    .chart-label {
-      position: absolute; right: 8px;
-      transform: translateY(-50%);
-      font-size: 11px; font-weight: 600;
-      padding: 2px 6px;
-      border-radius: 2px;
-      background: var(--bg-surface);
-      z-index: 2;
-      transition: top 0.3s ease;
-    }
-
-    .committee-vote-card {
-      background: var(--bg-inset);
-      border: 1px solid var(--border-muted);
-      padding: 12px;
-      border-radius: var(--radius-sm);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    table { width: 100%; border-collapse: collapse; }
-    th { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--border-muted); color: var(--text-secondary); font-size: 11px; font-weight: 600; }
-    td { padding: 12px 16px; border-bottom: 1px solid var(--border-muted); font-size: 13px; }
-
-    .constellation-wrapper {
-      position: relative;
-      height: 300px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .mode-card {
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      display: flex; flex-direction: column;
-    }
-    .mode-card-header { padding: 16px; border-bottom: 1px solid var(--border-muted); display:flex; justify-content:space-between; }
-    .mode-card-body { padding: 16px; flex: 1; }
-
-    .data-row {
-      display: flex; justify-content: space-between;
-      padding: 8px 0;
-      border-bottom: 1px solid var(--border-muted);
-      font-size: 11px;
-    }
-    .data-row:last-child { border-bottom: none; }
-
-    .pipeline-track {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding: 24px 0;
-      position: relative;
-    }
-    .pipeline-track::before {
-      content: '';
-      position: absolute;
-      top: 48px; left: 40px; right: 40px;
-      height: 2px;
-      background: var(--border-muted);
-      z-index: 0;
-    }
-    .pipeline-node {
-      display: flex; flex-direction: column; align-items: center; text-align: center;
-      z-index: 1; gap: 12px; width: 100px;
-    }
-    .pipeline-icon {
-      width: 48px; height: 48px;
-      border-radius: 50%;
-      background: var(--bg-surface);
-      border: 2px solid var(--border-subtle);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; color: var(--color-gold);
-    }
-
-    #loader {
-      position: fixed; inset: 0; background: var(--bg-base);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      z-index: 1000; transition: opacity 0.3s ease;
-    }
-    .hidden { display: none !important; }
-
-    #empty-state {
-      position: fixed; inset: 0; background: var(--bg-base);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      z-index: 999; text-align: center; padding: 24px;
-    }
-
-    .status-live.status-stale { color: var(--color-warning); }
-    .status-live.status-stale::before { background: var(--color-warning); box-shadow: 0 0 8px var(--color-warning); }
-
-    @media (max-width: 1200px) {
-      .grid-3 { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 960px) {
-      .container { grid-template-columns: 1fr; }
-      .nav-rail {
-        flex-direction: row; align-items: center; justify-content: space-between;
-        padding: 12px 16px; border-right: none; border-bottom: 1px solid var(--border-subtle);
-      }
-      .nav-menu { flex-direction: row; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-      .nav-menu::-webkit-scrollbar { display: none; }
-      .grid-2, .grid-3 { grid-template-columns: 1fr; }
-      .pipeline-track { flex-direction: column; align-items: flex-start; gap: 24px; padding-left: 24px; }
-      .pipeline-track::before { top: 24px; bottom: 24px; left: 47px; right: auto; width: 2px; height: auto; }
-      .pipeline-node { flex-direction: row; width: auto; text-align: left; }
-    }
-
-  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap');
-
-  :root {
-    --bg: #020408;
-    --fg: #E2E8F0;
-    --dim: #475569;
-    --border: #1E293B;
-    --line: #334155;
-    --accent: #F59E0B;
-    --accent-dim: rgba(245, 158, 11, 0.1);
-    --bull: #10B981;
-    --bull-dim: rgba(16, 185, 129, 0.1);
-    --bear: #EF4444;
-    --bear-dim: rgba(239, 68, 68, 0.1);
-    --font: 'JetBrains Mono', monospace;
-  }
-
-  body {
-    background: var(--bg);
-    color: var(--fg);
-    font-family: var(--font);
-    font-size: 11px;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden;
-  }
-
-  * { box-sizing: border-box; }
-
-  /* Utils */
-  .bull { color: var(--bull); }
-  .bear { color: var(--bear); }
-  .dim { color: var(--dim); }
-  .accent { color: var(--accent); }
-  .uppercase { text-transform: uppercase; }
-
-  /* Shell Header */
-  .sys-header {
-    display: flex; justify-content: space-between; align-items: stretch;
-    border-bottom: 1px solid var(--border); background: #010204;
-    padding: 0 24px; height: 48px;
-  }
-  .brand { display: flex; align-items: center; font-weight: 700; color: var(--accent); letter-spacing: 1px; }
-  .sys-nav { display: flex; gap: 32px; }
-  .sys-nav a {
-    color: var(--dim); text-decoration: none; display: flex; align-items: center;
-    border-bottom: 2px solid transparent; transition: 0.2s;
-  }
-  .sys-nav a:hover { color: var(--fg); }
-  .sys-nav a.active { color: var(--fg); border-bottom-color: var(--bull); }
-  .status-strip { display: flex; align-items: center; gap: 16px; color: var(--dim); }
-  .status-live { color: var(--bull); display: flex; align-items: center; gap: 6px; }
-  .status-live::before { content: ''; width: 6px; height: 6px; background: var(--bull); border-radius: 50%; box-shadow: 0 0 8px var(--bull); }
-
-  /* Main Surface */
-  .main-surface {
-    display: flex; flex: 1; padding: 24px; gap: 32px;
-    overflow-y: auto; overflow-x: auto;
-  }
-
-  .stage-label {
-    font-size: 12px; font-weight: 700; color: var(--dim); letter-spacing: 2px;
-    margin-bottom: 24px; border-bottom: 1px dotted var(--line); padding-bottom: 8px;
-    display: flex; gap: 8px; align-items: baseline;
-  }
-  .stage-label span.num { color: var(--accent); }
-
-  /* Flow Connectors */
-  .flow-down {
-    display: flex; justify-content: center; padding: 12px 0; color: var(--line); font-size: 14px;
-  }
-
-  /* Col 1: Sense & Reason */
-  .col-input { flex: 0 0 280px; display: flex; flex-direction: column; }
-
-  .f-node {
-    display: flex; justify-content: space-between;
-    padding: 12px 16px; border: 1px solid var(--border); background: rgba(255,255,255,0.02);
-    margin-bottom: 8px;
-  }
-  .f-node.eng { border-right: 2px solid var(--dim); padding: 8px 12px; }
-  .f-node.eng.bullish { border-right-color: var(--bull); }
-  .f-node.eng.bearish { border-right-color: var(--bear); }
-
-  /* Col 2: Challenge & Adapt */
-  .col-synthesis { flex: 0 0 340px; display: flex; flex-direction: column; }
-
-  .risk-pressure {
-    padding: 16px; border: 1px solid var(--bear); background: var(--bear-dim);
-    box-shadow: inset 0 0 15px rgba(239,68,68,0.05);
-    margin-bottom: 16px;
-  }
-
-  .committee-tree {
-    display: flex; gap: 16px; align-items: center; border: 1px solid var(--border);
-    padding: 16px; background: rgba(255,255,255,0.02);
-  }
-  .c-members {
-    display: flex; flex-direction: column; gap: 12px; flex: 1; position: relative;
-  }
-  .c-members::after {
-    content: ''; position: absolute; right: -8px; top: 12px; bottom: 12px; border-right: 1px solid var(--line);
-  }
-  .c-mem {
-    display: flex; justify-content: space-between; font-size: 9px; position: relative;
-  }
-  .c-mem::after {
-    content: ''; position: absolute; right: -8px; top: 50%; width: 8px; border-top: 1px solid var(--line);
-  }
-
-  .c-consensus {
-    display: flex; flex-direction: column; align-items: center; gap: 4px; position: relative;
-    padding-left: 8px;
-  }
-  .c-consensus::before {
-    content: ''; position: absolute; left: 0; top: 50%; width: 8px; border-top: 1px solid var(--line);
-  }
-
-  .lenses-wrapper { margin-top: 0px; display: flex; flex-direction: column; }
-  .shared-int {
-    display: flex; flex-direction: column; padding: 12px; align-items: center; gap: 8px;
-    border: 1px solid var(--border); background: rgba(255,255,255,0.02);
-  }
-  .s-val-row { display: flex; gap: 24px; }
-  .s-val { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-  .s-val span:first-child { font-size: 9px; color: var(--dim); }
-
-  .branch-connector {
-    height: 20px; position: relative; margin: 0 16.66%;
-    border-left: 1px solid var(--line); border-right: 1px solid var(--line); border-top: 1px solid var(--line);
-  }
-  .branch-connector::before {
-    content: ''; position: absolute; left: 50%; bottom: 100%; height: 20px; border-left: 1px solid var(--line);
-  }
-  .branch-connector::after {
-    content: ''; position: absolute; left: 50%; top: 0; bottom: 0; border-left: 1px solid var(--line);
-  }
-
-  .lenses-grid {
-    display: grid; grid-template-columns: 1fr 1fr 1fr;
-    border: 1px solid var(--border); background: #010204;
-  }
-  .l-branch {
-    padding: 12px 8px; border-right: 1px solid var(--border);
-    display: flex; flex-direction: column; gap: 8px;
-  }
-  .l-branch:last-child { border-right: none; }
-  .l-branch.action { background: var(--bull-dim); position: relative; }
-  .l-branch.action::after {
-    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--bull);
-  }
-  .l-lbl { font-size: 10px; color: var(--dim); display: flex; justify-content: space-between; }
-  .l-lbl span.bull { font-weight: 700; }
-  .l-param { font-size: 9px; display: flex; justify-content: space-between; border-bottom: 1px dotted var(--line); padding-bottom: 4px; }
-  .l-param:last-child { border-bottom: none; }
-
-  /* Col 3: Output */
-  .col-output { flex: 1; display: flex; flex-direction: column; min-width: 400px; }
-
-  .mega-output {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 24px; border: 1px solid var(--border); background: rgba(0,0,0,0.3);
-    margin-bottom: 24px;
-  }
-  .m-rec { font-size: 10px; color: var(--dim); letter-spacing: 2px; margin-bottom: 8px; }
-  .m-act { font-size: 64px; font-weight: 300; line-height: 0.9; letter-spacing: -2px; }
-  .m-sub { font-size: 12px; font-weight: 500; }
-
-  .market-chart {
-    flex: 1; border: 1px solid var(--border); background: #03060C;
-    position: relative; margin-bottom: 24px; overflow: hidden;
-    min-height: 250px;
-  }
-  .mc-header { position: absolute; top: 12px; left: 16px; z-index: 10; color: var(--dim); font-size: 10px; }
-
-  .history-log {
-    border: 1px solid var(--border); background: rgba(0,0,0,0.3);
-    padding: 12px; height: 160px; overflow-y: auto;
-  }
-  .h-row { display: grid; grid-template-columns: 50px 60px 40px 80px 1fr; padding: 6px 0; border-bottom: 1px dotted var(--line); color: var(--dim); }
-  .h-row:last-child { border-bottom: none; }
-  .h-row.active { color: var(--fg); }
-
-  /* Data Flow Anim */
-  .animated-flow {
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0% { opacity: 0.5; }
-    50% { opacity: 1; box-shadow: 0 0 8px var(--bull); }
-    100% { opacity: 0.5; }
-  }
-
-  /* Responsive Stacking */
-  @media (max-width: 1200px) {
-    .main-surface { flex-direction: column; }
-    .col-input, .col-synthesis, .col-output { flex: none; width: 100%; }
-  }
-
-
-  .view { display: none; }
-  .view.active { display: flex; flex-direction: column; }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MIOS // AURUM — Decision Theatre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ================================================================
+   MIOS AURUM // THE DECISION THEATRE
+   Signal -> Pressure -> Verdict. Depth encodes certainty.
+   ================================================================ */
+:root {
+  --void: #050608;
+  --void-2: #090B10;
+  --panel: rgba(13, 16, 22, 0.72);
+  --panel-solid: #0B0D12;
+  --line: #1B2029;
+  --line-soft: #141821;
+  --ink: #ECE7DB;
+  --ink-2: #B7B2A6;
+  --dim: #7E8694;
+  --faint: #566074;
+  --gold: #D9A441;
+  --gold-bright: #F0C463;
+  --gold-dim: rgba(217, 164, 65, 0.14);
+  --bull: #4CC38A;
+  --bull-dim: rgba(76, 195, 138, 0.12);
+  --bear: #E5484D;
+  --bear-dim: rgba(229, 72, 77, 0.12);
+  --wait: #8A8F98;
+  --warn: #E0A33E;
+  --info: #5AA7D6;
+  --display: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, 'Times New Roman', serif;
+  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0; background: var(--void); color: var(--ink);
+  font-family: var(--mono); font-size: 12px; line-height: 1.5;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+
+/* Ambient stage: vignette + grain + depth fog. Pure CSS, GPU-cheap. */
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(120% 90% at 50% -10%, rgba(217,164,65,0.07), transparent 55%),
+    radial-gradient(90% 70% at 85% 110%, rgba(90,167,214,0.05), transparent 60%),
+    radial-gradient(140% 120% at 50% 50%, transparent 55%, rgba(0,0,0,0.55) 100%);
+}
+body::after {
+  content: ''; position: fixed; inset: -50%; z-index: 1; pointer-events: none; opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+  animation: grain 9s steps(6) infinite;
+}
+@keyframes grain {
+  0% { transform: translate(0,0); } 20% { transform: translate(-2%,1%); }
+  40% { transform: translate(1%,-2%); } 60% { transform: translate(-1%,2%); }
+  80% { transform: translate(2%,1%); } 100% { transform: translate(0,0); }
+}
+
+::selection { background: var(--gold-dim); color: var(--gold-bright); }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--void); }
+::-webkit-scrollbar-thumb { background: #1E2430; border: 2px solid var(--void); border-radius: 6px; }
+
+.gold { color: var(--gold); }
+.bull { color: var(--bull); }
+.bear { color: var(--bear); }
+.dimc { color: var(--dim); }
+.warn { color: var(--warn); }
+.upper { text-transform: uppercase; letter-spacing: 0.14em; }
+.serif { font-family: var(--display); }
+
+/* ============ BOOT VEIL ============ */
+#veil {
+  position: fixed; inset: 0; z-index: 100; background: var(--void);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
+  transition: opacity 0.7s var(--ease), visibility 0.7s;
+}
+#veil.gone { opacity: 0; visibility: hidden; }
+#veil .glyph {
+  width: 54px; height: 54px; border: 1px solid var(--gold-dim); border-radius: 50%;
+  display: grid; place-items: center; color: var(--gold); font-size: 20px; position: relative;
+}
+#veil .glyph::before {
+  content: ''; position: absolute; inset: -7px; border-radius: 50%;
+  border: 1px solid transparent; border-top-color: var(--gold);
+  animation: spin 1.4s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+#veil .v-title { font-family: var(--display); font-size: 20px; letter-spacing: 0.3em; color: var(--ink); }
+#veil .v-sub { font-size: 10px; letter-spacing: 0.25em; color: var(--dim); text-transform: uppercase; }
+
+/* ============ EMPTY STATE ============ */
+#empty-state {
+  position: fixed; inset: 0; z-index: 90; background: var(--void);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 32px; gap: 10px;
+}
+#empty-state .e-ring {
+  width: 92px; height: 92px; border-radius: 50%; border: 1px dashed var(--faint);
+  display: grid; place-items: center; margin-bottom: 14px; color: var(--faint); font-size: 26px;
+}
+#empty-state .e-title { font-family: var(--display); font-size: 30px; letter-spacing: 0.08em; color: var(--ink-2); }
+#empty-state .e-sub { color: var(--dim); max-width: 420px; }
+#empty-state .e-cmd {
+  margin-top: 12px; padding: 10px 18px; border: 1px solid var(--line);
+  background: var(--panel-solid); color: var(--gold); font-size: 12px;
+}
+.hidden { display: none !important; }
+
+/* ============ COMMAND RAIL (sticky instrument strip) ============ */
+#rail {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 60; height: 52px;
+  display: flex; align-items: stretch; border-bottom: 1px solid var(--line-soft);
+  background: rgba(5,6,8,0.82); backdrop-filter: blur(10px);
+}
+.rail-cell {
+  display: flex; align-items: center; gap: 10px; padding: 0 18px;
+  border-right: 1px solid var(--line-soft); white-space: nowrap;
+}
+.rail-cell.grow { flex: 1; border-right: none; }
+#rail .brand { font-family: var(--display); letter-spacing: 0.24em; font-size: 14px; color: var(--ink); }
+#rail .brand b { color: var(--gold); font-weight: 400; }
+.rail-k { font-size: 9px; letter-spacing: 0.2em; color: var(--faint); text-transform: uppercase; }
+.rail-v { font-size: 12px; color: var(--ink-2); }
+#rail-spot { color: var(--gold-bright); font-weight: 600; }
+#rail-nav { display: flex; gap: 2px; margin-left: auto; }
+#rail-nav a {
+  color: var(--dim); text-decoration: none; font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; padding: 6px 12px; border-radius: 2px; transition: color 0.25s, background 0.25s;
+}
+#rail-nav a:hover { color: var(--ink); }
+#rail-nav a.active { color: var(--gold-bright); background: var(--gold-dim); }
+
+/* freshness badge */
+#rail-live { display: flex; align-items: center; gap: 7px; font-size: 10px; letter-spacing: 0.2em; }
+#rail-live .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--bull); box-shadow: 0 0 10px var(--bull); animation: pulse 2.4s ease-in-out infinite; }
+#rail-live.is-stale { color: var(--warn); }
+#rail-live.is-stale .dot { background: var(--warn); box-shadow: 0 0 10px var(--warn); animation: none; }
+@keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.45; transform: scale(0.72); } }
+
+/* provider strip */
+#provider-strip { font-size: 10px; letter-spacing: 0.12em; color: var(--dim); cursor: default; }
+#provider-strip.ok { color: var(--bull); }
+#provider-strip.degraded { color: var(--warn); }
+#provider-strip.down { color: var(--bear); }
+#provider-detail {
+  position: absolute; top: 52px; right: 0; min-width: 260px; max-height: 300px; overflow: auto;
+  background: var(--panel-solid); border: 1px solid var(--line); border-top: none;
+  padding: 10px 14px; display: none; z-index: 61;
+}
+#provider-detail.open { display: block; }
+#provider-detail .pd-row { display: flex; justify-content: space-between; gap: 18px; padding: 3px 0; font-size: 11px; }
+
+/* ============ STAGE / ACTS ============ */
+#stage { position: relative; z-index: 2; padding-top: 52px; }
+
+.act {
+  position: relative; max-width: 1280px; margin: 0 auto; padding: 96px 40px 40px;
+  opacity: 0; transform: translateY(46px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+.act.lit { opacity: 1; transform: none; }
+.act-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 34px; }
+.act-no {
+  font-family: var(--display); font-size: 44px; line-height: 1; color: transparent;
+  -webkit-text-stroke: 1px var(--faint);
+}
+.act-title { font-family: var(--display); font-size: 22px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); }
+.act-sub { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim); }
+.act-rule { flex: 1; height: 1px; background: linear-gradient(90deg, var(--line), transparent); align-self: center; }
+
+.panel {
+  background: var(--panel); border: 1px solid var(--line);
+  backdrop-filter: blur(6px); position: relative;
+}
+.panel::before, .panel::after {
+  content: ''; position: absolute; width: 14px; height: 14px; pointer-events: none;
+}
+.panel::before { top: -1px; left: -1px; border-top: 1px solid var(--gold); border-left: 1px solid var(--gold); }
+.panel::after { bottom: -1px; right: -1px; border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold); }
+.panel-title {
+  font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--dim);
+  padding: 12px 18px; border-bottom: 1px solid var(--line-soft);
+}
+.panel-body { padding: 18px; }
+
+/* ============ ACT I — VERDICT ============ */
+#verdict-grid { display: grid; grid-template-columns: minmax(340px, 1.15fr) minmax(300px, 1fr); gap: 28px; align-items: stretch; }
+
+.verdict-word-wrap { padding: 34px 34px 26px; position: relative; overflow: hidden; }
+.verdict-kicker { font-size: 10px; letter-spacing: 0.3em; color: var(--dim); text-transform: uppercase; margin-bottom: 14px; }
+.verdict-kicker b { color: var(--gold); font-weight: 400; }
+#verdict-word {
+  font-family: var(--display); font-weight: 400; margin: 0;
+  font-size: clamp(64px, 10vw, 128px); line-height: 0.95; letter-spacing: 0.02em;
+  color: var(--ink); text-shadow: 0 0 60px rgba(0,0,0,0.6);
+}
+#verdict-word.is-bull { color: var(--bull); }
+#verdict-word.is-bear { color: var(--bear); }
+#verdict-word.is-wait { color: var(--wait); }
+#verdict-meta { display: flex; gap: 26px; margin-top: 22px; flex-wrap: wrap; }
+.vm { min-width: 86px; }
+.vm .vm-k { font-size: 9px; letter-spacing: 0.2em; color: var(--faint); text-transform: uppercase; }
+.vm .vm-v { font-size: 15px; margin-top: 3px; color: var(--ink-2); }
+
+/* confidence ring */
+#conf-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 26px; gap: 14px; }
+#conf-ring { position: relative; width: 190px; height: 190px; }
+#conf-ring svg { transform: rotate(-90deg); }
+#conf-ring .ring-bg { stroke: var(--line); }
+#conf-ring .ring-val { stroke: var(--gold); stroke-linecap: round; transition: stroke-dashoffset 1.2s var(--ease), stroke 0.6s; filter: drop-shadow(0 0 6px rgba(217,164,65,0.35)); }
+#conf-num { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+#conf-num .big { font-family: var(--display); font-size: 46px; line-height: 1; color: var(--ink); }
+#conf-num .cap { font-size: 9px; letter-spacing: 0.26em; color: var(--dim); margin-top: 6px; text-transform: uppercase; }
+#conf-note { font-size: 10px; color: var(--dim); text-align: center; max-width: 220px; letter-spacing: 0.06em; }
+
+/* thesis */
+#thesis-panel .panel-body { font-size: 13px; color: var(--ink-2); line-height: 1.75; }
+#thesis-panel .ev-row { display: flex; gap: 22px; margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--line); }
+#thesis-panel .ev-count { font-size: 10px; letter-spacing: 0.14em; color: var(--dim); text-transform: uppercase; }
+#thesis-panel .ev-count b { font-size: 16px; display: block; font-weight: 600; }
+
+/* ============ MODE EXECUTION BOARD ============ */
+#modes-board { margin-top: 28px; }
+#modes-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
+#modes-head .mh-title { font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink-2); }
+#modes-head .mh-note { font-size: 9px; letter-spacing: 0.16em; color: var(--faint); text-transform: uppercase; }
+#lanes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+.lane { border: 1px solid var(--line); background: var(--panel); position: relative; overflow: hidden; transition: border-color 0.4s, transform 0.4s var(--ease); }
+.lane:hover { transform: translateY(-3px); }
+.lane-top { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-bottom: 1px solid var(--line-soft); }
+.lane-mode { font-family: var(--display); font-size: 17px; letter-spacing: 0.1em; color: var(--ink-2); }
+.lane-badge { font-size: 9px; letter-spacing: 0.22em; padding: 4px 10px; border: 1px solid var(--line); color: var(--dim); text-transform: uppercase; }
+.lane.is-wait .lane-badge { color: var(--wait); border-color: rgba(138,143,152,0.35); }
+.lane.is-live { border-color: rgba(217,164,65,0.55); box-shadow: 0 0 34px rgba(217,164,65,0.07) inset; }
+.lane.is-live .lane-badge { color: var(--gold-bright); border-color: var(--gold); background: var(--gold-dim); }
+.lane.is-live::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  animation: sweep 2.6s ease-in-out infinite;
+}
+@keyframes sweep { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+.lane-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px; min-height: 118px; }
+.lane-reason { font-size: 11px; color: var(--dim); line-height: 1.55; }
+.lane-levels { display: grid; grid-template-columns: 1fr 1fr; gap: 7px 14px; margin-top: 4px; }
+.lv { display: flex; justify-content: space-between; border-bottom: 1px dotted var(--line-soft); padding: 3px 0; }
+.lv .lv-k { font-size: 9px; letter-spacing: 0.18em; color: var(--faint); text-transform: uppercase; }
+.lv .lv-v { font-size: 11px; color: var(--ink-2); }
+.lv .lv-v.entry { color: var(--gold-bright); }
+.lv .lv-v.tp { color: var(--bull); }
+.lv .lv-v.sl { color: var(--bear); }
+.lane-foot { font-size: 9px; letter-spacing: 0.14em; color: var(--faint); text-transform: uppercase; margin-top: auto; padding-top: 8px; }
+.lane.is-wait .conservative { color: var(--wait); }
+
+/* ============ ACT II — SIGNAL ============ */
+#signal-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; align-items: stretch; }
+#constellation-wrap { position: relative; height: 420px; }
+#constellation { position: absolute; inset: 0; width: 100%; height: 100%; }
+#const-legend { position: absolute; left: 14px; bottom: 10px; font-size: 9px; letter-spacing: 0.14em; color: var(--faint); text-transform: uppercase; }
+#regime-strip { position: absolute; top: 12px; right: 14px; font-size: 10px; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; }
+
+#engine-list { display: flex; flex-direction: column; }
+.engine-row { border-bottom: 1px solid var(--line-soft); }
+.engine-row:last-child { border-bottom: none; }
+.engine-head {
+  display: grid; grid-template-columns: 110px 60px 66px 1fr 52px 16px; gap: 12px; align-items: center;
+  padding: 11px 16px; cursor: pointer; transition: background 0.25s; width: 100%;
+  background: none; border: none; color: inherit; font: inherit; text-align: left;
+}
+.engine-head:hover { background: rgba(255,255,255,0.02); }
+.engine-name { font-size: 10px; letter-spacing: 0.2em; color: var(--ink-2); text-transform: uppercase; }
+.engine-score { font-size: 13px; font-weight: 600; }
+/* Engine bias chip: real persisted analyst direction, never inferred from score. */
+.bias-chip {
+  font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; text-align: center;
+  padding: 2px 0; border: 1px solid var(--line); color: var(--dim); white-space: nowrap;
+}
+.bias-chip.bull { color: var(--bull); border-color: rgba(76,195,138,0.5); }
+.bias-chip.bear { color: var(--bear); border-color: rgba(229,72,77,0.5); }
+.bias-chip.dimc { color: var(--dim); border-style: dashed; }
+.engine-bar { height: 3px; background: var(--line-soft); position: relative; overflow: hidden; }
+.engine-bar i { position: absolute; inset: 0; right: auto; background: var(--gold); transition: width 1s var(--ease); }
+.engine-meta { font-size: 9px; color: var(--faint); letter-spacing: 0.1em; text-align: right; }
+.engine-caret { color: var(--faint); transition: transform 0.3s; font-size: 10px; }
+.engine-row.open .engine-caret { transform: rotate(90deg); color: var(--gold); }
+.engine-detail { display: none; padding: 4px 18px 16px; }
+.engine-row.open .engine-detail { display: block; }
+.ev-item { display: flex; gap: 10px; padding: 6px 0; border-bottom: 1px dotted var(--line-soft); font-size: 11px; }
+.ev-item:last-child { border-bottom: none; }
+.ev-tag { font-size: 8px; letter-spacing: 0.18em; padding: 2px 7px; height: fit-content; margin-top: 2px; text-transform: uppercase; white-space: nowrap; }
+.ev-tag.for { color: var(--bull); border: 1px solid rgba(76,195,138,0.4); }
+.ev-tag.against { color: var(--bear); border: 1px solid rgba(229,72,77,0.4); }
+.ev-tag.fact { color: var(--info); border: 1px solid rgba(90,167,214,0.4); }
+.ev-desc { color: var(--ink-2); line-height: 1.5; }
+.ev-src { color: var(--faint); font-size: 9px; margin-top: 2px; letter-spacing: 0.08em; }
+
+/* ============ ACT III — PRESSURE ============ */
+#pressure-grid { display: grid; grid-template-columns: 1fr 1.25fr 1fr; gap: 20px; }
+#pb-gauge { display: flex; flex-direction: column; align-items: center; padding: 24px 18px 18px; }
+#pb-dial { position: relative; width: 200px; height: 110px; }
+#pb-needle {
+  position: absolute; left: 50%; bottom: 4px; width: 2px; height: 88px;
+  background: linear-gradient(to top, var(--gold), transparent);
+  transform-origin: bottom center; transform: rotate(-90deg);
+  transition: transform 1.3s var(--ease);
+}
+#pb-score-big { font-family: var(--display); font-size: 40px; margin-top: 10px; }
+#pb-level { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; margin-top: 2px; }
+#pb-drivers { margin: 14px 0 0; padding: 0; list-style: none; width: 100%; }
+#pb-drivers li { font-size: 11px; color: var(--ink-2); padding: 6px 0 6px 16px; border-bottom: 1px dotted var(--line-soft); position: relative; line-height: 1.5; }
+#pb-drivers li::before { content: '›'; position: absolute; left: 2px; color: var(--warn); }
+#pb-warnings li::before { content: '!'; color: var(--bear); font-weight: 700; }
+
+#committee-list { display: flex; flex-direction: column; gap: 10px; }
+.vote-row { display: grid; grid-template-columns: 130px 1fr 54px; gap: 12px; align-items: center; }
+.vote-name { font-size: 10px; letter-spacing: 0.14em; color: var(--ink-2); text-transform: uppercase; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.vote-bar { height: 16px; background: var(--line-soft); position: relative; overflow: hidden; }
+.vote-bar i { position: absolute; top: 0; bottom: 0; left: 50%; background: var(--bull-dim); border-right: 1px solid var(--bull); transition: width 0.9s var(--ease), background 0.4s, border-color 0.4s; }
+.vote-bar i.neg { left: auto; right: 50%; border-right: none; border-left: 1px solid var(--bear); background: var(--bear-dim); }
+.vote-bar .mid { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--line); }
+.vote-val { font-size: 11px; text-align: right; }
+#committee-meta { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line); font-size: 10px; color: var(--dim); letter-spacing: 0.08em; line-height: 1.8; }
+#committee-meta b { color: var(--ink-2); font-weight: 400; }
+
+#invalidation-list, #risk-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+#invalidation-list li, #risk-list li { font-size: 11px; color: var(--ink-2); line-height: 1.55; padding-left: 16px; position: relative; }
+#invalidation-list li::before { content: '×'; position: absolute; left: 0; color: var(--bear); }
+.risk-sev { font-size: 8px; letter-spacing: 0.16em; text-transform: uppercase; margin-left: 8px; }
+.risk-sev.high { color: var(--bear); } .risk-sev.medium { color: var(--warn); } .risk-sev.low { color: var(--bull); }
+/* CRITICAL severity must be unmistakable: filled alarm chip with an alert pulse. */
+.risk-sev.critical {
+  color: #FF7A7E; background: rgba(229,72,77,0.3); border: 1px solid var(--bear);
+  padding: 2px 7px; margin-left: 8px; font-weight: 700;
+  animation: criticalpulse 1.6s ease-in-out infinite;
+}
+@keyframes criticalpulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(229,72,77,0.4); } 50% { box-shadow: 0 0 14px 2px rgba(229,72,77,0.55); } }
+#why-blocks { margin-top: 16px; display: grid; gap: 10px; }
+.why-block { border-left: 2px solid var(--line); padding: 6px 0 6px 12px; }
+.why-block .wk { font-size: 9px; letter-spacing: 0.2em; color: var(--faint); text-transform: uppercase; }
+.why-block .wv { font-size: 11px; color: var(--dim); line-height: 1.55; margin-top: 3px; }
+
+/* ============ ACT IV — GEOMETRY (price corridor) ============ */
+#corridor-stage {
+  position: relative; height: 380px; perspective: 900px; overflow: hidden;
+  background: radial-gradient(80% 90% at 50% 100%, rgba(217,164,65,0.05), transparent 60%);
+}
+#corridor-planes { position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateX(24deg); }
+.c-plane {
+  position: absolute; left: 6%; right: 6%; height: 0; border-top: 1px dashed var(--faint);
+  transform-style: preserve-3d; transition: transform 1s var(--ease), opacity 1s;
+}
+.c-plane .c-label {
+  position: absolute; right: 0; top: -16px; font-size: 10px; letter-spacing: 0.14em;
+  display: flex; gap: 10px; align-items: baseline; background: var(--void); padding: 0 8px;
+}
+.c-plane .c-price { font-weight: 600; }
+.c-plane.pl-spot { border-top: 1px solid var(--gold); }
+.c-plane.pl-spot .c-label { color: var(--gold-bright); }
+.c-plane.pl-entry { border-top: 1px dashed var(--warn); } .c-plane.pl-entry .c-label { color: var(--warn); }
+.c-plane.pl-tp { border-top: 1px dashed var(--bull); } .c-plane.pl-tp .c-label { color: var(--bull); }
+.c-plane.pl-sl { border-top: 1px dashed var(--bear); } .c-plane.pl-sl .c-label { color: var(--bear); }
+.c-plane.pl-sr { border-top: 1px dashed var(--faint); opacity: 0.75; } .c-plane.pl-sr .c-label { color: var(--dim); }
+#corridor-note { position: absolute; left: 0; right: 0; bottom: 12px; text-align: center; font-size: 10px; letter-spacing: 0.22em; color: var(--dim); text-transform: uppercase; }
+#corridor-side { display: flex; flex-direction: column; gap: 10px; }
+#geometry-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 22px; }
+.geo-stat { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dotted var(--line-soft); font-size: 11px; }
+.geo-stat .gk { color: var(--faint); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; }
+.geo-stat .gv { color: var(--ink-2); }
+
+/* ============ ACT V — MEMORY (history depth ribbon) ============ */
+#memory-scene { perspective: 700px; overflow-x: auto; overflow-y: hidden; padding: 30px 4px 26px; }
+#memory-track { display: flex; gap: 14px; transform-style: preserve-3d; width: max-content; }
+.mem-card {
+  min-width: 168px; border: 1px solid var(--line); background: var(--panel-solid);
+  padding: 12px 14px; transform-style: preserve-3d; transition: transform 0.5s var(--ease), border-color 0.4s;
+}
+.mem-card:hover { transform: translateZ(26px) !important; border-color: var(--gold); }
+.mem-card .mc-time { font-size: 9px; letter-spacing: 0.14em; color: var(--faint); }
+.mem-card .mc-act { font-family: var(--display); font-size: 22px; margin: 4px 0 2px; }
+.mem-card .mc-meta { font-size: 10px; color: var(--dim); display: flex; gap: 10px; }
+#memory-stats { display: flex; gap: 34px; margin-bottom: 8px; flex-wrap: wrap; }
+.mem-stat .ms-v { font-family: var(--display); font-size: 30px; color: var(--ink); }
+.mem-stat .ms-k { font-size: 9px; letter-spacing: 0.22em; color: var(--faint); text-transform: uppercase; margin-top: 2px; }
+
+/* ============ ACT VI — TELEMETRY ============ */
+#telemetry-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.tele-counts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.tele-cell { border: 1px solid var(--line-soft); padding: 12px; }
+.tele-cell .tc-v { font-family: var(--display); font-size: 24px; color: var(--ink); }
+.tele-cell .tc-k { font-size: 8px; letter-spacing: 0.2em; color: var(--faint); text-transform: uppercase; margin-top: 3px; }
+#engine-runtimes .rt-row { display: flex; justify-content: space-between; font-size: 11px; padding: 5px 0; border-bottom: 1px dotted var(--line-soft); }
+#engine-runtimes .rt-row:last-child { border-bottom: none; }
+#decision-stamp { font-size: 10px; letter-spacing: 0.1em; color: var(--dim); line-height: 2; }
+#decision-stamp b { color: var(--ink-2); font-weight: 400; }
+
+/* ============ FOOTER ============ */
+#colophon { text-align: center; padding: 60px 20px 46px; color: var(--faint); font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; position: relative; z-index: 2; }
+
+/* ============ STALE FOG ============ */
+body.is-stale #stage { filter: saturate(0.55) brightness(0.88); }
+body.is-stale #stale-stamp { display: block; }
+#stale-stamp {
+  display: none; position: fixed; top: 66px; right: 16px; z-index: 70;
+  pointer-events: none;
+  border: 1px solid var(--warn); color: var(--warn); padding: 6px 14px;
+  font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+  background: rgba(5,6,8,0.8); transform: rotate(2deg);
+}
+
+/* value decode flash */
+.flash { animation: vflash 0.7s var(--ease); }
+@keyframes vflash { 0% { color: var(--gold-bright); text-shadow: 0 0 14px rgba(240,196,99,0.5); } 100% { } }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1080px) {
+  #verdict-grid, #signal-grid, #geometry-grid { grid-template-columns: 1fr; }
+  #pressure-grid, #telemetry-grid { grid-template-columns: 1fr 1fr; }
+  #lanes { grid-template-columns: 1fr; }
+  .act { padding: 70px 22px 30px; }
+}
+@media (max-width: 720px) {
+  #pressure-grid, #telemetry-grid { grid-template-columns: 1fr; }
+  #rail { height: auto; flex-wrap: wrap; }
+  .rail-cell { border-right: none; padding: 8px 12px; }
+  #rail-nav { width: 100%; overflow-x: auto; }
+  #stage { padding-top: 96px; }
+  #verdict-word { font-size: clamp(52px, 15vw, 90px); }
+  .engine-head { grid-template-columns: 92px 44px 56px 1fr 16px; }
+  .engine-bar { display: none; }
+  .engine-meta { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  html { scroll-behavior: auto; }
+  .act { opacity: 1; transform: none; }
+}
 </style>
 </head>
 <body>
-  <div id="loader"><div style="font-size: 24px; color: var(--accent); margin-bottom: 16px;">⬡</div><div class="dim uppercase">Loading MIOS V5...</div></div>
+""" + """
+<!-- ============ BOOT VEIL ============ -->
+<div id="veil">
+  <div class="glyph">⬡</div>
+  <div class="v-title serif">MIOS AURUM</div>
+  <div class="v-sub">Calibrating instruments…</div>
+</div>
 
-  <div id="empty-state" class="hidden">
-    <div style="font-size: 24px; color: var(--accent); margin-bottom: 16px;">⬡</div>
-    <div class="uppercase" style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">No decision yet</div>
-    <div class="dim" style="margin-bottom: 16px;">The decision journal is empty. Run one intelligence cycle to populate the dashboard.</div>
-    <div class="mono" style="padding: 8px 12px; border: 1px solid var(--border); background: rgba(255,255,255,0.02);">Run: python -m app.main run-once</div>
-  </div>
+<!-- ============ EMPTY STATE ============ -->
+<div id="empty-state" class="hidden">
+  <div class="e-ring">⬡</div>
+  <div class="e-title serif">The observatory is dark</div>
+  <div class="e-sub dimc">No decision exists in the journal yet. Run one intelligence cycle and the theatre will come alive.</div>
+  <div class="e-cmd">No decision yet — Run: python -m app.main run-once</div>
+</div>
 
-  <header>
-    <div class="brand">
-      <span class="brand-icon">⬡</span>
-      <span>MIOS // QUANT TERMINAL</span>
-    </div>
-    <div class="header-ticker mono">
-      <span class="text-secondary">XAU/USD</span>
-      <span class="price-value" id="hdr-spot">--</span>
-    </div>
-    <div class="header-meta">
-      <div class="uppercase">System <span id="hdr-live" class="text-bullish">LIVE</span><span class="system-pulse"></span></div>
-      <div id="hdr-time" class="mono">DECISION -- · AGE --</div>
-    </div>
-  </header>
+<div id="stale-stamp">Decision stale — awaiting new cycle</div>
 
-  <div class="container">
-
-  <header class="sys-header">
-     <div class="brand">MIOS //</div>
-     <nav class="sys-nav">
-        <a href="#overview" class="nav-item active" data-view="view-overview">Overview</a>
-        <a href="#modes" class="nav-item" data-view="view-modes">Execution Modes</a>
-        <a href="#intelligence" class="nav-item" data-view="view-intel">Intelligence</a>
-        <a href="#pipeline" class="nav-item" data-view="view-pipeline">Pipeline Trace</a>
-        <a href="#history" class="nav-item" data-view="view-history">History</a>
-     </nav>
-     <div class="status-strip">
-        <div class="status-live js-live">LIVE</div>
-        <div id="hdr-sys-time">SYS: --:--Z</div>
-        <div><span class="accent">XAU/USD <span id="hdr-spot-strip">--</span></span></div>
-        <div id="provider-strip" class="dim">PROVIDERS: --</div>
-     </div>
-  </header>
-
-
-
-    <main class="main-content">
-      <!-- 1. OVERVIEW -->
-      <div id="view-overview" class="view active">
-<div class="main-surface">
-
-     <!-- COGNITIVE SENSORS -->
-     <section class="col-input">
-        <div class="stage-label"><span class="num">01 /</span> SENSE</div>
-
-        <div class="f-node"><span>MARKET DATA</span><span class="accent" id="val-spot">--</span></div>
-        <div class="f-node"><span>EVENTS</span><span class="dim" id="val-events">--</span></div>
-
-        <div class="flow-down">↓</div>
-
-        <div class="stage-label"><span class="num">02 /</span> REASON</div>
-
-        <div id="engine-array">
-          <div class="f-node eng"><span>TECHNICAL</span><span class="dim">--</span></div>
-          <div class="f-node eng"><span>MACRO</span><span class="dim">--</span></div>
-          <div class="f-node eng"><span>INSTITUTIONAL</span><span class="dim">--</span></div>
-          <div class="f-node eng"><span>NEWS/SENT</span><span class="dim">--</span></div>
-          <div class="f-node eng"><span>GEOPOLITICAL</span><span class="dim">--</span></div>
-          <div class="f-node eng"><span>REGIME</span><span class="dim">--</span></div>
-        </div>
-     </section>
-
-     <!-- SYNTHESIS & EXECUTION -->
-     <section class="col-synthesis">
-        <div class="stage-label"><span class="num">03 /</span> CHALLENGE</div>
-
-        <div class="risk-pressure" id="pullback-node">
-           <div class="bear uppercase" style="font-size:10px; display:flex; justify-content:space-between;">
-              <span id="pb-lbl">PULLBACK RISK PRESSURE</span> <span id="pb-score">--</span>
-           </div>
-           <ul id="pb-drivers" style="margin:8px 0 0 16px; padding:0; font-size:9px; color:var(--dim);">
-             <li>--</li>
-           </ul>
-        </div>
-
-        <div class="flow-down">↓</div>
-
-        <div class="committee-tree">
-           <div class="c-members" id="c-members-container">
-              <div class="c-mem"><span class="dim">--</span> <span class="dim">--</span></div>
-              <div class="c-mem"><span class="dim">--</span> <span class="dim">--</span></div>
-              <div class="c-mem"><span class="dim">--</span> <span class="dim">--</span></div>
-           </div>
-           <div class="c-consensus">
-              <div class="dim" style="font-size:9px;">CONSENSUS</div>
-              <div class="dim" id="consensus-val" style="font-weight:700;">--</div>
-              <div class="dim" id="consensus-conf">--</div>
-           </div>
-        </div>
-
-        <div class="flow-down">↓</div>
-
-        <div class="stage-label"><span class="num">04 /</span> ADAPT</div>
-
-        <div class="lenses-wrapper">
-           <div class="shared-int">
-              <div class="dim" style="font-size:9px; letter-spacing:1px;">ONE MARKET STATE</div>
-              <div class="s-val-row">
-                 <div class="s-val"><span>BIAS</span><span class="dim" id="shared-bias">--</span></div>
-                 <div class="s-val"><span>MOVE</span><span class="dim" id="shared-move">--</span></div>
-                 <div class="s-val"><span>REGIME</span><span class="dim" id="shared-regime">--</span></div>
-                 <div class="s-val"><span>RISK</span><span class="dim" id="shared-risk">--</span></div>
-              </div>
-           </div>
-
-           <div class="branch-connector"></div>
-
-           <div class="lenses-grid" id="lenses-container">
-              <div class="l-branch">
-                 <div class="l-lbl">PHYSICAL <span class="dim">--</span></div>
-                 <div class="dim" style="font-size:9px; margin-top:8px;">Awaiting policy data</div>
-              </div>
-              <div class="l-branch">
-                 <div class="l-lbl">FOREX <span class="dim">--</span></div>
-                 <div class="dim" style="font-size:9px; margin-top:8px;">Awaiting policy data</div>
-              </div>
-              <div class="l-branch">
-                 <div class="l-lbl">ETF <span class="dim">--</span></div>
-                 <div class="dim" style="font-size:9px; margin-top:8px;">Awaiting policy data</div>
-              </div>
-           </div>
-        </div>
-     </section>
-
-     <!-- OUTPUT & LOG -->
-     <section class="col-output">
-        <div class="stage-label"><span class="num">05 /</span> DECIDE</div>
-
-        <div class="mega-output">
-           <div>
-             <div class="m-rec">CANONICAL OUTLOOK</div>
-             <div class="m-act dim" id="mega-action">--</div>
-           </div>
-           <div style="text-align:right;">
-             <div class="m-sub" id="mega-conf">--</div>
-             <div class="dim" style="font-size:10px; margin-top:4px;" id="mega-move">EXPECTED MOVE: --</div>
-             <div class="m-rec" style="margin-top:10px;">EXECUTION STATUS</div>
-             <div class="dim" style="font-size:10px;" id="mega-actionable">--</div>
-           </div>
-        </div>
-
-        <div class="market-chart" id="chart-area">
-           <div class="mc-header">XAU/USD // MARKET STRUCTURE</div>
-           <div class="dim" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:10px;">Market structure renders after the first decision</div>
-        </div>
-
-        <div class="history-log">
-           <div class="dim uppercase" style="margin-bottom:8px; font-weight:700;">Chronological Trace Log</div>
-           <div id="v5-history-body">
-             <div class="h-row"><span>--:--</span><span class="dim">--</span><span>--</span><span>--</span><span>--</span></div>
-           </div>
-        </div>
-     </section>
-
+<!-- ============ COMMAND RAIL ============ -->
+<div id="rail">
+  <div class="rail-cell"><span class="brand serif">MIOS <b>//</b> AURUM</span></div>
+  <div class="rail-cell"><span class="rail-k">XAU/USD</span><span class="rail-v" id="rail-spot">--</span></div>
+  <div class="rail-cell"><div id="rail-live"><span class="dot"></span><span id="rail-live-txt">--</span></div></div>
+  <div class="rail-cell"><span class="rail-k">Decision</span><span class="rail-v" id="rail-time">--</span></div>
+  <div class="rail-cell grow">
+    <span id="provider-strip" title="Provider status">PROVIDERS --</span>
+    <div id="provider-detail"></div>
+    <nav id="rail-nav">
+      <a href="#act-verdict" data-act="act-verdict" class="active">Verdict</a>
+      <a href="#act-signal" data-act="act-signal">Signal</a>
+      <a href="#act-pressure" data-act="act-pressure">Pressure</a>
+      <a href="#act-geometry" data-act="act-geometry">Geometry</a>
+      <a href="#act-memory" data-act="act-memory">Memory</a>
+      <a href="#act-telemetry" data-act="act-telemetry">Telemetry</a>
+    </nav>
   </div>
 </div>
-      </div>
 
-      <!-- 2. EXECUTION MODES --><!-- 2. EXECUTION MODES -->
-      <div id="view-modes" class="view">
-        <h2 class="uppercase text-secondary" style="font-size:14px; margin-top:0;">Shared Market Intelligence</h2>
-        <div class="panel" style="margin-bottom:24px;">
-          <div class="panel-body grid-3" style="grid-template-columns: repeat(4, 1fr); text-align:center;">
-            <div>
-              <div class="uppercase text-secondary" style="font-size:11px; font-weight:600;">Bias</div>
-              <div class="mono text-bullish mt-xs" id="modes-bias" style="font-size:14px; font-weight:600; margin-top:4px;">--</div>
-            </div>
-            <div>
-              <div class="uppercase text-secondary" style="font-size:11px; font-weight:600;">Confidence</div>
-              <div class="mono text-bullish mt-xs" id="modes-conf" style="font-size:14px; font-weight:600; margin-top:4px;">--</div>
-            </div>
-            <div>
-              <div class="uppercase text-secondary" style="font-size:11px; font-weight:600;">Expected Move</div>
-              <div class="mono text-info mt-xs" id="modes-move" style="font-size:14px; font-weight:600; margin-top:4px;">--</div>
-            </div>
-            <div>
-              <div class="uppercase text-secondary" style="font-size:11px; font-weight:600;">Regime</div>
-              <div class="mono text-info mt-xs" id="modes-regime" style="font-size:14px; font-weight:600; margin-top:4px;">--</div>
-            </div>
-          </div>
-        </div>
-        <div class="grid-3" id="modes-grid">
-          <!-- Populated by JS -->
-        </div>
-      </div>
+<div id="stage">
 
-      <!-- 3. INTELLIGENCE & COMMITTEE -->
-      <div id="view-intel" class="view">
-        <div class="grid-2">
-          <div class="panel">
-            <div class="panel-header uppercase">Intelligence Constellation</div>
-            <div class="panel-body">
-              <div id="constellation" style="display:flex; flex-direction:column; gap:16px;">
-                <!-- Fallback to list/bars if complex radial graph is overkill for HTML without libraries -->
-              </div>
-            </div>
-          </div>
-          <div class="panel">
-            <div class="panel-header uppercase">AI Committee Detailed View</div>
-            <div style="overflow-x:auto;">
-              <table id="intel-committee-table">
-                <thead>
-                  <tr>
-                    <th>Member</th>
-                    <th>Vote</th>
-                    <th>Conf</th>
-                    <th>Provider</th>
-                    <th>Model</th>
-                    <th>Latency</th>
-                  </tr>
-                </thead>
-                <tbody id="intel-committee-body">
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4. PIPELINE TRACE -->
-      <div id="view-pipeline" class="view">
-        <h2 class="uppercase text-secondary" style="font-size:14px; margin-top:0;">Pipeline Trace (Live Flow)</h2>
-        <div class="panel">
-          <div class="panel-body pipeline-track" id="pipeline-track">
-            <!-- Populated by JS -->
-          </div>
-        </div>
-      </div>
-
-      <!-- 5. HISTORY -->
-      <div id="view-history" class="view">
-        <div class="panel">
-          <div class="panel-header uppercase">Decision Journal</div>
-          <div style="overflow-x:auto;">
-            <table id="history-table">
-              <thead>
-                <tr>
-                  <th>Time</th>
-                  <th>Action</th>
-                  <th>Confidence</th>
-                  <th>Regime</th>
-                </tr>
-              </thead>
-              <tbody id="history-body">
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-    </main>
+<!-- ================= ACT I — VERDICT ================= -->
+<section class="act" id="act-verdict">
+  <div class="act-head">
+    <span class="act-no">I</span>
+    <div><div class="act-title serif">Verdict</div><div class="act-sub">Canonical outlook — what MIOS currently believes</div></div>
+    <div class="act-rule"></div>
   </div>
 
-  <script>
-    const _missingEl = { textContent: '', innerHTML: '', className: '', style: {}, classList: { add() {}, remove() {} }, setAttribute() {}, getAttribute() { return null; } };
-    const el = id => document.getElementById(id) || _missingEl;
-    const escape = s => String(s??'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+  <div id="verdict-grid">
+    <div class="panel">
+      <div class="verdict-word-wrap">
+        <div class="verdict-kicker"><b>CANONICAL OUTLOOK</b> · delivered, not executed · decision support only</div>
+        <h1 id="verdict-word" class="serif is-wait">--</h1>
+        <div id="verdict-meta">
+          <div class="vm"><div class="vm-k">Regime</div><div class="vm-v" id="v-regime">--</div></div>
+          <div class="vm"><div class="vm-k">Expected move</div><div class="vm-v" id="v-move">--</div></div>
+          <div class="vm"><div class="vm-k">Horizon</div><div class="vm-v" id="v-horizon">--</div></div>
+          <div class="vm"><div class="vm-k">Opportunity</div><div class="vm-v" id="v-opp">--</div></div>
+        </div>
+      </div>
+      <div class="panel-body" id="thesis-panel" style="border-top:1px solid var(--line-soft);">
+        <div class="panel-title" style="padding:0 0 10px;border:none;">Thesis — REASON for the call</div>
+        <div id="thesis-text" class="dimc">Awaiting decision…</div>
+        <div class="ev-row">
+          <div class="ev-count"><b id="ev-for-n" class="bull">0</b> supporting</div>
+          <div class="ev-count"><b id="ev-against-n" class="bear">0</b> contradicting</div>
+          <div class="ev-count"><b id="ev-risk-n" class="warn">0</b> risks tracked</div>
+        </div>
+      </div>
+    </div>
 
-    function actionColor(a) {
-      if(!a) return 'var(--text-secondary)';
-      const s = String(a).toUpperCase();
-      if(s.includes('BUY') || s.includes('LONG') || s.includes('BULL')) return 'var(--color-bullish)';
-      if(s.includes('SELL') || s.includes('SHORT') || s.includes('BEAR')) return 'var(--color-bearish)';
-      if(s.includes('WAIT') || s.includes('HOLD') || s.includes('NEUTRAL') || s.includes('CAUTION')) return 'var(--color-neutral)';
-      return 'var(--text-secondary)';
+    <div class="panel" id="conf-wrap">
+      <div class="panel-title" style="align-self:stretch;">Conviction</div>
+      <div id="conf-ring">
+        <svg width="190" height="190" viewBox="0 0 190 190">
+          <circle class="ring-bg" cx="95" cy="95" r="82" fill="none" stroke-width="2"/>
+          <circle class="ring-val" id="conf-arc" cx="95" cy="95" r="82" fill="none" stroke-width="3"
+                  stroke-dasharray="515.2" stroke-dashoffset="515.2"/>
+        </svg>
+        <div id="conf-num"><span class="big serif" id="conf-val">--</span><span class="cap">% confidence</span></div>
+      </div>
+      <div id="conf-note">Posterior conviction after engine weighting, evidence penalties and committee adjustment.</div>
+    </div>
+  </div>
+
+  <!-- MODE EXECUTION BOARD -->
+  <div id="modes-board">
+    <div id="modes-head">
+      <span class="mh-title">Mode execution status</span>
+      <span class="mh-note">Distinct from the canonical outlook — each mode decides independently</span>
+    </div>
+    <div id="lanes">
+      <div class="lane is-wait" id="lane-physical">
+        <div class="lane-top"><span class="lane-mode serif">Physical</span><span class="lane-badge">--</span></div>
+        <div class="lane-body"><div class="lane-reason">Awaiting policy data</div></div>
+      </div>
+      <div class="lane is-wait" id="lane-forex">
+        <div class="lane-top"><span class="lane-mode serif">Forex</span><span class="lane-badge">--</span></div>
+        <div class="lane-body"><div class="lane-reason">Awaiting policy data</div></div>
+      </div>
+      <div class="lane is-wait" id="lane-etf">
+        <div class="lane-top"><span class="lane-mode serif">ETF</span><span class="lane-badge">--</span></div>
+        <div class="lane-body"><div class="lane-reason">Awaiting policy data</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ACT II — SIGNAL ================= -->
+<section class="act" id="act-signal">
+  <div class="act-head">
+    <span class="act-no">II</span>
+    <div><div class="act-title serif">Signal</div><div class="act-sub">What the deterministic engines heard</div></div>
+    <div class="act-rule"></div>
+  </div>
+
+  <div id="signal-grid">
+    <div class="panel">
+      <div class="panel-title">Engine constellation — node size = score · hue = persisted analyst bias · outline = bias not on record</div>
+      <div id="constellation-wrap">
+        <canvas id="constellation"></canvas>
+        <div id="regime-strip">REGIME --</div>
+        <div id="const-legend">TECH · MACRO · INST · NEWS · GEO · REGIME</div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Engine ledger — expand for evidence</div>
+      <div id="engine-list"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ACT III — PRESSURE ================= -->
+<section class="act" id="act-pressure">
+  <div class="act-head">
+    <span class="act-no">III</span>
+    <div><div class="act-title serif">Pressure</div><div class="act-sub">What challenges the thesis — and what would break it</div></div>
+    <div class="act-rule"></div>
+  </div>
+
+  <div id="pressure-grid">
+    <div class="panel">
+      <div class="panel-title">Pullback risk pressure</div>
+      <div id="pb-gauge">
+        <div id="pb-dial">
+          <svg width="200" height="110" viewBox="0 0 200 110">
+            <path d="M 12 104 A 88 88 0 0 1 188 104" fill="none" stroke="var(--line)" stroke-width="2"/>
+            <path d="M 12 104 A 88 88 0 0 1 100 16" fill="none" stroke="rgba(76,195,138,0.35)" stroke-width="2"/>
+            <path d="M 100 16 A 88 88 0 0 1 160 32" fill="none" stroke="rgba(224,163,62,0.4)" stroke-width="2"/>
+            <path d="M 160 32 A 88 88 0 0 1 188 104" fill="none" stroke="rgba(229,72,77,0.45)" stroke-width="2"/>
+          </svg>
+          <div id="pb-needle"></div>
+        </div>
+        <div id="pb-score-big" class="serif">--</div>
+        <div id="pb-level" class="dimc">--</div>
+        <ul id="pb-drivers"></ul>
+        <ul id="pb-warnings" style="margin:6px 0 0; padding:0; list-style:none; width:100%;"></ul>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Adversarial committee — the counter-argument</div>
+      <div class="panel-body">
+        <div id="committee-list"></div>
+        <div id="committee-meta"></div>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:20px;">
+      <div class="panel">
+        <div class="panel-title">What breaks the thesis</div>
+        <div class="panel-body"><ul id="invalidation-list"><li class="dimc">--</li></ul></div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Risk register</div>
+        <div class="panel-body"><ul id="risk-list"><li class="dimc">--</li></ul></div>
+      </div>
+      <div class="panel" id="why-panel" style="display:none;">
+        <div class="panel-title">Decision trace — withheld sides</div>
+        <div class="panel-body"><div id="why-blocks"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ACT IV — GEOMETRY ================= -->
+<section class="act" id="act-geometry">
+  <div class="act-head">
+    <span class="act-no">IV</span>
+    <div><div class="act-title serif">Geometry</div><div class="act-sub">The trade space — only levels MIOS actually produced</div></div>
+    <div class="act-rule"></div>
+  </div>
+
+  <div id="geometry-grid">
+    <div class="panel">
+      <div class="panel-title">Price corridor — perspective across persisted levels</div>
+      <div id="corridor-stage">
+        <div id="corridor-planes"></div>
+        <div id="corridor-note">Awaiting decision…</div>
+      </div>
+    </div>
+    <div class="panel" id="corridor-side">
+      <div class="panel-title">Corridor readout</div>
+      <div class="panel-body" id="geo-stats"><div class="dimc" style="font-size:11px;">No levels yet.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ACT V — MEMORY ================= -->
+<section class="act" id="act-memory">
+  <div class="act-head">
+    <span class="act-no">V</span>
+    <div><div class="act-title serif">Memory</div><div class="act-sub">How the mind changed — decisions receding into depth</div></div>
+    <div class="act-rule"></div>
+  </div>
+
+  <div id="memory-stats"></div>
+  <div class="panel">
+    <div id="memory-scene"><div id="memory-track"><div class="dimc" style="font-size:11px; padding:20px;">No decisions recorded yet.</div></div></div>
+  </div>
+</section>
+
+<!-- ================= ACT VI — TELEMETRY ================= -->
+<section class="act" id="act-telemetry">
+  <div class="act-head">
+    <span class="act-no">VI</span>
+    <div><div class="act-title serif">Telemetry</div><div class="act-sub">Pipeline, providers and the clock</div></div>
+    <div class="act-rule"></div>
+  </div>
+
+  <div id="telemetry-grid">
+    <div class="panel">
+      <div class="panel-title">Pipeline counts</div>
+      <div class="panel-body"><div class="tele-counts" id="tele-counts"></div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Engine runtime</div>
+      <div class="panel-body"><div id="engine-runtimes"><div class="dimc" style="font-size:11px;">--</div></div></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Decision stamp</div>
+      <div class="panel-body"><div id="decision-stamp"><b>--</b></div></div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div id="colophon">MIOS // AURUM — decision support, not execution · deterministic engines + adversarial committee · gold intelligence</div>
+
+<script>
+/* ================================================================
+   MIOS AURUM — runtime. Pure presentation over persisted payloads.
+   No decision logic is recomputed here; every value is displayed
+   exactly as the backend persisted it.
+   ================================================================ */
+const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* Null-safe accessor: one missing optional node never aborts a render. */
+const _missingEl = { textContent: '', innerHTML: '', className: '', style: {}, classList: { add() {}, remove() {}, toggle() {} }, setAttribute() {}, getAttribute() { return null; } };
+const el = id => document.getElementById(id) || _missingEl;
+
+const escape = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+
+function biasClass(a) {
+  const s = String(a ?? '').toUpperCase();
+  if (s.includes('BUY') || s.includes('LONG') || s.includes('BULL')) return 'bull';
+  if (s.includes('SELL') || s.includes('SHORT') || s.includes('BEAR')) return 'bear';
+  return 'dimc';
+}
+function biasHex(a) {
+  const s = String(a ?? '').toUpperCase();
+  if (s.includes('BUY') || s.includes('LONG') || s.includes('BULL')) return getComputedStyle(document.documentElement).getPropertyValue('--bull').trim() || '#4CC38A';
+  if (s.includes('SELL') || s.includes('SHORT') || s.includes('BEAR')) return getComputedStyle(document.documentElement).getPropertyValue('--bear').trim() || '#E5484D';
+  return '#8A8F98';
+}
+function fmtAge(seconds) {
+  const s = Math.max(0, Math.floor(seconds || 0));
+  if (s < 60) return s + 's';
+  if (s < 3600) return Math.floor(s / 60) + 'm ' + (s % 60) + 's';
+  return Math.floor(s / 3600) + 'h ' + Math.floor((s % 3600) / 60) + 'm';
+}
+const fmt2 = v => (v === null || v === undefined || isNaN(parseFloat(v))) ? '--' : parseFloat(v).toFixed(2);
+
+/* Value decode: write text, flash it when it changed. Data-driven motion only. */
+const _prevVals = {};
+function setVal(node, text) {
+  const n = typeof node === 'string' ? el(node) : node;
+  text = String(text ?? '--');
+  if (_prevVals[n.textContent === undefined ? '' : ''] === undefined) { /* noop guard */ }
+  const key = n.id || text;
+  if (_prevVals[key] !== undefined && _prevVals[key] !== text && !REDUCED) {
+    n.classList.remove('flash'); void n.offsetWidth; n.classList.add('flash');
+  }
+  _prevVals[key] = text;
+  n.textContent = text;
+}
+
+const ENG_ORDER = ['technical', 'fundamental', 'institutional', 'news', 'geopolitical', 'market_regime'];
+const ENG_LABEL = { technical: 'Technical', fundamental: 'Macro', institutional: 'Institutional', news: 'News/Sent', geopolitical: 'Geopolitical', market_regime: 'Regime' };
+let ENGINE_STATE = ENG_ORDER.map(id => ({ id, score: null, confidence: null, status: null, runtime_ms: null, evidence: [], bias: null }));
+
+let _historyKey; let _historyCache = null;
+let POLL_FAILS = 0;
+
+async function loadData() {
+  try {
+    const [latestRes, policiesRes, researchRes, traceRes, providerRes, healthRes, backtestRes] = await Promise.all([
+      fetch('/api/latest').then(r => r.json()).catch(() => null),
+      fetch('/api/mode-policies').then(r => r.json()).catch(() => null),
+      fetch('/api/research').then(r => r.json()).catch(() => null),
+      fetch('/api/decision-trace').then(r => r.json()).catch(() => null),
+      fetch('/api/provider-status').then(r => r.json()).catch(() => null),
+      fetch('/api/health').then(r => r.json()).catch(() => null),
+      fetch('/api/backtesting').then(r => r.json()).catch(() => null),
+    ]);
+    POLL_FAILS = 0;
+    renderProviderStrip(providerRes);
+
+    if (!latestRes || !latestRes.latest) {
+      el('veil').classList.add('gone');
+      el('empty-state').classList.remove('hidden');
+      return;
+    }
+    el('empty-state').classList.add('hidden');
+    const d = latestRes.latest;
+
+    /* History carries full serialized reports: refetch only when the decision changes. */
+    let historyRes = _historyCache;
+    if (d.timestamp !== _historyKey) {
+      _historyKey = d.timestamp;
+      historyRes = await fetch('/api/history').then(r => r.json()).catch(() => null);
+      _historyCache = historyRes;
     }
 
-    function actionColorCls(a) {
-      const s = String(a ?? '').toUpperCase();
-      if(s.includes('BUY') || s.includes('LONG') || s.includes('BULL')) return 'bull';
-      if(s.includes('SELL') || s.includes('SHORT') || s.includes('BEAR')) return 'bear';
-      return 'dim';
+    renderRail(d, latestRes.freshness);
+    renderVerdict(d);
+    renderLanes(policiesRes?.policies || d.mode_policy_results || []);
+    ingestEngines(d, healthRes, researchRes);
+    renderConstellationTargets(researchRes);
+    renderEngineLedger();
+    renderPressure(d, researchRes, traceRes);
+    renderGeometry(d, policiesRes?.policies || d.mode_policy_results || []);
+    renderMemory(historyRes, backtestRes);
+    renderTelemetry(d, healthRes);
+    el('veil').classList.add('gone');
+  } catch (e) {
+    POLL_FAILS += 1;
+    if (POLL_FAILS === 1) el('rail-time').textContent = 'API unreachable — retrying';
+    el('veil').classList.add('gone');
+  }
+}
+
+/* ============ RAIL: freshness, spot, clock ============ */
+function renderRail(d, fr) {
+  if (d.spot_price) setVal('rail-spot', fmt2(d.spot_price));
+  const live = el('rail-live');
+  if (fr) {
+    document.body.classList.toggle('is-stale', !fr.fresh);
+    setVal('rail-live-txt', fr.fresh ? 'LIVE' : 'STALE');
+    if (live.classList) live.classList.toggle('is-stale', !fr.fresh);
+    setVal('rail-time', String(fr.timestamp).replace('T', ' ').substring(0, 16) + 'Z · age ' + fmtAge(fr.age_seconds));
+  } else {
+    setVal('rail-live-txt', '--');
+    setVal('rail-time', '--');
+  }
+}
+
+/* ============ ACT I — VERDICT ============ */
+function renderVerdict(d) {
+  const rec = d.recommendation?.name || d.recommendation || '--';
+  const word = el('verdict-word');
+  setVal(word, String(rec).toUpperCase());
+  word.classList.remove('is-bull', 'is-bear', 'is-wait');
+  word.classList.add(biasClass(rec) === 'bull' ? 'is-bull' : (biasClass(rec) === 'bear' ? 'is-bear' : 'is-wait'));
+
+  setVal('v-regime', d.market_regime?.name || d.market_regime || '--');
+  setVal('v-horizon', d.expected_holding_period || '--');
+  setVal('v-opp', (d.opportunity_score ?? '--') + ' / 100');
+
+  let moveStr = '--';
+  if (d.expected_move) {
+    const em = d.expected_move;
+    if (em.min_usd !== null && em.min_usd !== undefined) {
+      const sign = (em.direction === 'UP' || em.direction === 'BULLISH') ? '+' : ((em.direction === 'DOWN' || em.direction === 'BEARISH') ? '-' : '');
+      moveStr = sign + '$' + fmt2(em.min_usd);
+      if (em.max_usd !== null && em.max_usd !== undefined) moveStr += ' → $' + fmt2(em.max_usd);
+    } else moveStr = em.summary || em.direction;
+  }
+  setVal('v-move', moveStr);
+
+  setVal('thesis-text', d.explanation || 'No explanation persisted.');
+  setVal('ev-for-n', (d.supporting_evidence || []).length);
+  setVal('ev-against-n', (d.contradicting_evidence || []).length);
+  setVal('ev-risk-n', (d.risk_summary || []).length);
+
+  /* confidence ring */
+  const conf = d.confidence ?? 0;
+  const CIRC = 515.2;
+  el('conf-arc').style.strokeDashoffset = String(CIRC * (1 - conf / 100));
+  el('conf-arc').style.stroke = biasHex(rec);
+  setVal('conf-val', String(conf));
+}
+
+/* ============ MODE LANES — WAIT-safe ============ */
+function renderLanes(policies) {
+  ['physical', 'forex', 'etf'].forEach(mode => {
+    const lane = el('lane-' + mode);
+    const p = policies.find(x => x.mode === mode);
+    if (!p) {
+      lane.innerHTML = '<div class="lane-top"><span class="lane-mode serif">' + mode.charAt(0).toUpperCase() + mode.slice(1) + '</span><span class="lane-badge">--</span></div><div class="lane-body"><div class="lane-reason">Awaiting policy data</div></div>';
+      lane.className = 'lane is-wait';
+      return;
     }
+    const action = String(p.action || 'WAIT').toUpperCase();
+    const isWait = !!p.is_wait || action === 'WAIT';
+    lane.className = 'lane ' + (isWait ? 'is-wait' : 'is-live');
+    const badgeCls = isWait ? '' : ' style="color:' + biasHex(action) + ';border-color:' + biasHex(action) + '"';
 
-    function fmtAge(seconds) {
-      const s = Math.max(0, Math.floor(seconds || 0));
-      if(s < 60) return s + 's';
-      if(s < 3600) return Math.floor(s / 60) + 'm ' + (s % 60) + 's';
-      return Math.floor(s / 3600) + 'h ' + Math.floor((s % 3600) / 60) + 'm';
+    let body;
+    if (!isWait && p.actionable && p.entry) {
+      /* Actionable mode: show the persisted trade parameters. */
+      body = '<div class="lane-levels">'
+        + '<div class="lv"><span class="lv-k">Entry</span><span class="lv-v entry">' + fmt2(p.entry) + '</span></div>'
+        + '<div class="lv"><span class="lv-k">Take profit</span><span class="lv-v tp">' + fmt2(p.take_profit) + '</span></div>'
+        + '<div class="lv"><span class="lv-k">Stop loss</span><span class="lv-v sl">' + fmt2(p.stop_loss) + '</span></div>'
+        + '<div class="lv"><span class="lv-k">Risk</span><span class="lv-v">' + escape(p.risk || '--') + '</span></div>'
+        + '<div class="lv"><span class="lv-k">Horizon</span><span class="lv-v">' + escape(p.horizon || '--') + '</span></div>'
+        + '<div class="lv"><span class="lv-k">Allocate</span><span class="lv-v">' + escape(p.allocation || '--') + '</span></div>'
+        + '</div>'
+        + '<div class="lane-reason" style="margin-top:8px;">' + escape(p.reason || '') + '</div>';
+    } else {
+      /* WAIT: reason + conservative guidance only. Never show trade levels. */
+      body = '<div class="lane-reason">' + escape(p.reason || 'Holding.') + '</div>'
+        + '<div class="lv"><span class="lv-k">Allocation</span><span class="lv-v">' + escape(p.allocation || (mode === 'forex' ? 'Flat' : 'Maintain')) + '</span></div>'
+        + '<div class="lane-reason conservative">Conservative posture — no trade parameters while WAIT.</div>';
     }
+    lane.innerHTML = '<div class="lane-top"><span class="lane-mode serif">' + mode.charAt(0).toUpperCase() + mode.slice(1) + '</span>'
+      + '<span class="lane-badge"' + badgeCls + '>' + escape(action) + '</span></div>'
+      + '<div class="lane-body">' + body + '<div class="lane-foot">Confidence ' + (p.confidence ?? '--') + ' · move ' + escape(p.expected_move || '--') + '</div></div>';
+  });
+}
 
-    let _historyKey; let _historyCache = null;
-    async function loadData() {
-      try {
-        const [latestRes, policiesRes, traceRes, researchRes, providerRes] = await Promise.all([
-          fetch('/api/latest').then(r => r.json()).catch(() => null),
-          fetch('/api/mode-policies').then(r => r.json()).catch(() => null),
-          fetch('/api/decision-trace').then(r => r.json()).catch(() => null),
-          fetch('/api/research').then(r => r.json()).catch(() => null),
-          fetch('/api/provider-status').then(r => r.json()).catch(() => null),
-        ]);
-        renderProviderStrip(providerRes);
+/* ============ ACT II — SIGNAL ============ */
+/* Only roles with an unambiguous engine attribution are mapped. Direction is
+   read from the persisted analyst recommendation — never inferred from score. */
+const ROLE_ENGINE = {
+  technical_analyst: 'technical',
+  news_analyst: 'news',
+  geopolitical_analyst: 'geopolitical',
+  institutional_analyst: 'institutional'
+};
+function extractEngineBias(researchRes, d) {
+  const bias = {};
+  const reports = researchRes?.research?.analyst_reports || d.research_desk_report?.analyst_reports || [];
+  reports.forEach(r => {
+    const eng = ROLE_ENGINE[String(r.role || '')];
+    if (!eng || bias[eng]) return;
+    const rec = String(r.recommendation?.name || r.recommendation || '').toUpperCase();
+    bias[eng] = rec || null;
+  });
+  return bias;
+}
+function ingestEngines(d, healthRes, researchRes) {
+  const byId = {};
+  (d.engine_breakdown || []).forEach(b => { byId[b.engine?.value || b.engine] = b; });
+  const hRt = {};
+  ((healthRes && healthRes.engines) || []).forEach(h => { hRt[h.engine] = h.runtime_ms; });
+  const bias = extractEngineBias(researchRes, d);
+  ENGINE_STATE = ENG_ORDER.map(id => {
+    const b = byId[id] || {};
+    return { id, score: b.score ?? null, confidence: b.confidence ?? null, status: b.status || null, runtime_ms: b.runtime_ms ?? hRt[id] ?? null, evidence: b.evidence || [], bias: bias[id] || null };
+  });
+}
 
-        if(!latestRes || !latestRes.latest) {
-          el('loader').style.opacity = '0';
-          setTimeout(() => el('loader').classList.add('hidden'), 300);
-          el('empty-state').classList.remove('hidden');
-          return;
-        }
-        const d = latestRes.latest;
-        el('empty-state').classList.add('hidden');
-
-        // History serializes full reports: fetch once per decision, not per poll.
-        let historyRes = _historyCache;
-        if(d.timestamp !== _historyKey) {
-          _historyKey = d.timestamp;
-          historyRes = await fetch('/api/history').then(r => r.json()).catch(() => null);
-          _historyCache = historyRes;
-        }
-
-        el('loader').style.opacity = '0';
-        setTimeout(() => el('loader').classList.add('hidden'), 300);
-
-        // Decision timestamp + age; LIVE only while within the configured cycle.
-        const fr = latestRes.freshness;
-        if(fr) {
-          el('hdr-time').textContent = 'DECISION ' + String(fr.timestamp).replace('T', ' ').substring(0, 16) + 'Z · AGE ' + fmtAge(fr.age_seconds);
-          [document.getElementById('hdr-live'), ...document.querySelectorAll('.js-live')].forEach(n => {
-            if(!n) return;
-            n.textContent = fr.fresh ? 'LIVE' : 'STALE';
-            if(n.id === 'hdr-live') {
-              n.classList.toggle('text-bullish', !!fr.fresh);
-              n.classList.toggle('text-warning', !fr.fresh);
-            } else {
-              n.classList.toggle('status-stale', !fr.fresh);
-            }
-          });
-        } else {
-          el('hdr-time').textContent = 'DECISION -- · AGE --';
-        }
-
-        const spot = d.spot_price;
-        if(spot) {
-          el('hdr-spot').textContent = spot.toFixed(2);
-          el('hdr-spot-strip').textContent = spot.toFixed(2);
-        }
-
-        // 1. OVERVIEW (hero values are bound in the V5 overview section below)
-        const rec = d.recommendation.name || d.recommendation;
-
-        let moveStr = '--';
-        if(d.expected_move) {
-          const em = d.expected_move;
-          if(em.min_usd !== null) moveStr = (em.direction === 'UP' || em.direction === 'BULLISH' ? '+' : (em.direction === 'DOWN' || em.direction === 'BEARISH' ? '-' : '')) + '$' + parseFloat(em.min_usd).toFixed(2);
-          else moveStr = em.direction;
-        }
-
-        // AI Committee
-        const research = researchRes?.research_desk_report || d.research_desk_report;
-        if(research && research.committee_report && research.committee_report.committee_votes) {
-          const cr = research.committee_report;
-          const votes = cr.committee_votes || [];
-          const usage = cr.usage || {};
-          const provider = cr.provider || usage.provider || '--';
-          const model = usage.model || '--';
-          const runtime = usage.runtime_ms ? usage.runtime_ms + 'ms' : '--';
-
-          // Populate table for Intel view
-          let itHtml = `
-            <tr style="background:var(--bg-inset);">
-              <td colspan="6" class="text-tertiary" style="font-size:11px; text-align:right;">
-                Aggregate Execution: ${escape(provider)} / ${escape(model)} / ${runtime}
-              </td>
-            </tr>
-          `;
-          votes.forEach(v => {
-             const rvote = v.direction;
-             itHtml += `
-             <tr>
-               <td style="font-weight:500; color:var(--text-primary);"><span style="color:var(--color-gold);">⬡</span> ${escape(v.member_name)}</td>
-               <td class="mono" style="color:${actionColor(rvote)}">${escape(rvote)}</td>
-               <td class="mono">${Math.round(v.confidence * 100)}%</td>
-               <td class="mono text-secondary">--</td>
-               <td class="mono text-secondary">--</td>
-               <td class="mono text-tertiary">--</td>
-             </tr>`;
-          });
-          el('intel-committee-body').innerHTML = itHtml;
-        }
-
-        // Mode Policies
-        const policies = policiesRes?.policies || d.mode_policy_results || [];
-        if(policies.length > 0) {
-          el('modes-bias').textContent = rec.toUpperCase();
-          el('modes-bias').style.color = actionColor(rec);
-          el('modes-conf').textContent = d.confidence + '%';
-          el('modes-conf').style.color = d.confidence >= 80 ? 'var(--color-bullish)' : d.confidence >= 60 ? 'var(--color-warning)' : 'var(--color-bearish)';
-          el('modes-move').textContent = moveStr;
-          el('modes-regime').textContent = d.market_regime.name || d.market_regime;
-
-          let mHtml = '';
-          policies.forEach(p => {
-             const action = (p.action || 'WAIT').toUpperCase();
-             const isWait = p.is_wait || action === 'WAIT';
-
-             mHtml += `
-             <div class="mode-card">
-               <div class="mode-card-header">
-                 <div class="uppercase text-secondary" style="font-weight:600; display:flex; align-items:center; gap:8px;"><span style="color:var(--color-gold);">⬡</span> ${escape(p.mode)}</div>
-                 <div class="badge badge-outline" style="color:${actionColor(action)}; padding:2px 8px;">${escape(action)}</div>
-               </div>
-               <div class="mode-card-body">
-                 <div class="text-secondary" style="font-size:12px; min-height:40px; margin-bottom:16px;">
-                   ${escape(p.reason)}
-                 </div>
-
-                 <div class="data-row">
-                   <span class="text-tertiary uppercase">Threshold</span>
-                   <span class="mono text-primary">${p.mode==='physical'?'$50.00':(p.mode==='etf'?'$40.00':'$10.00')}</span>
-                 </div>
-                 <div class="data-row">
-                   <span class="text-tertiary uppercase">Allocate</span>
-                   <span class="text-primary">${escape(p.allocation || 'Maintain')}</span>
-                 </div>
-                 <div class="data-row">
-                   <span class="text-tertiary uppercase">Horizon</span>
-                   <span class="text-primary">${escape(p.horizon || '2-4 weeks')}</span>
-                 </div>
-
-                 ${p.mode==='forex' && p.actionable && p.entry ? `
-                   <div style="margin-top:16px; border-top:1px dashed var(--border-muted); padding-top:16px;">
-                     <div class="data-row"><span class="text-tertiary uppercase">Entry</span><span class="mono text-secondary">${parseFloat(p.entry).toFixed(2)}</span></div>
-                     <div class="data-row"><span class="text-tertiary uppercase">Take Profit</span><span class="mono text-bullish">${parseFloat(p.take_profit).toFixed(2)}</span></div>
-                     <div class="data-row"><span class="text-tertiary uppercase">Stop Loss</span><span class="mono text-bearish">${parseFloat(p.stop_loss).toFixed(2)}</span></div>
-                     <div class="data-row"><span class="text-tertiary uppercase">Risk Level</span><span class="text-primary">${escape(p.risk||'High')}</span></div>
-                   </div>
-                 ` : ''}
-               </div>
-             </div>`;
-          });
-          el('modes-grid').innerHTML = mHtml;
-
-          // Market Structure Chart
-          const fx = policies.find(p => p.mode==='forex');
-          renderChart(spot, fx?.entry, fx?.take_profit, fx?.stop_loss, d.support_resistance);
-        }
-
-        // Intelligence Constellation (Linear bars for this iteration)
-        if(d.engine_breakdown) {
-           let eHtml = '';
-           d.engine_breakdown.forEach(e => {
-              eHtml += `
-              <div>
-                <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
-                  <span class="uppercase text-secondary" style="font-size:11px; font-weight:600;">${escape(e.engine_id)}</span>
-                  <span class="mono text-primary">${e.score}/100</span>
-                </div>
-                <div style="height:4px; background:var(--bg-inset); border-radius:2px; overflow:hidden;">
-                  <div style="height:100%; width:${e.score}%; background:var(--color-gold);"></div>
-                </div>
-              </div>`;
-           });
-           el('constellation').innerHTML = eHtml;
-        }
-
-        // Pipeline Trace
-        const tel = d.pipeline_telemetry || {};
-        let plHtml = `
-          ${pNode('SOURCES', tel.sources, 'Connected')}
-          ${pNode('ARTICLES', tel.articles, 'Fetched')}
-          ${pNode('EVENTS', tel.events, 'Detected')}
-          ${pNode('VERIFIED', 'Unavail', 'Confirmed')}
-          ${pNode('NARRATIVES', tel.narratives, 'Identified')}
-          ${pNode('ENGINES', tel.engines, 'Evaluated')}
-          ${pNode('PULLBACK RISK', d.pullback_risk_report?.score, d.pullback_risk_report?.level)}
-          ${pNode('AI COMMITTEE', tel.committee_members, 'Members')}
-          ${pNode('MODE POLICY', tel.modes, 'Modes')}
-          ${pNode('FINAL ACTION', rec, 'Delivered', actionColor(rec))}
-        `;
-        el('pipeline-track').innerHTML = plHtml;
-
-        // History
-        if(historyRes?.reports) {
-           let hHtml = '';
-           historyRes.reports.slice(0, 20).forEach(h => {
-              const hrec = h.recommendation.name || h.recommendation;
-              hHtml += `
-              <tr>
-                <td class="mono text-tertiary">${new Date(h.timestamp).toLocaleTimeString()}</td>
-                <td class="uppercase mono" style="color:${actionColor(hrec)}; font-weight:600;">${escape(hrec)}</td>
-                <td class="mono">${h.confidence}%</td>
-                <td class="text-secondary" style="font-size:11px;">${escape(h.market_regime.name || h.market_regime)}</td>
-              </tr>`;
-           });
-           el('history-body').innerHTML = hHtml;
-        }
-
-
-        // --- V5 OVERVIEW JS ---
-        // Shell (hdr-spot / hdr-spot-strip are already bound above)
-        el('hdr-sys-time').textContent = 'SYS: ' + new Date().toISOString().substring(11, 16) + 'Z';
-        if(spot) {
-           el('val-spot').textContent = spot.toFixed(2);
-        }
-
-        if(d.pipeline_telemetry && d.pipeline_telemetry.events !== undefined) {
-           el('val-events').textContent = d.pipeline_telemetry.events;
-        }
-
-        // Reason (Engines)
-        if(d.engine_breakdown) {
-           let eHtml = '';
-           d.engine_breakdown.forEach(e => {
-              let cls = '';
-              let numScore = parseFloat(e.score);
-              let bias = 'NEUTRAL';
-              if(!isNaN(numScore)) {
-                  if(numScore > 50) { cls = 'bullish'; bias = 'BULL'; }
-                  else if(numScore < 50) { cls = 'bearish'; bias = 'BEAR'; }
-              } else {
-                  if(String(e.score).toUpperCase().includes('RISK_ON')) { cls='bullish'; }
-                  if(String(e.score).toUpperCase().includes('RISK_OFF')) { cls='bearish'; }
-              }
-
-              let scoreStr = isNaN(numScore) ? escape(e.score) : numScore;
-              let txtCls = cls === 'bullish' ? 'bull' : (cls === 'bearish' ? 'bear' : 'dim');
-
-              eHtml += `<div class="f-node eng ${cls}"><span>${escape(e.engine_id).toUpperCase()}</span><span class="${txtCls}">${scoreStr}</span></div>`;
-           });
-           if(el('engine-array')) el('engine-array').innerHTML = eHtml;
-        }
-
-        // Challenge (Pullback Risk)
-        if(d.pullback_risk_report) {
-          const pb = d.pullback_risk_report;
-          const pbLevel = pb.level;
-          if(el('pb-score')) el('pb-score').textContent = pb.score + ' ' + pbLevel;
-
-          let pcol = 'bear';
-          if(pbLevel === 'LOW') {
-              pcol = 'bull';
-              if(el('pullback-node')) {
-                  el('pullback-node').classList.add('level-LOW');
-                  el('pullback-node').classList.remove('bear');
-              }
-              if(el('pb-lbl')) el('pb-lbl').className = 'bull';
-              if(el('pb-score')) el('pb-score').className = 'bull';
-          } else {
-              if(el('pullback-node')) el('pullback-node').classList.remove('level-LOW');
-              if(el('pb-lbl')) el('pb-lbl').className = 'bear';
-              if(el('pb-score')) el('pb-score').className = 'bear';
-          }
-
-          let dHtml = '';
-          if (pb.directional_context) {
-             dHtml = `<li>${escape(pb.directional_context)}</li>`;
-          }
-          if(el('pb-drivers')) el('pb-drivers').innerHTML = dHtml;
-          if(el('shared-risk')) {
-              el('shared-risk').textContent = pb.score + ' ' + pbLevel;
-              el('shared-risk').className = pcol;
-          }
-        }
-
-        // Committee Convergence
-        if(research && research.committee_report && research.committee_report.committee_votes) {
-          const cr = research.committee_report;
-          const votes = cr.committee_votes || [];
-
-          let cHtml = '';
-          votes.slice(0,3).forEach(v => {
-             const rvote = v.direction;
-             const vCls = actionColorCls(rvote);
-             cHtml += `<div class="c-mem"><span class="dim">${escape(v.member_name).toUpperCase()}</span> <span class="${vCls}">${escape(rvote)} ${Math.round(v.confidence * 100)}%</span></div>`;
-          });
-          if(el('c-members-container')) el('c-members-container').innerHTML = cHtml;
-
-          const cvote = cr.final_recommendation.name || cr.final_recommendation;
-          const cvCls = actionColorCls(cvote);
-          if(el('consensus-val')) {
-              el('consensus-val').textContent = cvote.toUpperCase();
-              el('consensus-val').className = cvCls;
-          }
-          if(el('consensus-conf')) el('consensus-conf').textContent = cr.confidence + '% CONF';
-        }
-
-        // Final Decision & Shared State
-        const recName = d.recommendation.name || d.recommendation;
-        const mainCls = actionColorCls(recName);
-        if(el('mega-action')) {
-            el('mega-action').textContent = recName.toUpperCase();
-            el('mega-action').className = 'm-act ' + mainCls;
-        }
-        if(el('mega-conf')) el('mega-conf').textContent = d.confidence + '% CONFIDENCE';
-
-        if(el('shared-bias')) {
-            el('shared-bias').textContent = recName.toUpperCase();
-            el('shared-bias').className = mainCls;
-        }
-
-        const regimeStr = escape(d.market_regime.name || d.market_regime);
-        if(el('shared-regime')) el('shared-regime').textContent = regimeStr;
-
-        moveStr = '--';
-        if(d.expected_move) {
-          const em = d.expected_move;
-          if(em.min_usd !== null) moveStr = (em.direction === 'UP' || em.direction === 'BULLISH' ? '+' : (em.direction === 'DOWN' || em.direction === 'BEARISH' ? '-' : '')) + '$' + parseFloat(em.min_usd).toFixed(2);
-          else moveStr = em.direction;
-        }
-        if(el('mega-move')) el('mega-move').textContent = 'EXPECTED MOVE: ' + moveStr;
-        if(el('shared-move')) {
-            el('shared-move').textContent = moveStr;
-            el('shared-move').className = moveStr.includes('+') ? 'bull' : (moveStr.includes('-') ? 'bear' : 'dim');
-        }
-
-        // Execution Lenses
-        const pol = policiesRes?.policies || d.mode_policy_results || [];
-        let actionableModes = [];
-        if(pol.length > 0) {
-          let pHtml = '';
-          pol.forEach(p => {
-             const action = (p.action || 'WAIT').toUpperCase();
-             const isWait = p.is_wait || action === 'WAIT';
-             const mCls = actionColorCls(action);
-
-             let activeCls = '';
-             let statusCls = 'dim';
-             if(!isWait) {
-                activeCls = 'action ' + (mCls === 'bear' ? 'bearish' : '');
-                statusCls = mCls;
-                actionableModes.push(p.mode);
-             }
-
-             let bodyHtml = `
-               <div class="l-param"><span class="dim">THRESH</span><span>${p.mode==='physical'?'$50.00':(p.mode==='etf'?'$40.00':'$10.00')}</span></div>
-               <div class="l-param"><span class="dim">ALLOC</span><span>${escape(p.allocation || 'MAINTAIN').toUpperCase()}</span></div>
-             `;
-
-             if(!isWait && p.entry) {
-                 bodyHtml = `
-                   <div class="l-param"><span class="dim">ENTRY</span><span class="accent">${parseFloat(p.entry).toFixed(2)}</span></div>
-                   <div class="l-param"><span class="dim">TP</span><span class="bull">${parseFloat(p.take_profit).toFixed(2)}</span></div>
-                   <div class="l-param"><span class="dim">SL</span><span class="bear">${parseFloat(p.stop_loss).toFixed(2)}</span></div>
-                   <div class="l-param" style="border:none;"><span class="dim">RISK</span><span>${escape(p.risk||'HIGH').toUpperCase()}</span></div>
-                 `;
-             }
-
-             pHtml += `
-             <div class="l-branch ${activeCls}">
-                 <div class="l-lbl">${escape(p.mode).toUpperCase()} <span class="${statusCls}">${escape(action)}</span></div>
-                 <div style="margin-top:8px; display:flex; flex-direction:column; gap:4px;">
-                    ${bodyHtml}
-                 </div>
-             </div>`;
-          });
-          if(el('lenses-container')) el('lenses-container').innerHTML = pHtml;
-
-          if(el('mega-actionable')) {
-              if(actionableModes.length > 0) {
-                  el('mega-actionable').textContent = 'ACTIONABLE IN: ' + actionableModes.join(', ').toUpperCase();
-              } else {
-                  el('mega-actionable').textContent = 'NO MODES ACTIONABLE';
-              }
-          }
-
-          // Market Structure Chart
-          const fx = pol.find(p => p.mode==='forex');
-          if(typeof renderChart === 'function') renderChart(spot, fx?.entry, fx?.take_profit, fx?.stop_loss, d.support_resistance);
-        }
-
-        // History
-        if(historyRes?.reports) {
-           let hHtml = '';
-           historyRes.reports.slice(0, 15).forEach((h, i) => {
-              const hrec = h.recommendation.name || h.recommendation;
-              const cl = actionColorCls(hrec);
-              const time = new Date(h.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-              hHtml += `
-              <div class="h-row ${i===0?'active':''}">
-                <span>${time}</span>
-                <span class="${cl}">${escape(hrec).toUpperCase()}</span>
-                <span>${h.confidence}%</span>
-                <span>${escape(h.market_regime.name || h.market_regime)}</span>
-              </div>`;
-           });
-           if(el('v5-history-body')) el('v5-history-body').innerHTML = hHtml;
-        }
-
-      } catch(e) {
-        console.error(e);
-      }
-    }
-
-    function pNode(title, val, sub, col = 'var(--text-primary)') {
-      const v = (val===undefined || val===null) ? '--' : val;
-      return `
-      <div class="pipeline-node">
-        <div class="pipeline-icon">⬡</div>
-        <div class="uppercase text-secondary" style="font-size:10px; font-weight:600; line-height:1.2;">${escape(title)}</div>
-        <div class="mono" style="font-size:24px; font-weight:600; color:${col}; margin:-4px 0;">${escape(v)}</div>
-        <div class="text-tertiary" style="font-size:11px;">${escape(sub)}</div>
-      </div>`;
-    }
-
-    function renderProviderStrip(providerRes) {
-      const node = document.getElementById('provider-strip');
-      if(!node) return;
-      const providers = (providerRes && providerRes.providers) || [];
-      if(!providers.length) { node.textContent = 'PROVIDERS: --'; node.className = 'dim'; return; }
-      const down = [], degraded = [];
-      providers.forEach(p => {
-        const s = String(p.status || '').toUpperCase();
-        if(s === 'SUCCESS') return;
-        if(s === 'PARTIAL_SUCCESS' || s === 'STALE_DATA') degraded.push(p.provider);
-        else down.push(p.provider);
-      });
-      if(down.length) {
-        node.textContent = 'PROVIDERS: ' + (providers.length - down.length) + '/' + providers.length + ' UP · ' + down.length + ' DOWN';
-        node.className = 'bear';
-      } else if(degraded.length) {
-        node.textContent = 'PROVIDERS: ' + (providers.length - degraded.length) + '/' + providers.length + ' UP · DEGRADED';
-        node.className = 'accent';
-      } else {
-        node.textContent = 'PROVIDERS: ' + providers.length + ' OK';
-        node.className = 'bull';
-      }
-    }
-
-    // Tab switching
-    const navItems = document.querySelectorAll('.nav-item');
-
-    function switchView(hash) {
-      const targetHash = hash || '#overview';
-      const targetBtn = Array.from(navItems).find(btn => btn.getAttribute('href') === targetHash) || navItems[0];
-      if(!targetBtn) return;
-
-      navItems.forEach(n => { n.classList.remove('active'); n.setAttribute('aria-selected', 'false'); });
-      targetBtn.classList.add('active');
-      targetBtn.setAttribute('aria-selected', 'true');
-
-      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-      const viewId = targetBtn.dataset.view;
-      if(el(viewId)) el(viewId).classList.add('active');
-    }
-
-    window.addEventListener('hashchange', () => {
-       switchView(window.location.hash);
+function renderEngineLedger() {
+  const open = new Set(Array.from(document.querySelectorAll('.engine-row.open')).map(r => r.dataset.eng));
+  let html = '';
+  ENGINE_STATE.forEach(eng => {
+    const score = eng.score === null ? '--' : eng.score;
+    /* Score is a magnitude: always neutral gold. Direction lives in the bias chip. */
+    const biasCls = eng.bias ? biasClass(eng.bias) : 'dimc';
+    const biasTxt = eng.bias ? escape(eng.bias) : '—';
+    const st = eng.status && eng.status !== 'SUCCESS' ? ' · ' + escape(eng.status) : '';
+    let evHtml = '';
+    (eng.evidence || []).slice(0, 8).forEach(ev => {
+      const cat = String(ev.category || '').toUpperCase();
+      const tagCls = cat.includes('CONTRADICT') || cat.includes('AGAINST') || cat.includes('BEAR') ? 'against' : (cat.includes('SUPPORT') || cat.includes('FOR') || cat.includes('BULL') ? 'for' : 'fact');
+      evHtml += '<div class="ev-item"><span class="ev-tag ' + tagCls + '">' + escape(cat || 'EVIDENCE') + '</span>'
+        + '<div><div class="ev-desc">' + escape(ev.description || '') + '</div>'
+        + '<div class="ev-src">' + escape(ev.source || '') + ' · strength ' + escape(ev.strength || '--') + ' · conf ' + (ev.confidence ?? '--') + '</div></div></div>';
     });
+    if (!evHtml) evHtml = '<div class="dimc" style="font-size:11px;">No evidence persisted for this engine.</div>';
+    html += '<div class="engine-row' + (open.has(eng.id) ? ' open' : '') + '" data-eng="' + eng.id + '">'
+      + '<button class="engine-head" type="button" aria-expanded="' + (open.has(eng.id) ? 'true' : 'false') + '">'
+      + '<span class="engine-name">' + (ENG_LABEL[eng.id] || eng.id) + '</span>'
+      + '<span class="engine-score" style="color:var(--ink-2)">' + score + '</span>'
+      + '<span class="bias-chip ' + biasCls + '" title="Persisted analyst bias — score is magnitude, not direction">' + biasTxt + '</span>'
+      + '<span class="engine-bar"><i style="width:' + (eng.score === null ? 0 : eng.score) + '%"></i></span>'
+      + '<span class="engine-meta">' + (eng.runtime_ms === null ? '--' : eng.runtime_ms + 'ms') + st + '</span>'
+      + '<span class="engine-caret">▸</span></button>'
+      + '<div class="engine-detail">' + evHtml + '</div></div>';
+  });
+  el('engine-list').innerHTML = html;
+  document.querySelectorAll('.engine-head').forEach(btn => {
+    btn.addEventListener('click', () => btn.closest('.engine-row').classList.toggle('open'));
+  });
+}
 
-    // Initialize hash route on load
-    if(window.location.hash) {
-       switchView(window.location.hash);
+/* Canvas constellation: node radius = score magnitude, hue = persisted analyst bias, pulse = confidence. */
+const CONST = { canvas: null, ctx: null, targets: [], t: 0, raf: null };
+function renderConstellationTargets(researchRes) {
+  setVal('regime-strip', 'REGIME ' + String(document.getElementById('v-regime')?.textContent || '--'));
+  CONST.targets = ENGINE_STATE.map((eng, i) => {
+    const angle = -Math.PI / 2 + i * (Math.PI * 2 / ENGINE_STATE.length);
+    return { eng, angle, phase: i * 0.9 };
+  });
+  if (!CONST.canvas) initConstellation();
+}
+function initConstellation() {
+  CONST.canvas = document.getElementById('constellation');
+  if (!CONST.canvas) return;
+  CONST.ctx = CONST.canvas.getContext('2d');
+  const resize = () => {
+    const r = CONST.canvas.parentElement.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    CONST.canvas.width = r.width * dpr; CONST.canvas.height = r.height * dpr;
+    CONST.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  };
+  resize(); window.addEventListener('resize', resize);
+  const tick = () => {
+    CONST.raf = requestAnimationFrame(tick);
+    if (document.hidden) return;
+    drawConstellation();
+  };
+  if (REDUCED) drawConstellation(); else tick();
+}
+function drawConstellation() {
+  const ctx = CONST.ctx, cv = CONST.canvas;
+  if (!ctx || !cv) return;
+  const w = cv.clientWidth, h = cv.clientHeight;
+  if (!w || !h) return;
+  ctx.clearRect(0, 0, w, h);
+  const cx = w / 2, cy = h / 2, R = Math.min(w, h) * 0.36;
+  CONST.t += REDUCED ? 0 : 0.016;
+  const gold = 'rgba(217,164,65,';
+  /* orbit ring */
+  ctx.strokeStyle = 'rgba(27,32,41,0.9)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.stroke();
+  /* spokes + nodes */
+  CONST.targets.forEach(t => {
+    const x = cx + Math.cos(t.angle) * R, y = cy + Math.sin(t.angle) * R;
+    const has = t.eng.score !== null;
+    /* Hue = real persisted analyst bias. No bias on record -> hollow neutral node. */
+    const col = t.eng.bias ? biasHex(t.eng.bias) : '#8A8F98';
+    ctx.strokeStyle = 'rgba(86,96,116,0.5)';
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(x, y); ctx.stroke();
+    const base = has ? 4 + (t.eng.score / 100) * 10 : 3;
+    const pulse = REDUCED || !has ? 1 : 1 + 0.14 * Math.sin(CONST.t * 2 + t.phase) * ((t.eng.confidence ?? 0) / 100);
+    const rad = base * pulse;
+    if (t.eng.bias) {
+      ctx.save();
+      ctx.globalAlpha = 0.22;
+      ctx.fillStyle = col;
+      ctx.beginPath(); ctx.arc(x, y, rad * 2.6, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+      ctx.fillStyle = col;
+      ctx.beginPath(); ctx.arc(x, y, rad, 0, Math.PI * 2); ctx.fill();
+    } else {
+      /* No persisted bias: outline only — never colour a magnitude as direction. */
+      ctx.strokeStyle = col;
+      ctx.lineWidth = 1.2;
+      ctx.beginPath(); ctx.arc(x, y, rad, 0, Math.PI * 2); ctx.stroke();
+      ctx.lineWidth = 1;
     }
+    ctx.strokeStyle = 'rgba(236,231,219,0.18)';
+    ctx.beginPath(); ctx.arc(x, y, rad + 4, 0, Math.PI * 2); ctx.stroke();
+    ctx.fillStyle = 'rgba(183,178,166,0.9)';
+    ctx.font = '9px JetBrains Mono, monospace';
+    ctx.textAlign = 'center';
+    const lx = cx + Math.cos(t.angle) * (R + 26), ly = cy + Math.sin(t.angle) * (R + 26);
+    ctx.fillText((ENG_LABEL[t.eng.id] || t.eng.id).toUpperCase(), lx, ly);
+    ctx.fillStyle = 'rgba(183,178,166,0.85)';
+    ctx.fillText(has ? String(t.eng.score) : '--', lx, ly + 11);
+  });
+  /* center verdict core */
+  const core = ctx.createRadialGradient(cx, cy, 0, cx, cy, 30);
+  core.addColorStop(0, gold + '0.35)'); core.addColorStop(1, gold + '0)');
+  ctx.fillStyle = core; ctx.beginPath(); ctx.arc(cx, cy, 30, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = gold + '0.7)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.arc(cx, cy, 9, 0, Math.PI * 2); ctx.stroke();
+}
 
-    navItems.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-         // click handles href automatically
-      });
-    });
+/* ============ ACT III — PRESSURE ============ */
+function renderPressure(d, researchRes, traceRes) {
+  const pb = d.pullback_risk_report;
+  if (pb) {
+    setVal('pb-score-big', String(pb.score ?? '--'));
+    const lvl = String(pb.level || '--').toUpperCase();
+    setVal('pb-level', lvl);
+    el('pb-level').style.color = lvl === 'LOW' ? 'var(--bull)' : (lvl === 'MEDIUM' ? 'var(--warn)' : 'var(--bear)');
+    el('pb-score-big').style.color = el('pb-level').style.color;
+    /* needle: score 0..100 maps to -90deg..+90deg */
+    const deg = -90 + (Math.max(0, Math.min(100, pb.score || 0)) / 100) * 180;
+    el('pb-needle').style.transform = 'rotate(' + deg + 'deg)';
+    el('pb-drivers').innerHTML = (pb.drivers && pb.drivers.length)
+      ? pb.drivers.slice(0, 5).map(x => '<li>' + escape(x) + '</li>').join('')
+      : (pb.directional_context ? '<li>' + escape(pb.directional_context) + '</li>' : '<li class="dimc">No drivers persisted.</li>');
+    el('pb-warnings').innerHTML = (pb.warnings && pb.warnings.length)
+      ? pb.warnings.slice(0, 4).map(x => '<li>' + escape(x) + '</li>').join('') : '';
+  } else {
+    setVal('pb-score-big', '--'); setVal('pb-level', 'NO REPORT');
+    el('pb-drivers').innerHTML = '<li class="dimc">No pullback report persisted.</li>';
+  }
 
+  /* committee */
+  const cr = researchRes?.research?.committee_report || d.research_desk_report?.committee_report;
+  const list = el('committee-list');
+  if (cr && cr.committee_votes && cr.committee_votes.length) {
+    list.innerHTML = cr.committee_votes.map(v => {
+      const dir = String(v.direction || 'NEUTRAL').toUpperCase();
+      const conf = Math.max(0, Math.min(1, v.confidence ?? 0));
+      const neg = dir.includes('SELL') || dir.includes('SHORT') || dir.includes('BEAR');
+      const neutral = !neg && !(dir.includes('BUY') || dir.includes('LONG') || dir.includes('BULL'));
+      const widthPct = neutral ? 4 : conf * 46;
+      return '<div class="vote-row"><span class="vote-name" title="' + escape(v.member_name || '') + '">' + escape(v.member_name || '--') + '</span>'
+        + '<span class="vote-bar"><span class="mid"></span><i class="' + (neg ? 'neg' : '') + '" style="width:' + widthPct + '%"></i></span>'
+        + '<span class="vote-val ' + biasClass(dir) + '">' + escape(dir) + ' ' + Math.round(conf * 100) + '%</span></div>';
+    }).join('');
+    const final = cr.final_recommendation?.name || cr.final_recommendation || '--';
+    const usage = cr.usage || {};
+    el('committee-meta').innerHTML = 'Consensus <b class="' + biasClass(final) + '">' + escape(String(final).toUpperCase()) + '</b>'
+      + (cr.confidence !== undefined ? ' · conviction <b>' + cr.confidence + '%</b>' : '')
+      + '<br>Provider <b>' + escape(cr.provider || usage.provider || '--') + '</b>'
+      + (usage.model ? ' · model <b>' + escape(usage.model) + '</b>' : '')
+      + (usage.runtime_ms ? ' · <b>' + usage.runtime_ms + 'ms</b>' : '')
+      + (cr.fallback_reason ? '<br><span class="warn">Deterministic fallback: ' + escape(cr.fallback_reason) + '</span>' : '');
+  } else {
+    list.innerHTML = '<div class="dimc" style="font-size:11px;">No committee report persisted — deterministic path.</div>';
+    el('committee-meta').innerHTML = '';
+  }
 
-    function renderChart(spot, entry, tp, sl, sr) {
-       const chart = el('chart-area');
-       if(!spot) { chart.innerHTML = '<div style="padding:16px; color:var(--dim);">Market data unavailable</div>'; return; }
+  /* invalidation + risks */
+  const inv = d.invalidation_conditions || [];
+  el('invalidation-list').innerHTML = inv.length
+    ? inv.slice(0, 6).map(c => '<li>' + escape(c.condition || '') + '</li>').join('')
+    : '<li class="dimc">None persisted.</li>';
+  const risks = d.risk_summary || [];
+  el('risk-list').innerHTML = risks.length
+    ? risks.slice(0, 6).map(r => '<li>' + escape(r.risk || '') + '<span class="risk-sev ' + String(r.severity || '').toLowerCase() + '">' + escape(r.severity || '') + ' · ' + (r.probability ?? '--') + '%</span></li>').join('')
+    : '<li class="dimc">None persisted.</li>';
 
-       const lines = [];
-       lines.push({ name: 'SPOT', val: spot, cls: 'spot' });
-       if(tp) lines.push({ name: 'TP', val: parseFloat(tp), cls: 'tp' });
-       if(sl) lines.push({ name: 'SL', val: parseFloat(sl), cls: 'sl' });
+  /* decision trace why-not blocks */
+  const trace = traceRes?.trace || d.decision_trace;
+  const whyPanel = el('why-panel');
+  if (trace) {
+    let blocks = '';
+    if (trace.why_not_buy) blocks += '<div class="why-block"><div class="wk">Why not BUY</div><div class="wv">' + escape(trace.why_not_buy) + '</div></div>';
+    if (trace.why_not_sell) blocks += '<div class="why-block"><div class="wk">Why not SELL</div><div class="wv">' + escape(trace.why_not_sell) + '</div></div>';
+    if (trace.base_confidence !== undefined) blocks += '<div class="why-block"><div class="wk">Confidence path</div><div class="wv">base ' + trace.base_confidence + ' → posterior ' + trace.posterior_confidence + ' (evidence ' + (trace.evidence_weight_adjustment >= 0 ? '+' : '') + trace.evidence_weight_adjustment + ', contradiction −' + trace.contradiction_penalty + ', committee ' + (trace.committee_adjustment >= 0 ? '+' : '') + trace.committee_adjustment + ')</div></div>';
+    if (blocks) { whyPanel.style.display = ''; el('why-blocks').innerHTML = blocks; } else whyPanel.style.display = 'none';
+  } else whyPanel.style.display = 'none';
+}
 
-       if(sr && sr.support && sr.support.length > 0) {
-          lines.push({ name: 'SUP', val: parseFloat(sr.support[0].price), cls: 'sup' });
-       }
-       if(sr && sr.resistance && sr.resistance.length > 0) {
-          lines.push({ name: 'RES', val: parseFloat(sr.resistance[0].price), cls: 'res' });
-       }
+/* ============ ACT IV — GEOMETRY ============ */
+function renderGeometry(d, policies) {
+  const planes = el('corridor-planes');
+  const note = el('corridor-note');
+  const stats = el('geo-stats');
+  const spot = d.spot_price;
+  const fx = policies.find(p => p.mode === 'forex');
+  const showTradeLevels = !!(fx && !fx.is_wait && fx.actionable && fx.entry);
 
-       const maxVal = Math.max(...lines.map(l=>l.val)) * 1.002;
-       const minVal = Math.min(...lines.map(l=>l.val)) * 0.998;
-       const range = maxVal - minVal;
+  const levels = [];
+  const sr = d.support_resistance || { support: [], resistance: [] };
+  (sr.support || []).slice(0, 2).forEach(s => levels.push({ k: 'SUPPORT', price: parseFloat(s.price), cls: 'pl-sr' }));
+  (sr.resistance || []).slice(0, 2).forEach(s => levels.push({ k: 'RESIST', price: parseFloat(s.price), cls: 'pl-sr' }));
+  if (spot) levels.push({ k: 'SPOT', price: spot, cls: 'pl-spot' });
+  if (showTradeLevels) {
+    levels.push({ k: 'ENTRY', price: parseFloat(fx.entry), cls: 'pl-entry' });
+    if (fx.take_profit) levels.push({ k: 'TAKE PROFIT', price: parseFloat(fx.take_profit), cls: 'pl-tp' });
+    if (fx.stop_loss) levels.push({ k: 'STOP LOSS', price: parseFloat(fx.stop_loss), cls: 'pl-sl' });
+  }
+  const valid = levels.filter(l => !isNaN(l.price) && l.price > 0);
+  if (!valid.length) {
+    planes.innerHTML = '';
+    note.textContent = 'No price levels persisted — nothing to draw, nothing fabricated.';
+    stats.innerHTML = '<div class="dimc" style="font-size:11px;">No levels yet.</div>';
+    return;
+  }
+  const vals = valid.map(l => l.price);
+  const lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals);
+  const span = (hi - lo) || 1;
+  const pad = span * 0.12;
+  const min = lo - pad, max = hi + pad;
+  planes.innerHTML = valid.map((l, i) => {
+    const pct = 8 + (1 - (l.price - min) / (max - min)) * 80;
+    const z = -i * 26;
+    return '<div class="c-plane ' + l.cls + '" style="top:' + pct + '%; transform: translateZ(' + z + 'px);">'
+      + '<span class="c-label">' + l.k + ' <span class="c-price">' + fmt2(l.price) + '</span></span></div>';
+  }).join('');
+  note.textContent = showTradeLevels
+    ? 'Forex actionable — levels are persisted policy output'
+    : 'WAIT — corridor shows market structure only, no trade levels';
 
-       lines.forEach(l => l.y = 100 - ((l.val - minVal) / range * 100));
-       lines.sort((a, b) => a.y - b.y);
+  let s = '';
+  s += '<div class="geo-stat"><span class="gk">Spot</span><span class="gv gold">' + fmt2(spot) + '</span></div>';
+  if (showTradeLevels) {
+    s += '<div class="geo-stat"><span class="gk">Entry</span><span class="gv" style="color:var(--warn)">' + fmt2(fx.entry) + '</span></div>';
+    s += '<div class="geo-stat"><span class="gk">Take profit</span><span class="gv bull">' + fmt2(fx.take_profit) + '</span></div>';
+    s += '<div class="geo-stat"><span class="gk">Stop loss</span><span class="gv bear">' + fmt2(fx.stop_loss) + '</span></div>';
+    const rr = (fx.take_profit && fx.stop_loss && fx.entry) ? (Math.abs(parseFloat(fx.take_profit) - parseFloat(fx.entry)) / (Math.abs(parseFloat(fx.entry) - parseFloat(fx.stop_loss)) || 1)).toFixed(2) : '--';
+    s += '<div class="geo-stat"><span class="gk">Reward / Risk</span><span class="gv">' + rr + '</span></div>';
+  } else {
+    s += '<div class="geo-stat"><span class="gk">Trade levels</span><span class="gv dimc">None — WAIT</span></div>';
+  }
+  if ((sr.support || []).length) s += '<div class="geo-stat"><span class="gk">Nearest support</span><span class="gv">' + fmt2(sr.support[0].price) + '</span></div>';
+  if ((sr.resistance || []).length) s += '<div class="geo-stat"><span class="gk">Nearest resistance</span><span class="gv">' + fmt2(sr.resistance[0].price) + '</span></div>';
+  stats.innerHTML = s;
+}
 
-       lines.forEach(l => l.labelY = l.y);
-       for(let i=1; i<lines.length; i++) {
-         if (lines[i].labelY - lines[i-1].labelY < 15) lines[i].labelY = lines[i-1].labelY + 15;
-       }
-       for(let i=lines.length-2; i>=0; i--) {
-         if (lines[i+1].labelY - lines[i].labelY < 15) lines[i].labelY = lines[i+1].labelY - 15;
-       }
+/* ============ ACT V — MEMORY ============ */
+function renderMemory(historyRes, backtestRes) {
+  const reports = historyRes?.reports || [];
+  const statsEl = el('memory-stats');
+  const total = backtestRes?.historical_decision_count ?? reports.length;
+  const acted = backtestRes?.action_decision_count ?? reports.filter(r => !['WAIT', 'HOLD'].includes(String(r.recommendation?.name || r.recommendation).toUpperCase())).length;
+  statsEl.innerHTML = '<div class="mem-stat"><div class="ms-v serif">' + total + '</div><div class="ms-k">Decisions persisted</div></div>'
+    + '<div class="mem-stat"><div class="ms-v serif">' + acted + '</div><div class="ms-k">Actionable calls</div></div>'
+    + '<div class="mem-stat"><div class="ms-v serif">' + (total - acted) + '</div><div class="ms-k">Wait / hold discipline</div></div>';
 
-       let svgHtml = `
-       <svg width="100%" height="100%" preserveAspectRatio="none" style="position:absolute; inset:0;">
-          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-             <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
-          </pattern>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-       `;
+  const track = el('memory-track');
+  if (!reports.length) {
+    track.innerHTML = '<div class="dimc" style="font-size:11px; padding:20px;">No decisions recorded yet.</div>';
+    return;
+  }
+  track.innerHTML = reports.slice(0, 18).map((h, i) => {
+    const rec = h.recommendation?.name || h.recommendation || '--';
+    const t = new Date(h.timestamp);
+    const time = isNaN(t) ? '--' : t.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const depth = i * 13, shrink = Math.max(0.72, 1 - i * 0.03), fade = Math.max(0.3, 1 - i * 0.07);
+    return '<div class="mem-card" style="transform: translateZ(-' + depth + 'px) scale(' + shrink + '); opacity:' + fade + ';">'
+      + '<div class="mc-time">' + time + '</div>'
+      + '<div class="mc-act serif ' + biasClass(rec) + '">' + escape(String(rec).toUpperCase()) + '</div>'
+      + '<div class="mc-meta"><span>' + (h.confidence ?? '--') + '%</span><span>' + escape(h.market_regime?.name || h.market_regime || '--') + '</span></div></div>';
+  }).join('');
+}
 
-       lines.forEach(l => {
-         let yPct = l.y + '%';
-         let strColor = l.cls === 'spot' ? 'var(--accent)' : (l.cls === 'tp' ? 'var(--bull)' : (l.cls === 'sl' ? 'var(--bear)' : 'var(--dim)'));
-         let dash = l.cls === 'spot' ? '' : 'stroke-dasharray="4"';
+/* ============ ACT VI — TELEMETRY ============ */
+function renderTelemetry(d, healthRes) {
+  const tel = d.pipeline_telemetry || {};
+  const KEYS = [['sources', 'Sources'], ['articles', 'Articles'], ['events', 'Events'], ['narratives', 'Narratives'], ['engines', 'Engines'], ['committee_members', 'Committee'], ['modes', 'Modes']];
+  el('tele-counts').innerHTML = KEYS.map(([k, label]) =>
+    '<div class="tele-cell"><div class="tc-v serif">' + (tel[k] ?? '--') + '</div><div class="tc-k">' + label + '</div></div>'
+  ).join('');
 
-         svgHtml += `<line x1="0" y1="${yPct}" x2="100%" y2="${yPct}" stroke="${strColor}" ${dash} />`;
+  const rt = ((healthRes && healthRes.engines) || []).length ? healthRes.engines : ENGINE_STATE;
+  el('engine-runtimes').innerHTML = rt.map(e => {
+    const name = ENG_LABEL[e.engine?.value || e.engine || e.id] || e.engine?.value || e.engine || e.id;
+    return '<div class="rt-row"><span class="dimc">' + escape(String(name)) + '</span><span>' + (e.runtime_ms ?? '--') + 'ms</span></div>';
+  }).join('') || '<div class="dimc" style="font-size:11px;">--</div>';
 
-         let xPos = l.name === 'SPOT' ? 'calc(100% - 90px)' : 'calc(100% - 70px)';
-         svgHtml += `<text x="${xPos}" y="calc(${yPct} - 4px)" fill="${strColor}" font-size="10" font-family="JetBrains Mono">${l.name} ${l.val.toFixed(2)}</text>`;
-       });
+  el('decision-stamp').innerHTML = '<b>Decision</b> ' + escape(d.timestamp || '--')
+    + '<br><b>Report</b> ' + escape(d.recommendation_id || '--')
+    + '<br><b>Investment score</b> ' + (d.investment_score ?? '--') + ' / 100'
+    + (healthRes?.ai?.requests ? '<br><b>AI requests</b> ' + healthRes.ai.requests + ' · ' + healthRes.ai.runtime_ms + 'ms' : '');
+}
 
-       svgHtml += `</svg>`;
-       chart.innerHTML = svgHtml;
-    }
+/* ============ PROVIDER STRIP ============ */
+function renderProviderStrip(providerRes) {
+  const node = document.getElementById('provider-strip');
+  if (!node) return;
+  const providers = (providerRes && providerRes.providers) || [];
+  node.className = '';
+  if (!providers.length) { node.textContent = 'PROVIDERS --'; return; }
+  const down = [], degraded = [], ok = [];
+  providers.forEach(p => {
+    const s = String(p.status || '').toUpperCase();
+    if (s === 'SUCCESS') ok.push(p);
+    else if (s === 'PARTIAL_SUCCESS' || s === 'STALE_DATA') degraded.push(p);
+    else down.push(p);
+  });
+  if (down.length) { node.classList.add('down'); node.textContent = 'PROVIDERS ' + down.length + ' DOWN'; }
+  else if (degraded.length) { node.classList.add('degraded'); node.textContent = 'PROVIDERS DEGRADED ' + degraded.length; }
+  else { node.classList.add('ok'); node.textContent = 'PROVIDERS ' + ok.length + ' OK'; }
+  const detail = el('provider-detail');
+  detail.innerHTML = providers.map(p => {
+    const s = String(p.status || '').toUpperCase();
+    const cls = s === 'SUCCESS' ? 'bull' : ((s === 'PARTIAL_SUCCESS' || s === 'STALE_DATA') ? 'warn' : 'bear');
+    return '<div class="pd-row"><span class="dimc">' + escape(p.provider) + '</span><span class="' + cls + '">' + escape(s) + '</span></div>';
+  }).join('');
+}
+document.getElementById('provider-strip')?.addEventListener('click', () => el('provider-detail').classList.toggle('open'));
 
-        setInterval(loadData, 5000);
-    loadData();
-  </script>
+/* ============ ACT REVEALS + NAV ============ */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(en => { if (en.isIntersecting) en.target.classList.add('lit'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.act').forEach(a => io.observe(a));
+
+const navIO = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (!en.isIntersecting) return;
+    document.querySelectorAll('#rail-nav a').forEach(a => a.classList.toggle('active', a.dataset.act === en.target.id));
+  });
+}, { rootMargin: '-40% 0px -50% 0px' });
+document.querySelectorAll('.act').forEach(a => navIO.observe(a));
+
+window.addEventListener('keydown', ev => {
+  const idx = ['1', '2', '3', '4', '5', '6'].indexOf(ev.key);
+  if (idx >= 0) document.querySelectorAll('.act')[idx]?.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth' });
+});
+
+setInterval(loadData, 5000);
+loadData();
+</script>
 </body>
-</html>"""
+</html>
+"""

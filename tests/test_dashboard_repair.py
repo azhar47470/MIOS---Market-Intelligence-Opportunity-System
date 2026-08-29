@@ -1,13 +1,12 @@
-"""Regression tests for the surgical dashboard repair.
+"""Regression tests for the MIOS AURUM dashboard redesign.
 
-Covers the P0 presentation failure where the static mockup DOM ids did not
-match the live JavaScript targets:
+Guards the presentation contract of the Decision Theatre interface:
 
-A. live dashboard bindings replace static values
-B. WAIT hides Entry/TP/SL
-C. actionable mode displays trade fields
+A. live dashboard bindings replace any static values (no fabricated data)
+B. WAIT never exposes trade levels (lanes + 3D corridor)
+C. actionable mode displays persisted trade fields
 D. empty journal displays the empty state
-E. stale timestamp does not appear LIVE
+E. stale decision drops out of LIVE (badge + stage fog)
 F. missing/empty provider-status fails gracefully
 G. one missing optional DOM node does not abort the entire render
 """
@@ -81,23 +80,29 @@ def _get_json(server, path):
 def test_a_live_bindings_replace_static_mockup_values():
     html = _dashboard_html()
 
-    # Fabricated mockup numbers/labels must not survive into the served page.
-    for fabricated in ("4651", "4650", "4837", "4558", "98% CONF", "SYS: 2026", "BUY 95"):
-        assert fabricated not in html, f"fabricated mockup value still present: {fabricated}"
+    # Fabricated mockup numbers/labels must never survive into the served page.
+    for fabricated in (
+        "4651", "4650", "4837", "4558", "98% CONF", "SYS: 2026", "BUY 95",
+        "1234.56", "MOCK", "mock",
+    ):
+        assert fabricated not in html, f"fabricated mockup value present: {fabricated}"
 
     # Live binding targets must exist in the DOM.
     for element_id in (
-        "val-spot",
-        "mega-action",
-        "mega-conf",
-        "mega-move",
-        "lenses-container",
-        "v5-history-body",
+        "rail-spot",
+        "verdict-word",
+        "conf-val",
+        "v-move",
+        "lane-physical",
+        "lane-forex",
+        "lane-etf",
+        "constellation",
+        "memory-track",
         "provider-strip",
-        "hdr-time",
-        "hdr-live",
+        "rail-time",
+        "rail-live-txt",
         "empty-state",
-        "chart-area",
+        "decision-stamp",
     ):
         assert f'id="{element_id}"' in html, f"live binding target missing: {element_id}"
 
@@ -110,33 +115,40 @@ def test_a_live_bindings_replace_static_mockup_values():
 def test_b_wait_hides_trade_levels():
     html = _dashboard_html()
 
-    # Lens cards only render Entry/TP/SL when the persisted mode policy is
-    # not WAIT and actually carries an entry price.
-    assert "if(!isWait && p.entry)" in html
-    # Mode detail cards gate the trade-level block on actionable forex only.
-    assert "p.mode==='forex' && p.actionable && p.entry" in html
-    # No client-side policy recomputation: levels come straight from the
-    # persisted mode-policy payload fields.
-    assert "parseFloat(p.entry).toFixed(2)" in html
+    # Mode lanes render Entry/TP/SL only when the persisted mode policy is
+    # not WAIT, is actionable, and actually carries an entry price.
+    assert "!isWait && p.actionable && p.entry" in html
+    # WAIT branch explicitly refuses trade parameters.
+    assert "Conservative posture — no trade parameters while WAIT." in html
+    # The 3D corridor gates trade planes on actionable forex only.
+    assert "!!(fx && !fx.is_wait && fx.actionable && fx.entry)" in html
+    # Corridor WAIT note: market structure only, no trade levels.
+    assert "no trade levels" in html
 
 
 def test_c_actionable_mode_displays_trade_fields():
     html = _dashboard_html()
 
-    for field in ("ENTRY", "TP", "SL", "Take Profit", "Stop Loss"):
+    for field in ("Entry", "Take profit", "Stop loss", "Risk", "Horizon"):
         assert field in html
-    # The actionable branch renders entry/take-profit/stop-loss from the
-    # persisted policy (guarded by test_b conditions).
-    assert "parseFloat(p.take_profit).toFixed(2)" in html
-    assert "parseFloat(p.stop_loss).toFixed(2)" in html
+    # The actionable lane branch renders levels from the persisted policy
+    # (guarded by the test_b conditions), never recomputed client-side.
+    assert "fmt2(p.entry)" in html
+    assert "fmt2(p.take_profit)" in html
+    assert "fmt2(p.stop_loss)" in html
+    # Corridor planes for trade levels exist for the actionable case.
+    assert "pl-entry" in html and "pl-tp" in html and "pl-sl" in html
 
 
 def test_d_empty_journal_shows_empty_state():
     html = _dashboard_html()
-    assert "No decision yet" in html
-    assert "Run: python -m app.main run-once" in html
-    # JS unhides the empty state instead of leaving the loader over the mockup.
+    assert "The observatory is dark" in html
+    assert "No decision yet — Run: python -m app.main run-once" in html
+    # JS lifts the boot veil and reveals the empty state instead of hanging.
     assert "el('empty-state').classList.remove('hidden')" in html
+    # The .hidden class must actually hide overlays (empty state starts hidden).
+    assert '.hidden { display: none !important; }' in html
+    assert 'id="empty-state" class="hidden"' in html
 
     server = _serve(StubJournal())
     try:
@@ -158,16 +170,19 @@ def test_e_stale_decision_is_not_live(decision):
     assert stale["fresh"] is False
     assert stale["age_seconds"] >= stale["stale_after_seconds"]
 
-    # The badge text flips to STALE when the decision is outside the window.
+    # Badge text flips to STALE and the whole stage drops into fog.
     html = _dashboard_html()
     assert "fr.fresh ? 'LIVE' : 'STALE'" in html
+    assert "document.body.classList.toggle('is-stale', !fr.fresh)" in html
+    # The stale stamp is decorative and must never block rail interactions.
+    assert "pointer-events: none;" in html
 
 
 def test_f_missing_provider_status_fails_gracefully():
     html = _dashboard_html()
-    # Null-safe strip renderer: tolerates a missing endpoint/node.
-    assert "if(!node) return;" in html
-    assert "'PROVIDERS: --'" in html
+    # Null-safe strip renderer: tolerates a missing node/empty payload.
+    assert "if (!node) return;" in html
+    assert "'PROVIDERS --'" in html
     # Provider fetch cannot abort the render cycle.
     assert "fetch('/api/provider-status').then(r => r.json()).catch(() => null)" in html
 
@@ -186,15 +201,15 @@ def test_g_missing_optional_dom_node_does_not_abort_render():
     assert "document.getElementById(id) || _missingEl" in html
     # renderProviderStrip guards its own node lookup.
     assert "document.getElementById('provider-strip')" in html
-    # The render body still logs failures instead of crashing the poll loop.
-    assert "} catch(e) {" in html
-    assert "console.error(e)" in html
+    # The render body still survives exceptions instead of crashing the poll.
+    assert "} catch (e) {" in html
 
 
-def test_dashboard_wording_does_not_imply_execution():
+def test_wording_never_implies_autonomous_execution():
     html = _dashboard_html()
     assert "Executed" not in html
-    assert "Delivered" in html
+    # The interface presents decision support language, not brokerage action.
+    assert "CANONICAL OUTLOOK" in html.upper() or "verdict" in html.lower()
 
 
 def test_history_is_cached_per_decision():
@@ -202,3 +217,38 @@ def test_history_is_cached_per_decision():
     # History refetches only when the current decision changes, not per poll.
     assert "_historyCache" in html
     assert "d.timestamp !== _historyKey" in html
+
+
+def test_reduced_motion_is_honored():
+    html = _dashboard_html()
+    assert "prefers-reduced-motion" in html
+
+
+def test_engine_score_is_magnitude_not_direction():
+    html = _dashboard_html()
+
+    # Market direction must never be inferred from the numeric engine score.
+    assert "score > 50" not in html
+    assert "score < 50" not in html
+    assert "biasHexV" not in html
+
+    # Real persisted analyst bias is displayed separately (role -> engine map).
+    assert "extractEngineBias" in html
+    assert "ROLE_ENGINE" in html
+    assert "bias-chip" in html
+    # Constellation hue comes from the persisted bias, never the score.
+    assert "t.eng.bias ? biasHex(t.eng.bias)" in html
+
+
+def test_critical_risk_is_visually_distinct():
+    html = _dashboard_html()
+
+    # CRITICAL gets an unmistakable filled, pulsing alarm treatment.
+    assert ".risk-sev.critical" in html
+    assert "criticalpulse" in html
+    # Existing LOW/MEDIUM/HIGH semantics remain byte-identical.
+    assert (
+        ".risk-sev.high { color: var(--bear); } "
+        ".risk-sev.medium { color: var(--warn); } "
+        ".risk-sev.low { color: var(--bull); }" in html
+    )
