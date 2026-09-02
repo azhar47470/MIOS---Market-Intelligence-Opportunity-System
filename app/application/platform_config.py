@@ -71,6 +71,7 @@ class ApiProviderConfig(ConfigModel):
 
 class PollingConfig(ConfigModel):
     run_forever_interval_seconds: int = Field(default=60, ge=1, le=86_400)
+    dashboard_cycle_budget_seconds: int = Field(default=120, ge=0, le=86_400)
     slow_poll_seconds: int = Field(default=14_400, ge=60, le=86_400)
     news_poll_seconds: int = Field(default=300, ge=60, le=86_400)
     economic_calendar_poll_seconds: int = Field(default=300, ge=60, le=86_400)

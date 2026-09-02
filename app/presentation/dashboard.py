@@ -239,9 +239,11 @@ _freshness_window_cache: int | None = None
 def _freshness_window_seconds() -> int:
     """Decision age in seconds within which the latest decision counts as current.
 
-    Uses the configured continuous-run polling interval so a decision stays
-    "live" for one full monitoring cycle; falls back to 60s when the config
-    is unavailable.
+    Window = scheduler polling interval + dashboard cycle budget. The budget
+    covers the time a full pipeline (data acquisition, engines, committee)
+    needs before the next decision can be persisted, so a healthy continuous
+    session stays LIVE between consecutive decisions. Falls back to the bare
+    60s interval when the config is unavailable.
     """
     global _freshness_window_cache
     if _freshness_window_cache is None:
@@ -249,7 +251,10 @@ def _freshness_window_seconds() -> int:
         try:
             with _FRESHNESS_CONFIG_PATH.open("r", encoding="utf-8") as handle:
                 config = json.load(handle)
-            window = int(config.get("polling", {}).get("run_forever_interval_seconds", 60))
+            polling = config.get("polling", {})
+            interval = int(polling.get("run_forever_interval_seconds", 60))
+            budget = int(polling.get("dashboard_cycle_budget_seconds", 120))
+            window = interval + budget
         except (OSError, ValueError, AttributeError, TypeError):
             window = 60
         _freshness_window_cache = max(1, window)
@@ -753,7 +758,7 @@ body.is-stale #stale-stamp { display: block; }
   <div class="e-cmd">No decision yet — Run: python -m app.main run-once</div>
 </div>
 
-<div id="stale-stamp">Decision stale — awaiting new cycle</div>
+<div id="stale-stamp">Decision stale — run a new cycle</div>
 
 <!-- ============ COMMAND RAIL ============ -->
 <div id="rail">
@@ -1096,7 +1101,8 @@ function renderRail(d, fr) {
   const live = el('rail-live');
   if (fr) {
     document.body.classList.toggle('is-stale', !fr.fresh);
-    setVal('rail-live-txt', fr.fresh ? 'LIVE' : 'STALE');
+    /* Badge carries the persisted decision age so LIVE/STALE is never a bare claim. */
+    setVal('rail-live-txt', (fr.fresh ? 'LIVE' : 'STALE') + ' · ' + fmtAge(fr.age_seconds));
     if (live.classList) live.classList.toggle('is-stale', !fr.fresh);
     setVal('rail-time', String(fr.timestamp).replace('T', ' ').substring(0, 16) + 'Z · age ' + fmtAge(fr.age_seconds));
   } else {

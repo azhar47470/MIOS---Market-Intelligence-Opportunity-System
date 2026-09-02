@@ -252,3 +252,67 @@ def test_critical_risk_is_visually_distinct():
         ".risk-sev.medium { color: var(--warn); } "
         ".risk-sev.low { color: var(--bull); }" in html
     )
+
+
+def test_freshness_window_is_interval_plus_cycle_budget(monkeypatch):
+    # A: the 60s scheduler interval alone no longer defines dashboard freshness.
+    monkeypatch.setattr("app.presentation.dashboard._freshness_window_cache", None)
+    window = _freshness_window_seconds()
+    assert window == 60 + 120  # interval + dashboard_cycle_budget_seconds
+    assert window != 60
+
+
+def test_decision_below_window_is_fresh(monkeypatch, decision):
+    # B: age below the effective 180s window stays LIVE.
+    monkeypatch.setattr("app.presentation.dashboard._freshness_window_cache", None)
+    report = decision.model_copy(
+        update={"timestamp": datetime.now(UTC) - timedelta(seconds=100)}
+    )
+    payload = _freshness_payload(report)
+    assert payload["stale_after_seconds"] == 180
+    assert payload["fresh"] is True
+
+
+def test_decision_above_window_is_stale(monkeypatch, decision):
+    # C: age above the effective 180s window drops to STALE.
+    monkeypatch.setattr("app.presentation.dashboard._freshness_window_cache", None)
+    report = decision.model_copy(
+        update={"timestamp": datetime.now(UTC) - timedelta(seconds=300)}
+    )
+    payload = _freshness_payload(report)
+    assert payload["fresh"] is False
+    assert payload["age_seconds"] >= payload["stale_after_seconds"]
+
+
+def test_badge_age_is_sourced_from_persisted_decision(decision):
+    # D: the badge age is the server-computed age of the persisted timestamp.
+    html = _dashboard_html()
+    assert "(fr.fresh ? 'LIVE' : 'STALE') + ' · ' + fmtAge(fr.age_seconds)" in html
+    report = decision.model_copy(
+        update={"timestamp": datetime.now(UTC) - timedelta(seconds=194)}
+    )
+    payload = _freshness_payload(report)
+    assert 193 <= payload["age_seconds"] <= 196  # e.g. "STALE · 3m 14s"
+
+
+def test_stale_wording_does_not_claim_a_running_cycle():
+    # E: the dashboard never assumes a next cycle exists (run-once vs run-forever).
+    html = _dashboard_html()
+    lowered = html.lower()
+    assert "awaiting new cycle" not in lowered
+    assert "run a new cycle" in lowered
+
+
+def test_freshness_window_falls_back_when_config_unreadable(monkeypatch, tmp_path):
+    # F: missing or corrupt config degrades to the conservative 60s window.
+    monkeypatch.setattr("app.presentation.dashboard._freshness_window_cache", None)
+    monkeypatch.setattr(
+        "app.presentation.dashboard._FRESHNESS_CONFIG_PATH", tmp_path / "missing.json"
+    )
+    assert _freshness_window_seconds() == 60
+
+    broken = tmp_path / "platform.json"
+    broken.write_text("{not valid json", encoding="utf-8")
+    monkeypatch.setattr("app.presentation.dashboard._freshness_window_cache", None)
+    monkeypatch.setattr("app.presentation.dashboard._FRESHNESS_CONFIG_PATH", broken)
+    assert _freshness_window_seconds() == 60

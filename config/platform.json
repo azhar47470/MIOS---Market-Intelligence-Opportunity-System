@@ -32,6 +32,7 @@
   },
   "polling": {
     "run_forever_interval_seconds": 60,
+    "dashboard_cycle_budget_seconds": 120,
     "slow_poll_seconds": 14400,
     "news_poll_seconds": 300,
     "economic_calendar_poll_seconds": 300,
