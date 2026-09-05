@@ -122,7 +122,9 @@ class RSSNewsProvider(ProviderBase):
         raw_articles.extend(api_articles)
         errors.extend(api_errors)
         if not raw_articles and errors:
-            return self._result(ContractStatus.FAILED, error="; ".join(errors))
+            # ProviderResult.error is capped at 1000 chars; many failing feeds
+            # can exceed it, so truncate instead of raising ValidationError.
+            return self._result(ContractStatus.FAILED, error="; ".join(errors)[:1000])
 
         unique = _deduplicate(raw_articles)
         relevant = [article for article in unique if _gold_relevance(article) >= _RELEVANCE_THRESHOLD]

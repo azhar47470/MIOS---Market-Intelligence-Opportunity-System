@@ -12,7 +12,7 @@ MIOS is not an autonomous trading bot and does not claim to predict future price
 - **Bounded AI influence.** Committee output can adjust confidence only within hard limits and can never override deterministic safety policy.
 - **Provider resilience.** Four LLM providers with cycle-level locking, circuit breakers, and a fully deterministic fallback.
 - **Explicit WAIT discipline.** Every mode gate failure surfaces as WAIT with a reason, never as a forced trade.
-- **Testability and contracts.** Pydantic domain models, JSON-schema contracts, and a 253-test suite.
+- **Testability and contracts.** Pydantic domain models, JSON-schema contracts, and a 283-test suite.
 
 ## Quick Start
 
@@ -21,13 +21,13 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
 ```
 
-Copy `.env.example` to `.env` and supply the keys actually referenced by `config/platform.json`:
+Copy `.env.example` to `.env` and supply the keys referenced by `config/platform.json` plus the news-discovery keys read directly by the RSS layer:
 
 | Purpose | Keys |
 |---|---|
 | AI providers | `GROQ_API_KEY`, `OPENCODE_API_KEY`, `OLLAMA_API_KEY`, `GEMINI_API_KEY` |
 | Market / macro data | `TWELVE_DATA_API_KEY`, `FRED_API_KEY` |
-| News | `NEWSAPI_KEY`, `FINNHUB_API_KEY` |
+| News | `NEWSAPI_KEY`, `FINNHUB_API_KEY` (provider chain); `MARKETAUX_API_KEY`, `THENEWSAPI_KEY`, `WORLDNEWSAPI_KEY` (RSS discovery layer) |
 | Notifications (optional) | `DISCORD_WEBHOOK_URL` |
 
 Missing keys degrade gracefully: data layers fall back across sources, and the AI committee falls back to deterministic synthesis.
@@ -138,7 +138,7 @@ When the policy returns WAIT, every adapter — including Forex — returns an e
 python -m pytest
 ```
 
-**253 passing tests** cover the engines, escalation routing, provider locking and fallback, decision flow, mode policies, adapters, ingestion, backtesting, dashboard export, and paper trading. Every inter-layer payload is validated against the JSON-schema contracts in `contracts/schemas/`.
+**283 passing tests** cover the engines, escalation routing, provider locking and fallback, decision flow, mode policies, adapters, ingestion, backtesting, dashboard export, and paper trading. Every inter-layer payload is validated against the JSON-schema contracts in `contracts/schemas/`.
 
 ## Configuration Map
 

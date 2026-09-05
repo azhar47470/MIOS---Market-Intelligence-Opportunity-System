@@ -197,3 +197,21 @@ def test_gold_price_service_reports_failure_when_all_sources_fail():
 
     assert result.status == ContractStatus.FAILED
     assert "HTTP 599" in (result.error or "")
+
+
+def test_gold_price_service_caps_long_aggregated_failure_error():
+    class ExplodingPriceClient(ScriptedPriceClient):
+        def get(self, url, params=None, headers=None, timeout_seconds=10.0):
+            self.urls.append(url)
+            raise RuntimeError("upstream failure detail " + "x" * 900)
+
+    client = ExplodingPriceClient([])
+
+    result = GoldPriceService(client).fetch_quote()
+
+    assert result.status == ContractStatus.FAILED
+    assert result.data is None
+    assert result.error is not None
+    assert len(result.error) <= 1000
+    # The beginning of the diagnostic chain survives truncation.
+    assert result.error.startswith("gold-api.com: upstream failure detail")

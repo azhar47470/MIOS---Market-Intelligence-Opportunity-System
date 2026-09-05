@@ -149,6 +149,35 @@ def test_rss_provider_fails_when_all_feeds_error(monkeypatch):
     assert "reuters_gold" in (result.error or "")
 
 
+def test_rss_provider_caps_long_aggregated_failure_error(monkeypatch):
+    # Many failing feeds with verbose bodies used to overflow the 1000-char
+    # ProviderResult.error cap and raise a pydantic ValidationError.
+    monkeypatch.setattr(
+        RSSNewsProvider,
+        "_FEED_QUERIES",
+        tuple((f"feed_{i}", f"query {i}") for i in range(20)),
+    )
+    for env_var in ("MARKETAUX_API_KEY", "THENEWSAPI_KEY", "WORLDNEWSAPI_KEY"):
+        monkeypatch.delenv(env_var, raising=False)
+    provider = _rss_provider(
+        FakeHttpClient(
+            tuple(
+                HttpResponse(status_code=503, body="upstream failure detail " + "y" * 120)
+                for _ in range(20)
+            )
+        )
+    )
+
+    result = asyncio.run(provider.news_events("gold"))
+
+    assert result.status == ContractStatus.FAILED
+    assert result.data is None
+    assert result.error is not None
+    assert len(result.error) <= 1000
+    # The beginning of the diagnostic chain survives truncation.
+    assert result.error.startswith("feed_0: upstream failure detail")
+
+
 def _json(payload):
     import json
 

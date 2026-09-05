@@ -75,7 +75,9 @@ class GoldPriceService:
         return ProviderResult(
             status=ContractStatus.FAILED,
             provider="gold_price_service",
-            error="; ".join(failures) or "No gold price source configured",
+            # ProviderResult.error is capped at 1000 chars; long aggregated
+            # failure chains must truncate instead of raising ValidationError.
+            error=("; ".join(failures) or "No gold price source configured")[:1000],
         )
 
     def _fetch_gold_api(self, timeout_seconds: float) -> Decimal | None:
